@@ -21,7 +21,7 @@ Contact
 
 Email: wyrdathru@gmail.com
 Altnerate: wyrdathru@projectvoid.co.uk
-       
+
 Website: http://projectvoid.co.uk
 Documentation: http://wiki.projectvoid.co.uk/display/THEC
 Development: http://jira.projectvoid.co.uk/browse/THEC
