@@ -20,13 +20,13 @@ Contact
 =======
 
 Email: wyrdathru@gmail.com
-       wyrdathru@projectvoid.co.uk
+Altnerate: wyrdathru@projectvoid.co.uk
        
 Website: http://projectvoid.co.uk
-         http://wiki.projectvoid.co.uk/display/THEC
-         http://jira.projectvoid.co.uk/browse/THEC
+Documentation: http://wiki.projectvoid.co.uk/display/THEC
+Development: http://jira.projectvoid.co.uk/browse/THEC
          
-Release: http://projectvoid.co.uk/TheCreationist/download.html
+Download: http://projectvoid.co.uk/TheCreationist/download.html
 
 Open Source Licence
 ===================
