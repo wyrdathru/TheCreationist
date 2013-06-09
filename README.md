@@ -1,7 +1,7 @@
 ProjectVoid.TheCreationist
 ==========================
 
-TheCreationist (THEC) is an ASCII to ANSI converter which translates coloured text to escape sequences which can then be used on TinyMUX platforms. The codes are parsed by the TinyMUX engine to display both foreground and background colours to the MU* Client.
+TheCreationist (THEC) is an Open Source ASCII to ANSI converter which translates coloured text to escape sequences which can then be used on TinyMUX platforms. The codes are parsed by the TinyMUX engine to display both foreground and background colours to the MU* Client.
 
 With the introduction of 8-bit colour in MUX 2.10, previous tools that have been used such as A2A (created by PhantomProductions) no longer support the full range of colours. TheCreationist not only supports the new variety of colours, but seeks to provide new and improved aspects of functionality, too.
 
