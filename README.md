@@ -21,7 +21,7 @@ Contact
 
 Email: wyrdathru@gmail.com
 
-Altnerate: wyrdathru@projectvoid.co.uk
+Alternate: wyrdathru@projectvoid.co.uk
 
 Website: http://projectvoid.co.uk
 
