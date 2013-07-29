@@ -27,7 +27,7 @@ Website: http://projectvoid.co.uk
 
 Documentation: http://wiki.projectvoid.co.uk/display/THEC
 
-Development: http://jira.projectvoid.co.uk/browse/THEC
+Development: http://dev.projectvoid.co.uk/browse/THEC
          
 Download: http://projectvoid.co.uk/TheCreationist/download.html
 
