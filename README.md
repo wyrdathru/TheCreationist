@@ -21,14 +21,8 @@ Contact
 
 Email: wyrdathru@gmail.com
 
-Alternate: wyrdathru@projectvoid.co.uk
-
 Website: http://projectvoid.co.uk
 
-Documentation: http://wiki.projectvoid.co.uk/display/THEC
-
-Development: http://dev.projectvoid.co.uk/browse/THEC
-         
 Download: http://projectvoid.co.uk/TheCreationist/download.html
 
 Open Source Licence
