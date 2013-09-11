@@ -37,7 +37,7 @@ THE SOFTWARE. -->
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>http://localhost/TheCreationist/</PublishUrl>
+    <PublishUrl>C:\Users\Wyrdathru\Desktop\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -49,12 +49,13 @@ THE SOFTWARE. -->
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://www.projectvoid.co.uk/TheCreationist/</InstallUrl>
     <UpdateUrl>http://www.projectvoid.co.uk/TheCreationist/</UpdateUrl>
-    <SupportUrl>http://wiki.projectvoid.co.uk/display/THEC/Home</SupportUrl>
+    <SupportUrl>http://www.projectvoid.co.uk/TheCreationist</SupportUrl>
+    <TargetCulture>en-GB</TargetCulture>
     <ProductName>TheCreationist</ProductName>
     <PublisherName>ProjectVoid</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>download.html</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -186,6 +187,7 @@ THE SOFTWARE. -->
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -210,21 +212,21 @@ THE SOFTWARE. -->
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="TheCreationist.ico" />
+    <Resource Include="LICENCE.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENCE.txt" />
-    <Content Include="README.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Compile.png" />
-    <Resource Include="Images\Convert.png" />
-    <Resource Include="Images\New.png" />
-    <Resource Include="Images\Open.png" />
-    <Resource Include="Images\Save.png" />
-    <Resource Include="Images\Strip.png" />
-    <Resource Include="Images\Stripper.ico" />
+    <Resource Include="Images\Convert.ico" />
+    <Resource Include="Images\New.ico" />
+    <Resource Include="Images\Open.ico" />
+    <Resource Include="Images\Save.ico" />
+    <Resource Include="Images\Strip.ico" />
     <Resource Include="Images\TheCreationist.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stripper.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TheCreationist.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

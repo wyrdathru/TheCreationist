@@ -65,24 +65,24 @@ THE SOFTWARE. -->
                 <ToolBar>
                     <ToolBarPanel Width="Auto" Height="35" Orientation="Horizontal">
                         <Button Name="newButton" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" ToolTip="Create a new project!" Click="newMenuItem_Click">
-                            <Image Source="Images\New.png" />
+                            <Image Source="Images\New.ico" />
                         </Button>
                         <Button Name="openButton" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" ToolTip="Open an existing project!" Click="openMenuItem_Click">
-                            <Image Source="Images\Open.png" />
+                            <Image Source="Images\Open.ico" />
                         </Button>
                         <Button Name="saveButton" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" ToolTip="Save the current project!" Click="saveMenuItem_Click">
-                            <Image Source="Images\Save.png" />
+                            <Image Source="Images\Save.ico" />
                         </Button>
                         <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         <Button Name="convertButton" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" ToolTip="Convert to code!" Click="convertMenuItem_Click">
-                            <Image Source="Images\Convert.png" />
+                            <Image Source="Images\Convert.ico" />
                         </Button>
                         <!--<Button Name="compileButton" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" ToolTip="Compile to art!" Click="compileMenuItem_Click">
                             <Image Source="Images\Compile.png" />
                         </Button>-->
                         <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         <Button Name="stripButton" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" ToolTip="Strip selected text of its colour!" Initialized="stripButton_Initialized" Click="btnDefaultColour_Click" >
-                            <Image Name="stripButtonImage" Source="Images\Strip.png" />
+                            <Image Name="stripButtonImage" Source="Images\Strip.ico" />
                         </Button>
                         <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         <ComboBox Name="fontFamilyComboBox" ToolTip="Change the font family!" VerticalContentAlignment="Center" Initialized="fontFamilyComboBox_Initialized">

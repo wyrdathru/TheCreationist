@@ -30,7 +30,7 @@ THE SOFTWARE. */
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("TheCreationist")]
-[assembly: AssemblyDescription("This product has been licensed as Open Source software under The MIT License (MIT).\r\n\r\nVisit http://wiki.projectvoid.co.uk/display/THEC for documentation on this product.\r\n\r\nIcons provided courtesy of the Icons8 set by http://www.visualpharm.com/.")]
+[assembly: AssemblyDescription("This product has been licensed as Open Source software under The MIT License (MIT).\r\n\r\nhttps://github.com/wyrdathru/ProjectVoid.TheCreationist/\r\n\r\nArtwork by http://www.doublejdesign.co.uk/")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ProjectVoid")]
 [assembly: AssemblyProduct("TheCreationist")]
@@ -73,6 +73,6 @@ THE SOFTWARE. */
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.2.0")]
-[assembly: AssemblyFileVersion("1.0.2.0")]
+[assembly: AssemblyVersion("1.0.2.1")]
+[assembly: AssemblyFileVersion("1.0.2.1")]
 [assembly: NeutralResourcesLanguageAttribute("en-GB")]
