@@ -1,36 +1,28 @@
 ProjectVoid.TheCreationist
 ==========================
 
-TheCreationist (THEC) is an Open Source ASCII to ANSI converter which translates coloured text to escape sequences which can then be used on TinyMUX platforms. The codes are parsed by the TinyMUX engine to display both foreground and background colours to the MU* Client.
+TheCreationist (THEC) is an Open Source applications which helps convert coloured ASCII to custom escape sequences for TinyMUX (http://www.tinymux.org/) platforms.
 
-With the introduction of 8-bit colour in MUX 2.10, previous tools that have been used such as A2A (created by PhantomProductions) no longer support the full range of colours. TheCreationist not only supports the new variety of colours, but seeks to provide new and improved aspects of functionality, too.
+With the introduction of 8-bit colour in MUX 2.10, previous tools that have been used such as A2A (created by PhantomProductions) no longer support the range of colours available. TheCreationist not only supports the new variety of colours, but seeks to provide new and improved aspects of functionality.
+
+To download the latest available release, please follow this link: https://github.com/wyrdathru/ProjectVoid.TheCreationist/releases
 
 Features
 ========
-TheCreationist has a variety of unique features that assist with creating ASCII and ANSI art for the TinyMUX platform. These include:
 
-- Support for 8-Bit colour in hexadecimal format escape sequences.
-- Favourite swatches can be saved persistently between sessions.
-- Swatch Analyzer enables checking previously utilized colours.
-- Enable/disable spellcheck to review project quality as desired.
-- Variable font size and colour for easier readability.
-- Configurable repository for easier access to projects.
+(( This section will be updated regularly during development of TheCreationist 2, stay tuned! ))
 
 Contact
 =======
 
 Email: wyrdathru@gmail.com
 
-Website: http://projectvoid.co.uk
-
-Download: http://projectvoid.co.uk/TheCreationist/download.html
-
 Open Source Licence
 ===================
 
 The MIT License (MIT)
 
-Copyright (c) 2013 Kyle Wernham
+Copyright (c) 2014 Kyle Wernham
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
