@@ -41,3 +41,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+Third Party Dependencies
+===================
+
+I would like to thank the following projects and their authors for making much of what I've done possible through their hard work:
+
+- MahApps.Metro (http://mahapps.com/) has been used to implement Windows 8 (Metro) styling in TheCreationist.
+- MVVM Light Toolkit (http://www.galasoft.ch/mvvm) has been used to implement the MVVM design pattern in TheCreationst.
