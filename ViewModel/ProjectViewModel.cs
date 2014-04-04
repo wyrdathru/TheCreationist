@@ -5,12 +5,12 @@ using System;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class ProjectViewModel : ViewModelBase
     {
         /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
+        /// Initializes a new instance of the ProjectViewModel class.
         /// </summary>
-        public MainViewModel()
+        public ProjectViewModel()
         {
             //
         }

@@ -32,6 +32,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<ProjectViewModel>();
         }
 
         public MainViewModel MainViewModel
@@ -39,6 +40,14 @@ namespace ProjectVoid.TheCreationist.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
+        }
+
+        public ProjectViewModel ProjectViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ProjectViewModel>();
             }
         }
 
