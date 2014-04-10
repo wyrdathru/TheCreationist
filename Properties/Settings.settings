@@ -29,5 +29,17 @@
     <Setting Name="Top" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="Foreground" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFC0C0C0</Value>
+    </Setting>
+    <Setting Name="Background" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#00000000</Value>
+    </Setting>
+    <Setting Name="Backdrop" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF000000</Value>
+    </Setting>
+    <Setting Name="Debug" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

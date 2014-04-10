@@ -17,5 +17,39 @@
         ShowIconOnTitleBar="True">
     <Grid>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Workspace">
+            <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Projects}" SelectedIndex="0" SelectedItem="{Binding ActiveProject, Mode=TwoWay}">
+                <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
+
+                <metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
+                    <DataTemplate>
+                        <view:ProjectView />
+                    </DataTemplate>
+                </metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
+            </metro:MetroAnimatedSingleRowTabControl>
+        </GroupBox>
+
+        <StatusBar Grid.Row="1" Style="{StaticResource StatusBarTemplate}">
+            <TextBlock Visibility="{Binding Debug, Source={x:Static properties:Settings.Default}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}LastChanged: {0}">
+                        <Binding Path="ActiveProject.LastChanged" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </StatusBar>
     </Grid>
 </metro:MetroWindow>

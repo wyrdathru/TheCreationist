@@ -9,9 +9,17 @@
              d1p1:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
-            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:ProjectVoid.TheCreationist.ViewModel" />
-
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:ProjectVoid.TheCreationist.ViewModel" />
+
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+                    <Style TargetType="{x:Type StatusBar}" x:Key="StatusBarTemplate">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                </ResourceDictionary>
+
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />

@@ -130,5 +130,53 @@ namespace ProjectVoid.TheCreationist.Properties {
                 this["Top"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FFC0C0C0")]
+        public global::System.Windows.Media.Color Foreground {
+            get {
+                return ((global::System.Windows.Media.Color)(this["Foreground"]));
+            }
+            set {
+                this["Foreground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#00000000")]
+        public global::System.Windows.Media.Color Background {
+            get {
+                return ((global::System.Windows.Media.Color)(this["Background"]));
+            }
+            set {
+                this["Background"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF000000")]
+        public global::System.Windows.Media.Color Backdrop {
+            get {
+                return ((global::System.Windows.Media.Color)(this["Backdrop"]));
+            }
+            set {
+                this["Backdrop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Debug {
+            get {
+                return ((bool)(this["Debug"]));
+            }
+            set {
+                this["Debug"] = value;
+            }
+        }
     }
 }
