@@ -19,14 +19,41 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <GroupBox Header="Workspace">
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="File">
+                <MenuItem Header="New" Command="{Binding CreateProjectCommand}" />
+                <MenuItem Header="Open" Command="{Binding OpenProjectCommand}" />
+                <MenuItem Header="Save" Command="{Binding SaveProjectCommand}" />
+                <Separator />
+                <MenuItem Header="Close" Command="{Binding CloseProjectCommand}" />
+            </MenuItem>
+
+            <MenuItem Header="Edit">
+                <MenuItem Header="Cut" Command="ApplicationCommands.Cut" />
+                <MenuItem Header="Copy" Command="ApplicationCommands.Copy" />
+                <MenuItem Header="Paste" Command="ApplicationCommands.Paste" />
+                <Separator />
+                <MenuItem Header="Undo" Command="ApplicationCommands.Undo" />
+                <MenuItem Header="Redo" Command="ApplicationCommands.Redo" />
+            </MenuItem>
+
+            <MenuItem Header="Options">
+            </MenuItem>
+
+            <MenuItem Header="Help">
+            </MenuItem>
+        </Menu>
+
+        <GroupBox Grid.Row="1" Grid.ColumnSpan="2" Header="Workspace">
             <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Projects}" SelectedIndex="0" SelectedItem="{Binding ActiveProject, Mode=TwoWay}">
                 <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
                     <DataTemplate>
@@ -42,7 +69,7 @@
             </metro:MetroAnimatedSingleRowTabControl>
         </GroupBox>
 
-        <StatusBar Grid.Row="1" Style="{StaticResource StatusBarTemplate}">
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource StatusBarTemplate}">
             <TextBlock Visibility="{Binding Debug, Source={x:Static properties:Settings.Default}, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}LastChanged: {0}">
