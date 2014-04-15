@@ -30,11 +30,15 @@
 
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Header="File">
-                <MenuItem Header="New" Command="{Binding CreateProjectCommand}" />
-                <MenuItem Header="Open" Command="{Binding OpenProjectCommand}" />
-                <MenuItem Header="Save" Command="{Binding SaveProjectCommand}" />
+                <MenuItem Header="New" Command="{Binding Commands.CreateProjectCommand}" />
+                <MenuItem Header="Open" Command="{Binding Commands.OpenProjectCommand}" />
+                <MenuItem Header="Save" Command="{Binding Commands.SaveProjectCommand}" />
+                <MenuItem Header="Close" Command="{Binding Commands.CloseProjectCommand}" />
                 <Separator />
-                <MenuItem Header="Close" Command="{Binding CloseProjectCommand}" />
+                <MenuItem Header="Convert" Command="{Binding Commands.ConvertProjectCommand}" />
+                <MenuItem Header="Compile" Command="{Binding Commands.CompileProjectCommand}" />
+                <Separator />
+                <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
             </MenuItem>
 
             <MenuItem Header="Edit">

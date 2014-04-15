@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using ProjectVoid.TheCreationist.Commands;
 using System;
 using System.Collections.ObjectModel;
 
@@ -15,24 +16,16 @@ namespace ProjectVoid.TheCreationist.ViewModel
         {
             Projects = new ObservableCollection<ProjectViewModel>();
 
-            CreateProjectCommand = new RelayCommand(
-                () => CreateProject(),
-                () => CanCreateProject());
+            Commands = new ProjectCommands();
 
-            OpenProjectCommand = new RelayCommand(
-                () => OpenProject(),
-                () => CanOpenProject());
-
-            SaveProjectCommand = new RelayCommand(
-                () => SaveProject(),
-                () => CanSaveProject());
-
-            CloseProjectCommand = new RelayCommand(
-                () => CloseProject(),
-                () => CanCloseProject());
+            ExitApplicationCommand = new RelayCommand(
+                () => ExitApplication(),
+                () => CanExitApplication());
 
             Initialize();
         }
+
+        public RelayCommand ExitApplicationCommand { get; private set; }
 
         public ProjectViewModel ActiveProject
         {
@@ -56,10 +49,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
-        public RelayCommand CreateProjectCommand { get; private set; }
-        public RelayCommand OpenProjectCommand { get; private set; }
-        public RelayCommand SaveProjectCommand { get; private set; }
-        public RelayCommand CloseProjectCommand { get; private set; }
+        public ProjectCommands Commands { get; set; }
 
         private void Initialize()
         {
@@ -69,44 +59,14 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
-        private void CreateProject()
+        private void ExitApplication()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("ExitApplication");
         }
 
-        private bool CanCreateProject()
+        private bool CanExitApplication()
         {
-            throw new System.NotImplementedException();
-        }
-
-        private void OpenProject()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private bool CanOpenProject()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private void SaveProject()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private bool CanSaveProject()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private void CloseProject()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private bool CanCloseProject()
-        {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }
