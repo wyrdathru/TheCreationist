@@ -4,6 +4,7 @@
         xmlns:view="clr-namespace:ProjectVoid.TheCreationist.View"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
+        xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
         Title="{Binding Title, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
         MinWidth="{Binding MinWidth, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
@@ -14,7 +15,13 @@
         WindowState="{Binding WindowState, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
         Left="{Binding Left, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
         Top="{Binding Top, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
+        BorderBrush="{StaticResource AccentColorBrush}"
+        BorderThickness="1"
         ShowIconOnTitleBar="True">
+    <metro:MetroWindow.Resources>
+        <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+    </metro:MetroWindow.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -92,6 +99,28 @@
         </GroupBox>
 
         <GroupBox Grid.Column="1" Grid.Row="2" Header="Active">
+            <StackPanel>
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="Rectangle" x:Key="ActiveSwatchTemplate">
+                            <Setter Property="Width" Value="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}" />
+                            <Setter Property="Height" Value="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}" />
+                            <Setter Property="Stroke" Value="{StaticResource AccentColorBrush}" />
+                            <Setter Property="StrokeThickness" Value="1" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <Rectangle Fill="{Binding ActiveProject.Background, Converter={StaticResource ColorToBrushConverter}}"
+                               Style="{StaticResource ActiveSwatchTemplate}"
+                               Margin="25,15,0,0"
+                               Panel.ZIndex="0" />
+
+                    <Rectangle Fill="{Binding ActiveProject.Foreground, Converter={StaticResource ColorToBrushConverter}}"
+                               Style="{StaticResource ActiveSwatchTemplate}"
+                               Margin="0,0,25,15" 
+                               Panel.ZIndex="1" />
+                </Grid>
+            </StackPanel>
         </GroupBox>
 
         <StatusBar Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StatusBarTemplate}">

@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:ProjectVoid.Core.Controls;assembly=ProjectVoid.Core"
              xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
+             xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-
     <UserControl.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
     </UserControl.Resources>
@@ -18,5 +18,7 @@
                                   LastChanged="{Binding LastChanged, Mode=TwoWay}"
                                   Forecolor="{Binding Foreground, Mode=TwoWay}"
                                   Backcolor="{Binding Background, Mode=TwoWay}"
-                                  Background="{Binding Backdrop, Mode=TwoWay, Converter={StaticResource ColorToBrushConverter}}" />
+                                  Background="{Binding Backdrop, Mode=TwoWay, Converter={StaticResource ColorToBrushConverter}}"
+                                  FontSize="{Binding FontSize, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
+                                  FontFamily="{Binding FontFamily, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"/>
 </UserControl>
