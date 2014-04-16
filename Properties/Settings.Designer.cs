@@ -190,5 +190,17 @@ namespace ProjectVoid.TheCreationist.Properties {
                 this["Libraries"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int SwatchSize {
+            get {
+                return ((int)(this["SwatchSize"]));
+            }
+            set {
+                this["SwatchSize"] = value;
+            }
+        }
     }
 }

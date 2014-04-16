@@ -44,5 +44,8 @@
     <Setting Name="Libraries" Type="System.String" Scope="User">
       <Value Profile="(Default)">Resources\Libraries</Value>
     </Setting>
+    <Setting Name="SwatchSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

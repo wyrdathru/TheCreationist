@@ -76,6 +76,19 @@
         </GroupBox>
 
         <GroupBox Grid.Column="1" Grid.Row="1" Header="Swatches">
+            <ListBox ItemsSource="{Binding ActiveLibrary.Swatches}" ItemContainerStyle="{StaticResource ListBoxItemTemplate}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2" VerticalAlignment="Top" />   
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <view:SwatchView />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </GroupBox>
 
         <GroupBox Grid.Column="1" Grid.Row="2" Header="Active">

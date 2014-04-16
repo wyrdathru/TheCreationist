@@ -22,6 +22,10 @@
                     <Style TargetType="{x:Type Paragraph}">
                         <Setter Property="Margin" Value="0" />
                     </Style>
+
+                    <Style TargetType="{x:Type ListBoxItem}" x:Key="ListBoxItemTemplate">
+                        <Setter Property="Padding" Value="0" />
+                    </Style>
                 </ResourceDictionary>
 
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
