@@ -95,10 +95,14 @@
         </GroupBox>
 
         <StatusBar Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StatusBarTemplate}">
-            <TextBlock Visibility="{Binding Debug, Source={x:Static properties:Settings.Default}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Foreground="{StaticResource IdealForegroundColorBrush}" Background="{StaticResource AccentColorBrush}" Visibility="{Binding Debug, Source={x:Static properties:Settings.Default}, Converter={StaticResource BooleanToVisibilityConverter}}" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}LastChanged: {0}">
+                    <MultiBinding StringFormat="{}DEBUG: Name: {0}, LastChanged: {1}, Foreground: {2}, Background: {3}, Backdrop: {4}">
+                        <Binding Path="ActiveProject.Name" />
                         <Binding Path="ActiveProject.LastChanged" />
+                        <Binding Path="ActiveProject.Foreground" />
+                        <Binding Path="ActiveProject.Background" />
+                        <Binding Path="ActiveProject.Backdrop" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
