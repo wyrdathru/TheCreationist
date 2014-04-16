@@ -1,15 +1,11 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectVoid.TheCreationist.Commands
 {
-    public class ProjectCommands
+    public class CommandManager
     {
-        public ProjectCommands()
+        public CommandManager()
         {
             CreateProjectCommand = new RelayCommand(
                 () => CreateProject(),
@@ -34,6 +30,18 @@ namespace ProjectVoid.TheCreationist.Commands
             CompileProjectCommand = new RelayCommand(
                 () => CompileProject(),
                 () => CanCompileProject());
+
+            ExitApplicationCommand = new RelayCommand(
+                () => ExitApplication(),
+                () => CanExitApplication());
+
+            DisplayOptionsCommand = new RelayCommand(
+                () => DisplayOptions(),
+                () => CanDisplayOptions());
+
+            DisplayAboutCommand = new RelayCommand(
+                () => DisplayAbout(),
+                () => CanDisplayAbout());
         }
 
         public RelayCommand CreateProjectCommand { get; private set; }
@@ -42,6 +50,9 @@ namespace ProjectVoid.TheCreationist.Commands
         public RelayCommand CloseProjectCommand { get; private set; }
         public RelayCommand ConvertProjectCommand { get; private set; }
         public RelayCommand CompileProjectCommand { get; private set; }
+        public RelayCommand ExitApplicationCommand { get; private set; }
+        public RelayCommand DisplayOptionsCommand { get; private set; }
+        public RelayCommand DisplayAboutCommand { get; private set; }
 
         private void CreateProject()
         {
@@ -99,6 +110,36 @@ namespace ProjectVoid.TheCreationist.Commands
         }
 
         private bool CanCompileProject()
+        {
+            return true;
+        }
+
+        private void ExitApplication()
+        {
+            Console.WriteLine("ExitApplication");
+        }
+
+        private bool CanExitApplication()
+        {
+            return true;
+        }
+
+        private void DisplayOptions()
+        {
+            Console.WriteLine("DisplayOptions");
+        }
+
+        private bool CanDisplayOptions()
+        {
+            return true;
+        }
+
+        private void DisplayAbout()
+        {
+            Console.WriteLine("DisplayAbout");
+        }
+
+        private bool CanDisplayAbout()
         {
             return true;
         }

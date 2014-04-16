@@ -16,19 +16,19 @@
         Top="{Binding Top, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
         ShowIconOnTitleBar="True">
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+        <Menu Grid.ColumnSpan="2" Grid.Row="0">
             <MenuItem Header="File">
                 <MenuItem Header="New" Command="{Binding Commands.CreateProjectCommand}" />
                 <MenuItem Header="Open" Command="{Binding Commands.OpenProjectCommand}" />
@@ -38,7 +38,7 @@
                 <MenuItem Header="Convert" Command="{Binding Commands.ConvertProjectCommand}" />
                 <MenuItem Header="Compile" Command="{Binding Commands.CompileProjectCommand}" />
                 <Separator />
-                <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
+                <MenuItem Header="Exit" Command="{Binding Commands.ExitApplicationCommand}" />
             </MenuItem>
 
             <MenuItem Header="Edit">
@@ -50,14 +50,16 @@
                 <MenuItem Header="Redo" Command="ApplicationCommands.Redo" />
             </MenuItem>
 
-            <MenuItem Header="Options">
+            <MenuItem Header="Tools">
+                <MenuItem Header="Options" Command="{Binding Commands.DisplayOptionsCommand}" />
             </MenuItem>
 
             <MenuItem Header="Help">
+                <MenuItem Header="About" Command="{Binding Commands.DisplayAboutCommand}" />
             </MenuItem>
         </Menu>
 
-        <GroupBox Grid.Row="1" Grid.ColumnSpan="2" Header="Workspace">
+        <GroupBox Grid.RowSpan="2" Grid.Row="1" Header="Workspace">
             <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Projects}" SelectedIndex="0" SelectedItem="{Binding ActiveProject, Mode=TwoWay}">
                 <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
                     <DataTemplate>
@@ -73,7 +75,13 @@
             </metro:MetroAnimatedSingleRowTabControl>
         </GroupBox>
 
-        <StatusBar Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource StatusBarTemplate}">
+        <GroupBox Grid.Column="1" Grid.Row="1" Header="Swatches">
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Grid.Row="2" Header="Active">
+        </GroupBox>
+
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StatusBarTemplate}">
             <TextBlock Visibility="{Binding Debug, Source={x:Static properties:Settings.Default}, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}LastChanged: {0}">

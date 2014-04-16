@@ -42,14 +42,6 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
-        public ProjectViewModel ProjectViewModel
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ProjectViewModel>();
-            }
-        }
-
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

@@ -41,5 +41,8 @@
     <Setting Name="Debug" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="Libraries" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Resources\Libraries</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

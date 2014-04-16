@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProjectVoid.TheCreationist.Properties
-{
-
-
+namespace ProjectVoid.TheCreationist.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,49 +22,89 @@ namespace ProjectVoid.TheCreationist.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProjectVoid.TheCreationist.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Library Description=&quot;&quot; Name=&quot;Classic&quot; xmlns=&quot;clr-namespace:ProjectVoid.TheCreationist.MVVM.Model;assembly=ProjectVoid.TheCreationist&quot; xmlns:scg=&quot;clr-namespace:System.Collections.Generic;assembly=mscorlib&quot; xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
+        ///    &lt;Library.Swatches&gt;
+        ///        &lt;scg:List x:TypeArguments=&quot;Swatch&quot;&gt;
+        ///            &lt;Swatch Color=&quot;#FFFFFF&quot; /&gt;
+        ///            &lt;Swatch Color=&quot;#C0C0C0&quot; /&gt;
+        ///            &lt;Swatch Color=&quot;#FF0000&quot; /&gt;
+        ///            &lt;Swatch Color=&quot;#800000&quot; /&gt;
+        ///            &lt;Swatch  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Classic {
+            get {
+                return ResourceManager.GetString("Classic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Library Description=&quot;&quot; Name=&quot;Default&quot; xmlns=&quot;clr-namespace:ProjectVoid.TheCreationist.MVVM.Model;assembly=ProjectVoid.TheCreationist&quot; xmlns:scg=&quot;clr-namespace:System.Collections.Generic;assembly=mscorlib&quot; xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
+        ///    &lt;Library.Swatches&gt;
+        ///        &lt;scg:List x:TypeArguments=&quot;Swatch&quot; Capacity=&quot;255&quot;&gt;
+        ///            &lt;Swatch Color=&quot;#000000&quot; /&gt;
+        ///            &lt;Swatch Color=&quot;#080808&quot; /&gt;
+        ///            &lt;Swatch Color=&quot;#121212&quot; /&gt;
+        ///            &lt;Swatch Color=&quot;#1C1C1C&quot; /&gt;
+        ///      [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Library Description=&quot;&quot; Name=&quot;Mono&quot; xmlns=&quot;clr-namespace:ProjectVoid.TheCreationist.MVVM.Model;assembly=ProjectVoid.TheCreationist&quot; xmlns:scg=&quot;clr-namespace:System.Collections.Generic;assembly=mscorlib&quot; xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
+        ///    &lt;Library.Swatches&gt;
+        ///        &lt;scg:List x:TypeArguments=&quot;Swatch&quot; Capacity=&quot;33&quot;&gt;
+        ///            &lt;Swatch Color=&quot;#000000&quot; /&gt;
+        ///            &lt;Swatch Color=&quot;#080808&quot; /&gt;
+        ///            &lt;Swatch Color=&quot;#121212&quot; /&gt;
+        ///            &lt;Swatch Color=&quot;#1C1C1C&quot; /&gt;
+        ///          [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Mono {
+            get {
+                return ResourceManager.GetString("Mono", resourceCulture);
             }
         }
     }

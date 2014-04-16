@@ -1,31 +1,45 @@
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using ProjectVoid.TheCreationist.Commands;
-using System;
+using ProjectVoid.TheCreationist.Model;
+using ProjectVoid.TheCreationist.Properties;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Xaml;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        private LibraryViewModel _ActiveLibrary;
+
         private ProjectViewModel _ActiveProject;
+
+        private ObservableCollection<LibraryViewModel> _Libraries;
 
         private ObservableCollection<ProjectViewModel> _Projects;
 
         public MainViewModel()
         {
+            Libraries = new ObservableCollection<LibraryViewModel>();
+
             Projects = new ObservableCollection<ProjectViewModel>();
 
-            Commands = new ProjectCommands();
-
-            ExitApplicationCommand = new RelayCommand(
-                () => ExitApplication(),
-                () => CanExitApplication());
+            Commands = new CommandManager();
 
             Initialize();
         }
 
-        public RelayCommand ExitApplicationCommand { get; private set; }
+        public LibraryViewModel ActiveLibrary
+        {
+            get { return _ActiveLibrary; }
+
+            set
+            {
+                _ActiveLibrary = value;
+                RaisePropertyChanged("ActiveLibrary");
+            }
+        }
 
         public ProjectViewModel ActiveProject
         {
@@ -35,6 +49,17 @@ namespace ProjectVoid.TheCreationist.ViewModel
             {
                 _ActiveProject = value;
                 RaisePropertyChanged("ActiveProject");
+            }
+        }
+
+        public ObservableCollection<LibraryViewModel> Libraries
+        {
+            get { return _Libraries; }
+
+            set
+            {
+                _Libraries = value;
+                RaisePropertyChanged("Libraries");
             }
         }
 
@@ -49,24 +74,61 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
-        public ProjectCommands Commands { get; set; }
+        public CommandManager Commands { get; set; }
 
         private void Initialize()
+        {
+            LoadLibraries();
+
+            LoadProjects();
+        }
+
+        private void LoadLibraries()
+        {
+            foreach (FileInfo file in GetLibraries())
+            {
+                DeserializeLibrary(file.FullName);
+            }
+
+            ActiveLibrary = Libraries[0];
+        }
+
+        private List<FileInfo> GetLibraries()
+        {
+            List<FileInfo> files = new List<FileInfo>();
+
+            DirectoryInfo directory = new DirectoryInfo(Settings.Default.Libraries);
+
+            foreach (FileInfo file in directory.GetFiles("*.xml"))
+            {
+                files.Add(file);
+            }
+
+            return files;
+        }
+
+        private void DeserializeLibrary(string path)
+        {
+            Library library;
+
+            using (FileStream fileStream = new FileStream(path, FileMode.Open))
+            {
+                library = XamlServices.Load(fileStream) as Library;
+
+                fileStream.Close();
+            }
+
+            Libraries.Add(new LibraryViewModel(this, library));
+        }
+
+        private void LoadProjects()
         {
             for (int i = 0; i < 1; i++)
             {
                 Projects.Add(new ProjectViewModel());
             }
-        }
 
-        private void ExitApplication()
-        {
-            Console.WriteLine("ExitApplication");
-        }
-
-        private bool CanExitApplication()
-        {
-            return true;
+            ActiveProject = Projects[0];
         }
     }
 }

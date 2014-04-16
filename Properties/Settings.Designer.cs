@@ -178,5 +178,17 @@ namespace ProjectVoid.TheCreationist.Properties {
                 this["Debug"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Resources\\Libraries")]
+        public string Libraries {
+            get {
+                return ((string)(this["Libraries"]));
+            }
+            set {
+                this["Libraries"] = value;
+            }
+        }
     }
 }

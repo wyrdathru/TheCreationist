@@ -18,6 +18,10 @@
                     <Style TargetType="{x:Type StatusBar}" x:Key="StatusBarTemplate">
                         <Setter Property="Background" Value="Transparent" />
                     </Style>
+
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0" />
+                    </Style>
                 </ResourceDictionary>
 
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
