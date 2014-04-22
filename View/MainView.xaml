@@ -5,6 +5,7 @@
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
         xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
+        xmlns:lconverters="clr-namespace:ProjectVoid.TheCreationist.Converters"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
         Title="{Binding Title, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
         MinWidth="{Binding MinWidth, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
@@ -20,6 +21,7 @@
         ShowIconOnTitleBar="True">
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+        <lconverters:StateToBrushConverter x:Key="StateToBrushConverter" />
     </metro:MetroWindow.Resources>
     
     <Grid>
@@ -70,7 +72,16 @@
             <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Projects}" SelectedIndex="0" SelectedItem="{Binding ActiveProject, Mode=TwoWay}">
                 <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Text="{Binding Name}" />
+
+                            <Rectangle Height="3" Grid.Row="1" Fill="{Binding State, Converter={StaticResource StateToBrushConverter}}" />
+                        </Grid>
                     </DataTemplate>
                 </metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
 
@@ -126,9 +137,11 @@
         <StatusBar Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StatusBarTemplate}">
             <TextBlock Foreground="{StaticResource IdealForegroundColorBrush}" Background="{StaticResource AccentColorBrush}" Visibility="{Binding Debug, Source={x:Static properties:Settings.Default}, Converter={StaticResource BooleanToVisibilityConverter}}" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}DEBUG: Name: {0}, LastChanged: {1}, Foreground: {2}, Background: {3}, Backdrop: {4}">
+                    <MultiBinding StringFormat="{}DEBUG: Name: {0}, LastChanged: {1}, IsDirty: {2}, IsSaved: {3}, Foreground: {4}, Background: {5}, Backdrop: {6}">
                         <Binding Path="ActiveProject.Name" />
                         <Binding Path="ActiveProject.LastChanged" />
+                        <Binding Path="ActiveProject.State.IsDirty" />
+                        <Binding Path="ActiveProject.State.IsSaved" />
                         <Binding Path="ActiveProject.Foreground" />
                         <Binding Path="ActiveProject.Background" />
                         <Binding Path="ActiveProject.Backdrop" />

@@ -76,6 +76,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandManager.cs" />
+    <Compile Include="Converters\StateToBrushConverter.cs" />
+    <Compile Include="Enum\ProjectState.cs" />
     <Compile Include="Model\Library.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\Swatch.cs" />

@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight;
+using ProjectVoid.TheCreationist.Enum;
 using ProjectVoid.TheCreationist.Model;
 using System;
 using System.Windows.Documents;
@@ -10,10 +11,13 @@ namespace ProjectVoid.TheCreationist.ViewModel
     {
         private DateTime _LastChanged;
 
+        private ProjectState _State;
+
         public ProjectViewModel()
         {
             Project = new Project();
 
+            State = new ProjectState() { IsDirty = false, IsSaved = false };
             LastChanged = DateTime.Now;
         }
 
@@ -95,10 +99,27 @@ namespace ProjectVoid.TheCreationist.ViewModel
             {
                 return _LastChanged;
             }
+
             set
             {
                 _LastChanged = value;
                 RaisePropertyChanged("LastChanged");
+
+                State.IsDirty = true;
+            }
+        }
+
+        public ProjectState State
+        {
+            get
+            {
+                return _State;
+            }
+
+            set
+            {
+                _State = value;
+                RaisePropertyChanged("State");
             }
         }
     }
