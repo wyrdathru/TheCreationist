@@ -18,7 +18,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
             Project = new Project();
 
             State = new ProjectState() { IsDirty = false, IsSaved = false };
-            LastChanged = DateTime.Now;
+            _LastChanged = DateTime.Now;
         }
 
         public Project Project { get; set; }
