@@ -10,8 +10,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
     public class ProjectViewModel : ViewModelBase
     {
         private DateTime _LastChanged;
-
         private ProjectState _State;
+        private TextSelection _Selection;
 
         public ProjectViewModel()
         {
@@ -120,6 +120,20 @@ namespace ProjectVoid.TheCreationist.ViewModel
             {
                 _State = value;
                 RaisePropertyChanged("State");
+            }
+        }
+
+        public TextSelection Selection
+        {
+            get
+            {
+                return _Selection;
+            }
+
+            set
+            {
+                _Selection = value;
+                RaisePropertyChanged("Selection");
             }
         }
     }

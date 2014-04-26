@@ -6,6 +6,8 @@
         xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
         xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
         xmlns:lconverters="clr-namespace:ProjectVoid.TheCreationist.Converters"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF45"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
         Title="{Binding Title, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
         MinWidth="{Binding MinWidth, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
@@ -103,7 +105,13 @@
                 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <view:SwatchView />
+                        <view:SwatchView>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewMouseDown">
+                                    <commands:EventToCommand Command="{Binding MainViewModel.Commands.SelectSwatchCommand}" PassEventArgsToCommand="True"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </view:SwatchView>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

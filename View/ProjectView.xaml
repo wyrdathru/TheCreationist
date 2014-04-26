@@ -6,6 +6,8 @@
              xmlns:controls="clr-namespace:ProjectVoid.Core.Controls;assembly=ProjectVoid.Core"
              xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
              xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
+             xmlns:behaviors="clr-namespace:ProjectVoid.Core.Behaviors;assembly=ProjectVoid.Core"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -20,5 +22,9 @@
                                   Backcolor="{Binding Background, Mode=TwoWay}"
                                   Background="{Binding Backdrop, Mode=TwoWay, Converter={StaticResource ColorToBrushConverter}}"
                                   FontSize="{Binding FontSize, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
-                                  FontFamily="{Binding FontFamily, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"/>
+                                  FontFamily="{Binding FontFamily, Source={x:Static properties:Settings.Default}, Mode=TwoWay}">
+        <i:Interaction.Behaviors>
+            <behaviors:TextSelectionBehavior SelectedText="{Binding Selection}" />
+        </i:Interaction.Behaviors>
+    </controls:BindableRichTextBox>
 </UserControl>

@@ -25,7 +25,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
             Projects = new ObservableCollection<ProjectViewModel>();
 
-            Commands = new CommandManager();
+            Commands = new CommandManager(this);
 
             Initialize();
         }
