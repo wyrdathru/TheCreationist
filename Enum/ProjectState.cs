@@ -43,6 +43,16 @@ namespace ProjectVoid.TheCreationist.Enum
             }
         }
 
+        private bool CanClose()
+        {
+            if (IsDirty == true)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         protected void OnPropertyChanged(string property)
         {
             if (PropertyChanged != null)

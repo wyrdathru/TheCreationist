@@ -2,6 +2,7 @@ using GalaSoft.MvvmLight;
 using ProjectVoid.TheCreationist.Enum;
 using ProjectVoid.TheCreationist.Model;
 using System;
+using System.ComponentModel;
 using System.Windows.Documents;
 using System.Windows.Media;
 
@@ -93,6 +94,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DateTime LastChanged
         {
             get
@@ -109,6 +111,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ProjectState State
         {
             get
@@ -119,10 +122,12 @@ namespace ProjectVoid.TheCreationist.ViewModel
             set
             {
                 _State = value;
+                _State.PropertyChanged += FireStatePropertyChanged;
                 RaisePropertyChanged("State");
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TextSelection Selection
         {
             get
@@ -135,6 +140,11 @@ namespace ProjectVoid.TheCreationist.ViewModel
                 _Selection = value;
                 RaisePropertyChanged("Selection");
             }
+        }
+
+        private void FireStatePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            RaisePropertyChanged("State");
         }
     }
 }

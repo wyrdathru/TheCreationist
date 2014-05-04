@@ -42,12 +42,12 @@
         <Menu Grid.ColumnSpan="2" Grid.Row="0">
             <MenuItem Header="File">
                 <MenuItem Header="New" Command="{Binding Commands.CreateProjectCommand}" />
-                <MenuItem Header="Open" Command="{Binding Commands.OpenProjectCommand}" />
-                <MenuItem Header="Save" Command="{Binding Commands.SaveProjectCommand}" />
-                <MenuItem Header="Close" Command="{Binding Commands.CloseProjectCommand}" />
+                <MenuItem Header="Open" Command="{Binding Commands.OpenProjectCommand}" CommandParameter="{Binding}" />
+                <MenuItem Header="Save" Command="{Binding Commands.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <MenuItem Header="Close" Command="{Binding Commands.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <Separator />
-                <MenuItem Header="Convert" Command="{Binding Commands.ConvertProjectCommand}" />
-                <MenuItem Header="Compile" Command="{Binding Commands.CompileProjectCommand}" />
+                <MenuItem Header="Convert" Command="{Binding Commands.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <MenuItem Header="Compile" Command="{Binding Commands.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <Separator />
                 <MenuItem Header="Exit" Command="{Binding Commands.ExitApplicationCommand}" />
             </MenuItem>
