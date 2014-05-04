@@ -3,15 +3,13 @@ using Microsoft.Win32;
 using ProjectVoid.TheCreationist.View;
 using ProjectVoid.TheCreationist.ViewModel;
 using System;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Collections;
 
 namespace ProjectVoid.TheCreationist.Commands
 {
@@ -144,7 +142,7 @@ namespace ProjectVoid.TheCreationist.Commands
                         return;
                     }
                 }
-                
+
                 project.State.IsSaved = true;
                 project.State.IsDirty = false;
 
@@ -257,7 +255,7 @@ namespace ProjectVoid.TheCreationist.Commands
 
         private void ExitApplication()
         {
-            Console.WriteLine("ExitApplication");
+            Application.Current.Shutdown();
         }
 
         private bool CanExitApplication()

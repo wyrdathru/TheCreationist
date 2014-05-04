@@ -21,6 +21,11 @@
         BorderBrush="{StaticResource AccentColorBrush}"
         BorderThickness="1"
         ShowIconOnTitleBar="True">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <commands:EventToCommand Command="{Binding OnWindowClosingCommand}" PassEventArgsToCommand="True" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         <lconverters:StateToBrushConverter x:Key="StateToBrushConverter" />

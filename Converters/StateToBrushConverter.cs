@@ -1,9 +1,9 @@
-﻿using System;
+﻿using ProjectVoid.TheCreationist.Enum;
+using ProjectVoid.TheCreationist.ViewModel;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
-using ProjectVoid.TheCreationist.ViewModel;
-using ProjectVoid.TheCreationist.Enum;
 
 namespace ProjectVoid.TheCreationist.Converters
 {

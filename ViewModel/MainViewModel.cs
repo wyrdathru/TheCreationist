@@ -1,10 +1,14 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using ProjectVoid.TheCreationist.Commands;
 using ProjectVoid.TheCreationist.Model;
 using ProjectVoid.TheCreationist.Properties;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
+using System.Windows;
 using System.Xaml;
 
 namespace ProjectVoid.TheCreationist.ViewModel
@@ -26,6 +30,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
             Projects = new ObservableCollection<ProjectViewModel>();
 
             Commands = new CommandManager(this);
+
+            OnWindowClosingCommand = new RelayCommand<CancelEventArgs>((e) => OnWindowClosing(e));
 
             Initialize();
         }
@@ -75,6 +81,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
         }
 
         public CommandManager Commands { get; set; }
+
+        public RelayCommand<CancelEventArgs> OnWindowClosingCommand { get; set; }
 
         private void Initialize()
         {
@@ -129,6 +137,20 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
 
             ActiveProject = Projects[0];
+        }
+
+        private void OnWindowClosing(CancelEventArgs e)
+        {
+            if (Projects.Count > 0)
+            {
+                var result = MessageBox.Show(String.Format("If you have unsaved projects, you may lose work. Are you sure you want to exit?"), String.Format("Exit"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
         }
     }
 }
