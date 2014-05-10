@@ -4,6 +4,7 @@ using ProjectVoid.TheCreationist.Commands;
 using ProjectVoid.TheCreationist.Model;
 using ProjectVoid.TheCreationist.Properties;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -141,7 +142,11 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         private void OnWindowClosing(CancelEventArgs e)
         {
-            if (Projects.Count > 0)
+            if (Projects.Any<ProjectViewModel>(p => p.State.CanClose()))
+            {
+                return;
+            }
+            else
             {
                 var result = MessageBox.Show(String.Format("If you have unsaved projects, you may lose work. Are you sure you want to exit?"), String.Format("Exit"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
 

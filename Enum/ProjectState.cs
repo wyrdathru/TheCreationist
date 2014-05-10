@@ -38,7 +38,7 @@ namespace ProjectVoid.TheCreationist.Enum
             }
         }
 
-        private bool CanClose()
+        public bool CanClose()
         {
             if (IsDirty == true)
             {

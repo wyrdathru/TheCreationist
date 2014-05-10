@@ -20,17 +20,19 @@
         Top="{Binding Top, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
         BorderBrush="{StaticResource AccentColorBrush}"
         BorderThickness="1"
-        ShowIconOnTitleBar="True">
+        ShowIconOnTitleBar="True"
+        Name="MainApplicationWindow">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
-            <commands:EventToCommand Command="{Binding OnWindowClosingCommand}" PassEventArgsToCommand="True" />
+            <commands:EventToCommand Command="{Binding OnWindowClosingCommand}" PassEventArgsToCommand="True"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         <lconverters:StateToBrushConverter x:Key="StateToBrushConverter" />
     </metro:MetroWindow.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -54,7 +56,7 @@
                 <MenuItem Header="Convert" Command="{Binding Commands.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <MenuItem Header="Compile" Command="{Binding Commands.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <Separator />
-                <MenuItem Header="Exit" Command="{Binding Commands.ExitApplicationCommand}" />
+                <MenuItem Header="Exit" Command="{Binding Commands.ExitApplicationCommand}" CommandParameter="{Binding ElementName=MainApplicationWindow}" />
             </MenuItem>
 
             <MenuItem Header="Edit">
@@ -84,7 +86,7 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            
+
                             <TextBlock Text="{Binding Name}" />
 
                             <Rectangle Height="3" Grid.Row="1" Fill="{Binding State, Converter={StaticResource StateToBrushConverter}}" />
@@ -104,10 +106,10 @@
             <ListBox ItemsSource="{Binding ActiveLibrary.Swatches}" ItemContainerStyle="{StaticResource ListBoxItemTemplate}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="2" VerticalAlignment="Top" />   
+                        <UniformGrid Columns="2" VerticalAlignment="Top" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                
+
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <view:SwatchView>

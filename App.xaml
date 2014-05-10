@@ -6,6 +6,7 @@
              StartupUri="View\MainView.xaml" 
              Startup="Application_Startup" 
              Exit="Application_Exit" 
+             ShutdownMode="OnMainWindowClose"
              d1p1:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>

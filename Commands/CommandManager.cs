@@ -43,9 +43,9 @@ namespace ProjectVoid.TheCreationist.Commands
                 (p) => CompileProject(p),
                 (p) => CanCompileProject(p));
 
-            ExitApplicationCommand = new RelayCommand(
-                () => ExitApplication(),
-                () => CanExitApplication());
+            ExitApplicationCommand = new RelayCommand<Window>(
+                (p) => ExitApplication(p),
+                (p) => CanExitApplication(p));
 
             DisplayOptionsCommand = new RelayCommand(
                 () => DisplayOptions(),
@@ -74,7 +74,7 @@ namespace ProjectVoid.TheCreationist.Commands
 
         public RelayCommand<ProjectViewModel> CompileProjectCommand { get; private set; }
 
-        public RelayCommand ExitApplicationCommand { get; private set; }
+        public RelayCommand<Window> ExitApplicationCommand { get; private set; }
 
         public RelayCommand DisplayOptionsCommand { get; private set; }
 
@@ -253,12 +253,12 @@ namespace ProjectVoid.TheCreationist.Commands
             return true;
         }
 
-        private void ExitApplication()
+        private void ExitApplication(Window window)
         {
-            Application.Current.Shutdown();
+            window.Close();
         }
 
-        private bool CanExitApplication()
+        private bool CanExitApplication(Window window)
         {
             return true;
         }
