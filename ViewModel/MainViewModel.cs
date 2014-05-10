@@ -4,11 +4,11 @@ using ProjectVoid.TheCreationist.Commands;
 using ProjectVoid.TheCreationist.Model;
 using ProjectVoid.TheCreationist.Properties;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Xaml;
 
