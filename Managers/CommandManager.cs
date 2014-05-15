@@ -17,7 +17,7 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist.Commands
+namespace ProjectVoid.TheCreationist.Managers
 {
     public class CommandManager
     {

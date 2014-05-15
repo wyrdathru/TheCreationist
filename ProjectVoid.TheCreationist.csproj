@@ -76,7 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\CommandManager.cs" />
+    <Compile Include="Managers\CommandManager.cs" />
     <Compile Include="Converters\StateToBrushConverter.cs" />
     <Compile Include="Enum\ProjectState.cs" />
     <Compile Include="Model\Library.cs" />
@@ -89,7 +89,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SwatchViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="WindowManager.cs" />
+    <Compile Include="Managers\WindowManager.cs" />
     <Compile Include="View\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>

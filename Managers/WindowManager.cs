@@ -3,7 +3,7 @@ using ProjectVoid.TheCreationist.View;
 using ProjectVoid.TheCreationist.ViewModel;
 using System.Windows;
 
-namespace ProjectVoid.TheCreationist
+namespace ProjectVoid.TheCreationist.Managers
 {
     public class WindowManager
     {
