@@ -53,14 +53,6 @@ namespace ProjectVoid.TheCreationist.Commands
                 (p) => ExitApplication(p),
                 (p) => CanExitApplication(p));
 
-            DisplayOptionsCommand = new RelayCommand(
-                () => DisplayOptions(),
-                () => CanDisplayOptions());
-
-            DisplayAboutCommand = new RelayCommand(
-                () => DisplayAbout(),
-                () => CanDisplayAbout());
-
             SelectSwatchCommand = new RelayCommand<MouseButtonEventArgs>(
                 (e) => SelectSwatch(e),
                 (e) => CanSelectSwatch(e));
@@ -81,10 +73,6 @@ namespace ProjectVoid.TheCreationist.Commands
         public RelayCommand<ProjectViewModel> CompileProjectCommand { get; private set; }
 
         public RelayCommand<Window> ExitApplicationCommand { get; private set; }
-
-        public RelayCommand DisplayOptionsCommand { get; private set; }
-
-        public RelayCommand DisplayAboutCommand { get; private set; }
 
         public RelayCommand<MouseButtonEventArgs> SelectSwatchCommand { get; private set; }
 
@@ -778,26 +766,6 @@ namespace ProjectVoid.TheCreationist.Commands
         }
 
         private bool CanExitApplication(Window window)
-        {
-            return true;
-        }
-
-        private void DisplayOptions()
-        {
-            Console.WriteLine("DisplayOptions");
-        }
-
-        private bool CanDisplayOptions()
-        {
-            return true;
-        }
-
-        private void DisplayAbout()
-        {
-            Console.WriteLine("DisplayAbout");
-        }
-
-        private bool CanDisplayAbout()
         {
             return true;
         }

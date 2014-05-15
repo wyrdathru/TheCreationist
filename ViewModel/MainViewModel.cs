@@ -27,10 +27,10 @@ namespace ProjectVoid.TheCreationist.ViewModel
         public MainViewModel()
         {
             Libraries = new ObservableCollection<LibraryViewModel>();
-
             Projects = new ObservableCollection<ProjectViewModel>();
 
-            Commands = new CommandManager(this);
+            CommandManager = new CommandManager(this);
+            WindowManager = new WindowManager(this);
 
             OnWindowClosingCommand = new RelayCommand<CancelEventArgs>((e) => OnWindowClosing(e));
 
@@ -81,7 +81,9 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
-        public CommandManager Commands { get; set; }
+        public CommandManager CommandManager { get; set; }
+
+        public WindowManager WindowManager { get; set; }
 
         public RelayCommand<CancelEventArgs> OnWindowClosingCommand { get; set; }
 

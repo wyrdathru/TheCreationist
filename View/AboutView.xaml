@@ -1,0 +1,46 @@
+﻿<metro:MetroWindow x:Class="ProjectVoid.TheCreationist.View.AboutView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:ProjectVoid.Core.Controls;assembly=ProjectVoid.Core"
+        xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
+        xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="About"
+        Height="480"
+        Width="640"
+        TitleCaps="False"
+        ResizeMode="NoResize"
+        GlowBrush="{StaticResource AccentColorBrush}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <GroupBox Padding="10" Header="Version">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Version}" />
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Padding="10" Header="Product">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Product}" />
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Padding="10" Header="Author">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Author}" />
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Grid.Row="1" Padding="10" Header="Copyright">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Copyright}" />
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Grid.ColumnSpan="2" Padding="10" Header="Description">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Description}" />
+        </GroupBox>
+    </Grid>
+</metro:MetroWindow>

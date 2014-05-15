@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ProjectVoid.TheCreationist")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This product has been licensed as Open Source software under The MIT License (MIT).")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Kyle Wernham")]
 [assembly: AssemblyProduct("ProjectVoid.TheCreationist")]
 [assembly: AssemblyCopyright("Copyright © Kyle Wernham 2014")]
 [assembly: AssemblyTrademark("")]

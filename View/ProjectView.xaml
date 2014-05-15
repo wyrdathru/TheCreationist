@@ -17,6 +17,7 @@
     <controls:BindableRichTextBox AutoWordSelection="False"
                                   AcceptsTab="True"
                                   CaretBrush="White"
+                                  SpellCheck.IsEnabled="{Binding IsSpellCheckEnabled, Mode=TwoWay}"
                                   FlowDocument="{Binding Document, Mode=TwoWay}"
                                   LastChanged="{Binding LastChanged, Mode=TwoWay}"
                                   Forecolor="{Binding Foreground, Mode=TwoWay}"

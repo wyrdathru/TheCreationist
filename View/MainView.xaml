@@ -48,15 +48,15 @@
 
         <Menu Grid.ColumnSpan="2" Grid.Row="0">
             <MenuItem Header="File">
-                <MenuItem Header="New" Command="{Binding Commands.CreateProjectCommand}" />
-                <MenuItem Header="Open" Command="{Binding Commands.OpenProjectCommand}" CommandParameter="{Binding}" />
-                <MenuItem Header="Save" Command="{Binding Commands.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}" />
-                <MenuItem Header="Close" Command="{Binding Commands.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <MenuItem Header="New" Command="{Binding CommandManager.CreateProjectCommand}" />
+                <MenuItem Header="Open" Command="{Binding CommandManager.OpenProjectCommand}" CommandParameter="{Binding}" />
+                <MenuItem Header="Save" Command="{Binding CommandManager.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <MenuItem Header="Close" Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <Separator />
-                <MenuItem Header="Convert" Command="{Binding Commands.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}" />
-                <MenuItem Header="Compile" Command="{Binding Commands.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <MenuItem Header="Convert" Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <MenuItem Header="Compile" Command="{Binding CommandManager.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <Separator />
-                <MenuItem Header="Exit" Command="{Binding Commands.ExitApplicationCommand}" CommandParameter="{Binding ElementName=MainApplicationWindow}" />
+                <MenuItem Header="Exit" Command="{Binding CommandManager.ExitApplicationCommand}" CommandParameter="{Binding ElementName=MainApplicationWindow}" />
             </MenuItem>
 
             <MenuItem Header="Edit">
@@ -69,11 +69,11 @@
             </MenuItem>
 
             <MenuItem Header="Tools">
-                <MenuItem Header="Options" Command="{Binding Commands.DisplayOptionsCommand}" />
+                <MenuItem Header="Options" Command="{Binding WindowManager.DisplayOptionsCommand}" />
             </MenuItem>
 
             <MenuItem Header="Help">
-                <MenuItem Header="About" Command="{Binding Commands.DisplayAboutCommand}" />
+                <MenuItem Header="About" Command="{Binding WindowManager.DisplayAboutCommand}" />
             </MenuItem>
         </Menu>
 
@@ -117,7 +117,7 @@
                         <view:SwatchView>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewMouseDown">
-                                    <commands:EventToCommand Command="{Binding MainViewModel.Commands.SelectSwatchCommand}" PassEventArgsToCommand="True"/>
+                                    <commands:EventToCommand Command="{Binding MainViewModel.CommandManager.SelectSwatchCommand}" PassEventArgsToCommand="True"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </view:SwatchView>
@@ -151,10 +151,15 @@
             </StackPanel>
         </GroupBox>
 
-        <StatusBar Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StatusBarTemplate}">
-            <TextBlock Foreground="{StaticResource IdealForegroundColorBrush}" Background="{StaticResource AccentColorBrush}" Visibility="{Binding Debug, Source={x:Static properties:Settings.Default}, Converter={StaticResource BooleanToVisibilityConverter}}" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}">
+        <StatusBar Grid.Row="3" 
+                   Grid.ColumnSpan="2" 
+                   Style="{StaticResource StatusBarTemplate}">
+            <TextBlock Foreground="{StaticResource IdealForegroundColorBrush}" 
+                       Background="{StaticResource AccentColorBrush}" 
+                       Visibility="{Binding Debug, Source={x:Static properties:Settings.Default}, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                       ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}DEBUG: Name: {0}, LastChanged: {1}, IsDirty: {2}, IsSaved: {3}, Foreground: {4}, Background: {5}, Backdrop: {6}">
+                    <MultiBinding StringFormat="{}DEBUG: Name: {0}, LastChanged: {1}, IsDirty: {2}, IsSaved: {3}, Foreground: {4}, Background: {5}, Backdrop: {6}, IsSpellCheckEnabled: {7}">
                         <Binding Path="ActiveProject.Name" />
                         <Binding Path="ActiveProject.LastChanged" />
                         <Binding Path="ActiveProject.State.IsDirty" />
@@ -162,6 +167,7 @@
                         <Binding Path="ActiveProject.Foreground" />
                         <Binding Path="ActiveProject.Background" />
                         <Binding Path="ActiveProject.Backdrop" />
+                        <Binding Path="ActiveProject.IsSpellCheckEnabled" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>

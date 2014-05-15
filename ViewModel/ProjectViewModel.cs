@@ -13,6 +13,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         private DateTime _LastChanged;
         private ProjectState _State;
         private TextSelection _Selection;
+        private bool _IsSpellCheckEnabled;
 
         public ProjectViewModel()
         {
@@ -20,6 +21,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
             State = new ProjectState() { IsDirty = false, IsSaved = false };
             _LastChanged = DateTime.Now;
+            _IsSpellCheckEnabled = false;
         }
 
         public Project Project { get; set; }
@@ -139,6 +141,21 @@ namespace ProjectVoid.TheCreationist.ViewModel
             {
                 _Selection = value;
                 RaisePropertyChanged("Selection");
+            }
+        }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool IsSpellCheckEnabled
+        {
+            get
+            {
+                return _IsSpellCheckEnabled;
+            }
+
+            set
+            {
+                _IsSpellCheckEnabled = value;
+                RaisePropertyChanged("IsSpellCheckEnabled");
             }
         }
 
