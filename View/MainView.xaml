@@ -103,7 +103,9 @@
         </GroupBox>
 
         <GroupBox Grid.Column="1" Grid.Row="1" Header="Swatches">
-            <ListBox ItemsSource="{Binding ActiveLibrary.Swatches}" ItemContainerStyle="{StaticResource ListBoxItemTemplate}">
+            <ListBox ItemsSource="{Binding ActiveLibrary.Swatches}" 
+                     ItemContainerStyle="{StaticResource ListBoxItemTemplate}"
+                     ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="2" VerticalAlignment="Top" />
