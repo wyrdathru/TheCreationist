@@ -52,6 +52,8 @@
                 <MenuItem Header="Open" Command="{Binding CommandManager.OpenProjectCommand}" CommandParameter="{Binding}" />
                 <MenuItem Header="Save" Command="{Binding CommandManager.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <MenuItem Header="Close" Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <MenuItem Header="Close All" Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <MenuItem Header="Close All" Command="{Binding CommandManager.CloseAllProjectsCommand}" />
                 <Separator />
                 <MenuItem Header="Convert" Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <MenuItem Header="Compile" Command="{Binding CommandManager.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}" />
@@ -79,6 +81,23 @@
 
         <GroupBox Grid.RowSpan="2" Grid.Row="1" Header="Workspace">
             <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Projects}" SelectedIndex="0" SelectedItem="{Binding ActiveProject, Mode=TwoWay}">
+                <metro:MetroAnimatedSingleRowTabControl.ItemContainerStyle>
+                    <Style TargetType="{x:Type metro:MetroTabItem}">
+                        <Setter Property="ContextMenu">
+                            <Setter.Value>
+                                <ContextMenu>
+                                    <MenuItem Header="Close" Command="{Binding MainViewModel.CommandManager.CloseProjectCommand}" CommandParameter="{Binding}" />
+                                    <MenuItem Header="Close All" Command="{Binding MainViewModel.CommandManager.CloseAllProjectsCommand}" />
+                                    <MenuItem Header="Close All Except This" Command="{Binding MainViewModel.CommandManager.CloseAllProjectsExceptCommand}" CommandParameter="{Binding}" />
+                                    <Separator />
+                                    <MenuItem Header="Convert" Command="{Binding MainViewModel.CommandManager.ConvertProjectCommand}" CommandParameter="{Binding}" />
+                                    <MenuItem Header="Compile" Command="{Binding MainViewModel.CommandManager.CompileProjectCommand}" CommandParameter="{Binding}" />
+                                </ContextMenu>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </metro:MetroAnimatedSingleRowTabControl.ItemContainerStyle>
+
                 <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -103,6 +122,11 @@
         </GroupBox>
 
         <GroupBox Grid.Column="1" Grid.Row="1" Header="Swatches">
+            <GroupBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Manage Swatches" />
+                </ContextMenu>
+            </GroupBox.ContextMenu>
             <ListBox ItemsSource="{Binding ActiveLibrary.Swatches}" 
                      ItemContainerStyle="{StaticResource ListBoxItemTemplate}">
                 <ListBox.ItemsPanel>

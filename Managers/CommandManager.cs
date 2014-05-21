@@ -41,6 +41,14 @@ namespace ProjectVoid.TheCreationist.Managers
                 (p) => CloseProject(p),
                 (p) => CanCloseProject(p));
 
+            CloseAllProjectsCommand = new RelayCommand(
+                () => CloseAllProjects(),
+                () => CanCloseAllProjects());
+
+            CloseAllProjectsExceptCommand = new RelayCommand<ProjectViewModel>(
+                (p) => CloseAllProjectsExcept(p),
+                (p) => CanCloseAllProjectsExcept(p));
+
             ConvertProjectCommand = new RelayCommand<ProjectViewModel>(
                 (p) => ConvertProject(p),
                 (p) => CanConvertProject(p));
@@ -68,6 +76,10 @@ namespace ProjectVoid.TheCreationist.Managers
 
         public RelayCommand<ProjectViewModel> CloseProjectCommand { get; private set; }
 
+        public RelayCommand CloseAllProjectsCommand { get; private set; }
+
+        public RelayCommand<ProjectViewModel> CloseAllProjectsExceptCommand { get; private set; }
+
         public RelayCommand<ProjectViewModel> ConvertProjectCommand { get; private set; }
 
         public RelayCommand<ProjectViewModel> CompileProjectCommand { get; private set; }
@@ -78,7 +90,7 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void CreateProject()
         {
-            ProjectViewModel project = new ProjectViewModel();
+            ProjectViewModel project = new ProjectViewModel(MainViewModel);
 
             MainViewModel.Projects.Add(project);
 
@@ -209,11 +221,37 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanCloseProject(ProjectViewModel projectViewModel)
         {
-            if (projectViewModel == null)
-            {
-                return false;
-            }
+            return true;
+        }
 
+        private void CloseAllProjects()
+        {
+            for (int i = MainViewModel.Projects.Count - 1; i > -1; i--)
+            {
+                CloseProject(MainViewModel.Projects[i]);
+            }
+        }
+
+        private bool CanCloseAllProjects()
+        {
+            return true;
+        }
+
+        private void CloseAllProjectsExcept(ProjectViewModel projectViewModel)
+        {
+            for (int i = MainViewModel.Projects.Count - 1; i > -1; i--)
+            {
+                if (MainViewModel.Projects[i].Project.Id.Equals(projectViewModel.Project.Id))
+                {
+                    continue;
+                }
+
+                CloseProject(MainViewModel.Projects[i]);
+            }
+        }
+
+        private bool CanCloseAllProjectsExcept(ProjectViewModel projectViewModel)
+        {
             return true;
         }
 

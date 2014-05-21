@@ -15,14 +15,18 @@ namespace ProjectVoid.TheCreationist.ViewModel
         private TextSelection _Selection;
         private bool _IsSpellCheckEnabled;
 
-        public ProjectViewModel()
+        public ProjectViewModel(MainViewModel mainViewModel)
         {
+            MainViewModel = mainViewModel;
+
             Project = new Project();
 
             State = new ProjectState() { IsDirty = false, IsSaved = false };
             _LastChanged = DateTime.Now;
             _IsSpellCheckEnabled = false;
         }
+
+        public MainViewModel MainViewModel { get; private set; }
 
         public Project Project { get; set; }
 

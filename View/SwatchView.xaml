@@ -11,6 +11,10 @@
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
     </UserControl.Resources>
 
+    <UserControl.ContextMenu>
+        <ContextMenu Visibility="Hidden" />
+    </UserControl.ContextMenu>
+
     <Rectangle Width="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}"
                Height="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}"
                Fill="{Binding Color, Converter={StaticResource ColorToBrushConverter}}">

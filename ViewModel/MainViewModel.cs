@@ -136,7 +136,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         {
             for (int i = 0; i < 1; i++)
             {
-                Projects.Add(new ProjectViewModel());
+                Projects.Add(new ProjectViewModel(this));
             }
 
             ActiveProject = Projects[0];
