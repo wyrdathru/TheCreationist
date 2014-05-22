@@ -52,7 +52,6 @@
                 <MenuItem Header="Open" Command="{Binding CommandManager.OpenProjectCommand}" CommandParameter="{Binding}" />
                 <MenuItem Header="Save" Command="{Binding CommandManager.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <MenuItem Header="Close" Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}" />
-                <MenuItem Header="Close All" Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <MenuItem Header="Close All" Command="{Binding CommandManager.CloseAllProjectsCommand}" />
                 <Separator />
                 <MenuItem Header="Convert" Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}" />
