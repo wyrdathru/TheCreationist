@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist
+namespace ProjectVoid.Core.Converters
 {
-    [ValueConversion(typeof(Color), typeof(Brush))]
-    public class ColorToBrushConverter : IValueConverter
+    [ValueConversion(typeof(object), typeof(bool))]
+    public class NullToBoolConverter : IValueConverter
     {
-        #region Public Methods
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new SolidColorBrush((Color)value);
+            if (value == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
         }
-
-        #endregion Public Methods
     }
 }

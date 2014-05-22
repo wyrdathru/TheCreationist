@@ -123,7 +123,7 @@
         <GroupBox Grid.Column="1" Grid.Row="1" Header="Swatches">
             <GroupBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Manage Swatches" />
+                    <MenuItem Header="Manage Swatches" Command="{Binding WindowManager.DisplayPaletteCommand}" />
                 </ContextMenu>
             </GroupBox.ContextMenu>
             <ListBox ItemsSource="{Binding ActiveLibrary.Swatches}" 

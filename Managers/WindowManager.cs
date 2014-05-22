@@ -21,6 +21,10 @@ namespace ProjectVoid.TheCreationist.Managers
             DisplayAboutCommand = new RelayCommand(
                 () => DisplayAbout(),
                 () => CanDisplayAbout());
+
+            DisplayPaletteCommand = new RelayCommand(
+                () => DisplayPalette(),
+                () => CanDisplayPalette());
         }
 
         public MainViewModel MainViewModel { get; private set; }
@@ -29,9 +33,13 @@ namespace ProjectVoid.TheCreationist.Managers
 
         public AboutViewModel AboutViewModel { get; private set; }
 
+        public PaletteViewModel PaletteViewModel { get; private set; }
+
         public RelayCommand DisplayOptionsCommand { get; private set; }
 
         public RelayCommand DisplayAboutCommand { get; private set; }
+
+        public RelayCommand DisplayPaletteCommand { get; private set; }
 
         private void DisplayOptions()
         {
@@ -61,6 +69,22 @@ namespace ProjectVoid.TheCreationist.Managers
         }
 
         private bool CanDisplayAbout()
+        {
+            return true;
+        }
+
+        private void DisplayPalette()
+        {
+            PaletteView paletteView = new PaletteView();
+
+            paletteView.DataContext = AboutViewModel;
+            paletteView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            paletteView.Owner = Application.Current.MainWindow;
+
+            paletteView.ShowDialog();
+        }
+
+        private bool CanDisplayPalette()
         {
             return true;
         }

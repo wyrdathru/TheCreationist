@@ -79,12 +79,14 @@
     <Compile Include="Managers\CommandManager.cs" />
     <Compile Include="Converters\StateToBrushConverter.cs" />
     <Compile Include="Enum\ProjectState.cs" />
+    <Compile Include="Managers\LibraryManager.cs" />
     <Compile Include="Model\Library.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\Swatch.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\LibraryViewModel.cs" />
     <Compile Include="ViewModel\OptionsViewModel.cs" />
+    <Compile Include="ViewModel\PaletteViewModel.cs" />
     <Compile Include="ViewModel\ProjectViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SwatchViewModel.cs" />
@@ -99,6 +101,9 @@
     <Compile Include="View\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PaletteView.xaml.cs">
+      <DependentUpon>PaletteView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SwatchView.xaml.cs">
       <DependentUpon>SwatchView.xaml</DependentUpon>
     </Compile>
@@ -111,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PaletteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

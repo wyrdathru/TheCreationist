@@ -221,7 +221,12 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanCloseProject(ProjectViewModel projectViewModel)
         {
-            return true;
+            if (MainViewModel.Projects.Count > 0)
+            {
+                return true;   
+            }
+
+            return false;
         }
 
         private void CloseAllProjects()
@@ -234,7 +239,12 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanCloseAllProjects()
         {
-            return true;
+            if (MainViewModel.Projects.Count > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private void CloseAllProjectsExcept(ProjectViewModel projectViewModel)
@@ -252,7 +262,12 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanCloseAllProjectsExcept(ProjectViewModel projectViewModel)
         {
-            return true;
+            if (MainViewModel.Projects.Count > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private void ConvertProject(ProjectViewModel projectViewModel)

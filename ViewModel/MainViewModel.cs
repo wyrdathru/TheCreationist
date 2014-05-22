@@ -31,6 +31,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
             CommandManager = new CommandManager(this);
             WindowManager = new WindowManager(this);
+            LibraryManager = new LibraryManager(this);
 
             OnWindowClosingCommand = new RelayCommand<CancelEventArgs>((e) => OnWindowClosing(e));
 
@@ -84,6 +85,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
         public CommandManager CommandManager { get; set; }
 
         public WindowManager WindowManager { get; set; }
+
+        public LibraryManager LibraryManager { get; set; }
 
         public RelayCommand<CancelEventArgs> OnWindowClosingCommand { get; set; }
 

@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="Behaviors\TextSelectionBehavior.cs" />
     <Compile Include="Controls\BindableRichTextBox.xaml.cs" />
+    <Compile Include="Converters\ColorStringToBoolConverter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\NullToBoolConverter.cs" />
     <Compile Include="Helpers\RegexHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ColorUtility.cs" />
