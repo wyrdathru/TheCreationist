@@ -74,6 +74,14 @@ namespace ProjectVoid.TheCreationist.Managers
         public void DiscardChanges(LibraryViewModel libraryViewModel)
         {
             libraryViewModel.Library = libraryViewModel.DeserializeFromFile();
+
+            libraryViewModel.Swatches.Clear();
+
+            foreach (Swatch swatch in libraryViewModel.Library.Swatches)
+            {
+                libraryViewModel.Swatches.Add(new SwatchViewModel(MainViewModel, swatch));
+            }
+
             libraryViewModel.IsDirty = false;
         }
 
