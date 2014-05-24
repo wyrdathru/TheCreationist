@@ -105,6 +105,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
 
             ActiveLibrary = Libraries[0];
+            WindowManager.PaletteViewModel.ActiveLibrary = Libraries[0];
         }
 
         private List<FileInfo> GetLibraries()

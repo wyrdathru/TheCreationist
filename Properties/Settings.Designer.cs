@@ -61,30 +61,6 @@ namespace ProjectVoid.TheCreationist.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1024")]
-        public double Width {
-            get {
-                return ((double)(this["Width"]));
-            }
-            set {
-                this["Width"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("768")]
-        public double Height {
-            get {
-                return ((double)(this["Height"]));
-            }
-            set {
-                this["Height"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("CanResizeWithGrip")]
         public global::System.Windows.ResizeMode ResizeMode {
             get {
@@ -169,7 +145,7 @@ namespace ProjectVoid.TheCreationist.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool Debug {
             get {
                 return ((bool)(this["Debug"]));
@@ -224,6 +200,30 @@ namespace ProjectVoid.TheCreationist.Properties {
             }
             set {
                 this["FontFamily"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800")]
+        public double Width {
+            get {
+                return ((double)(this["Width"]));
+            }
+            set {
+                this["Width"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("600")]
+        public double Height {
+            get {
+                return ((double)(this["Height"]));
+            }
+            set {
+                this["Height"] = value;
             }
         }
     }

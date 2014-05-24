@@ -9,9 +9,13 @@ namespace ProjectVoid.TheCreationist.ViewModel
     {
         private Swatch _Swatch;
 
+        private bool _IsSelected;
+
         public SwatchViewModel(MainViewModel mainViewModel, Swatch swatch)
         {
             MainViewModel = mainViewModel;
+
+            IsSelected = false;
 
             Swatch = swatch;
         }
@@ -30,6 +34,19 @@ namespace ProjectVoid.TheCreationist.ViewModel
             {
                 Swatch.Color = value;
                 RaisePropertyChanged("Color");
+            }
+        }
+
+        public bool IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                _IsSelected = value;
+                RaisePropertyChanged("IsSelected");
             }
         }
 

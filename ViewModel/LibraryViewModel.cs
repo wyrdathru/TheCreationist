@@ -12,6 +12,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
     {
         private Library _Library;
 
+        private bool _IsDirty;
+
         private ObservableCollection<SwatchViewModel> _Swatches;
 
         public LibraryViewModel(MainViewModel mainViewModel)
@@ -25,8 +27,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
             MainViewModel = mainViewModel;
 
             Library = library;
-
             Swatches = new ObservableCollection<SwatchViewModel>();
+            IsDirty = false;
 
             Initialize();
         }
@@ -90,6 +92,20 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
+        public bool IsDirty
+        {
+            get
+            {
+                return _IsDirty;
+            }
+
+            set
+            {
+                _IsDirty = value;
+                RaisePropertyChanged("IsDirty");
+            }
+        }
+
         public void Initialize()
         {
             foreach (Swatch s in Library.Swatches)
@@ -105,8 +121,10 @@ namespace ProjectVoid.TheCreationist.ViewModel
             Library = null;
         }
 
-        private void SerializeToFile(Library library)
+        public void SerializeToFile()
         {
+            Library library = Library;
+
             using (FileStream fileStream = new FileStream(Settings.Default.Libraries + "\\" + library.Name + ".xml", FileMode.Create))
             {
                 XamlServices.Save(fileStream, library);

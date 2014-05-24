@@ -20,73 +20,33 @@
         <converters:ColorStringToBoolConverter x:Key="ColorStringToBoolConverter" />
     </metro:MetroWindow.Resources>
 
-    <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding MainViewModel.Libraries}" SelectedIndex="0">
-        <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
-            <DataTemplate>
-                <TextBlock Text="{Binding Name}" />
-            </DataTemplate>
-        </metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
+    <Grid DockPanel.Dock="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-        <metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
-            <DataTemplate>
-                <DockPanel LastChildFill="True">
-                    <Grid DockPanel.Dock="Bottom">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-                        <TextBox x:Name="SwatchTextBox" 
-                                 metro:TextboxHelper.Watermark="#FF0000" 
-                                 metro:TextboxHelper.ClearTextButton="True" 
-                                 Width="100" 
-                                 Margin="5,0,5,5" 
-                                 MaxLength="7" 
-                                 HorizontalAlignment="Left"
-                                 Text="{Binding NewSwatchValue, Mode=TwoWay}"  />
+        <metro:MetroAnimatedSingleRowTabControl Grid.ColumnSpan="6"
+                                                ItemsSource="{Binding MainViewModel.Libraries}" 
+                                                SelectedItem="{Binding ActiveLibrary, Mode=TwoWay}"
+                                                SelectedIndex="0">
+            <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
 
-                        <Button Grid.Column="1" 
-                                Content="Add" 
-                                Margin="0,0,5,5" 
-                                HorizontalAlignment="Left"
-                                IsEnabled="{Binding ElementName=SwatchTextBox, Path=Text, Converter={StaticResource ColorStringToBoolConverter}}" 
-                                Command="{Binding MainViewModel.LibraryManager.AddSwatchCommand}" 
-                                CommandParameter="{Binding}"  />
-
-                        <Button Grid.Column="2" 
-                                Content="Remove" 
-                                Margin="0,0,5,5" 
-                                HorizontalAlignment="Left"
-                                IsEnabled="{Binding ElementName=SwatchListView, Path=SelectedItem, Converter={StaticResource NullToBoolConverter}}" 
-                                Command="{Binding MainViewModel.LibraryManager.RemoveSwatchCommand}" 
-                                CommandParameter="{Binding}" />
-
-                        <Button Grid.Column="3" 
-                                Content="Set as Active" 
-                                Margin="0,0,5,5" 
-                                HorizontalAlignment="Right"
-                                Command="{Binding MainViewModel.LibraryManager.SetActiveLibraryCommand}" 
-                                CommandParameter="{Binding}" />
-
-                        <Button Grid.Column="4" 
-                                Content="Save" 
-                                Margin="0,0,5,5" 
-                                HorizontalAlignment="Right"
-                                Command="{Binding MainViewModel.LibraryManager.SaveChangesCommand}" 
-                                CommandParameter="{Binding}" />
-
-                        <Button Grid.Column="5" 
-                                Content="Cancel" 
-                                Margin="0,0,5,5" 
-                                HorizontalAlignment="Right"
-                                Command="{Binding MainViewModel.LibraryManager.DiscardChangesCommand}" 
-                                CommandParameter="{Binding}" />
-                    </Grid>
-
+            <metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
+                <DataTemplate>
                     <GroupBox DockPanel.Dock="Top" Header="{Binding Description}">
                         <ListBox x:Name="SwatchListView" ItemsSource="{Binding Swatches}">
                             <ListBox.ItemContainerStyle>
@@ -110,8 +70,60 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </GroupBox>
-                </DockPanel>
-            </DataTemplate>
-        </metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
-    </metro:MetroAnimatedSingleRowTabControl>
+                </DataTemplate>
+            </metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
+        </metro:MetroAnimatedSingleRowTabControl>
+
+        <TextBox x:Name="SwatchTextBox"
+                 Grid.Row="1"
+                 metro:TextboxHelper.Watermark="#FF0000" 
+                 metro:TextboxHelper.ClearTextButton="True" 
+                 Width="100" 
+                 Margin="5,0,5,5" 
+                 MaxLength="7" 
+                 HorizontalAlignment="Left"
+                 Text="{Binding NewSwatchValue, Mode=TwoWay}"  />
+
+        <Button Grid.Row="1"
+                Grid.Column="1" 
+                Content="Add" 
+                Margin="0,0,5,5" 
+                HorizontalAlignment="Left"
+                IsEnabled="{Binding ElementName=SwatchTextBox, Path=Text, Converter={StaticResource ColorStringToBoolConverter}}" 
+                Command="{Binding MainViewModel.LibraryManager.AddSwatchCommand}" 
+                CommandParameter="{Binding ActiveLibrary}"  />
+
+        <Button Grid.Row="1"
+                Grid.Column="2"
+                Content="Remove" 
+                Margin="0,0,5,5" 
+                HorizontalAlignment="Left"
+                IsEnabled="{Binding ElementName=SwatchListView, Path=SelectedItem, Converter={StaticResource NullToBoolConverter}}" 
+                Command="{Binding MainViewModel.LibraryManager.RemoveSwatchCommand}" 
+                CommandParameter="{Binding ActiveLibrary}" />
+
+        <Button Grid.Row="1"
+                Grid.Column="3" 
+                Content="Set as Active" 
+                Margin="0,0,5,5" 
+                HorizontalAlignment="Right"
+                Command="{Binding MainViewModel.LibraryManager.SetActiveLibraryCommand}" 
+                CommandParameter="{Binding ActiveLibrary}" />
+
+        <Button Grid.Row="1"
+                Grid.Column="4" 
+                Content="Save" 
+                Margin="0,0,5,5" 
+                HorizontalAlignment="Right"
+                Command="{Binding MainViewModel.LibraryManager.SaveChangesCommand}" 
+                CommandParameter="{Binding ActiveLibrary}" />
+
+        <Button Grid.Row="1"
+                Grid.Column="5" 
+                Content="Cancel" 
+                Margin="0,0,5,5" 
+                HorizontalAlignment="Right"
+                Command="{Binding MainViewModel.LibraryManager.DiscardChangesCommand}" 
+                CommandParameter="{Binding ActiveLibrary}" />
+    </Grid>
 </metro:MetroWindow>

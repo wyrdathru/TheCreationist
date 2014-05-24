@@ -13,6 +13,7 @@ namespace ProjectVoid.TheCreationist.Managers
 
             OptionsViewModel = new OptionsViewModel(MainViewModel);
             AboutViewModel = new AboutViewModel(MainViewModel);
+            PaletteViewModel = new PaletteViewModel(MainViewModel);
 
             DisplayOptionsCommand = new RelayCommand(
                 () => DisplayOptions(),
@@ -30,15 +31,11 @@ namespace ProjectVoid.TheCreationist.Managers
         public MainViewModel MainViewModel { get; private set; }
 
         public OptionsViewModel OptionsViewModel { get; private set; }
-
         public AboutViewModel AboutViewModel { get; private set; }
-
         public PaletteViewModel PaletteViewModel { get; private set; }
 
         public RelayCommand DisplayOptionsCommand { get; private set; }
-
         public RelayCommand DisplayAboutCommand { get; private set; }
-
         public RelayCommand DisplayPaletteCommand { get; private set; }
 
         private void DisplayOptions()
@@ -77,7 +74,7 @@ namespace ProjectVoid.TheCreationist.Managers
         {
             PaletteView paletteView = new PaletteView();
 
-            paletteView.DataContext = AboutViewModel;
+            paletteView.DataContext = PaletteViewModel;
             paletteView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             paletteView.Owner = Application.Current.MainWindow;
 
