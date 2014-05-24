@@ -3,6 +3,7 @@ using ProjectVoid.TheCreationist.Model;
 using ProjectVoid.TheCreationist.Properties;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Xaml;
 
@@ -92,6 +93,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsDirty
         {
             get
