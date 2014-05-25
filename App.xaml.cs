@@ -1,4 +1,8 @@
-﻿using ProjectVoid.TheCreationist.Properties;
+﻿using log4net;
+using ProjectVoid.Core.Utilities;
+using ProjectVoid.TheCreationist.Properties;
+using System;
+using System.Reflection;
 using System.Windows;
 
 namespace ProjectVoid.TheCreationist
@@ -8,13 +12,27 @@ namespace ProjectVoid.TheCreationist
     /// </summary>
     public partial class App : Application
     {
-        private void Application_Startup(object sender, StartupEventArgs e)
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        private void OnStartup(object sender, StartupEventArgs e)
         {
+            Logger.Create();
+
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(OnUnhandledException);
+
+            Logger.Log.Info("Started");
         }
 
-        private void Application_Exit(object sender, ExitEventArgs e)
+        private void OnExit(object sender, ExitEventArgs e)
         {
             Settings.Default.Save();
+
+            Logger.Log.Info("Exited");
+        }
+
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs args) 
+        {
+            Logger.Log.Fatal("Exception", (Exception)args.ExceptionObject);
         }
     }
 }

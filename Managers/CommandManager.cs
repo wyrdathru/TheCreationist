@@ -825,39 +825,46 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void SelectSwatch(MouseButtonEventArgs eventArgs)
         {
-            SwatchViewModel swatch = ((SwatchView)eventArgs.Source).DataContext as SwatchViewModel;
-
-            switch (eventArgs.ChangedButton)
+            try
             {
-                case MouseButton.Left:
-                    MainViewModel.ActiveProject.Foreground = swatch.Color;
+                SwatchViewModel swatch = ((SwatchView)eventArgs.Source).DataContext as SwatchViewModel;
 
-                    if (MainViewModel.ActiveProject.Selection != null && !MainViewModel.ActiveProject.Selection.IsEmpty)
-                    {
-                        MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.ForegroundProperty, new SolidColorBrush(swatch.Color));
-                    }
-                    break;
+                switch (eventArgs.ChangedButton)
+                {
+                    case MouseButton.Left:
+                        MainViewModel.ActiveProject.Foreground = swatch.Color;
 
-                case MouseButton.Right:
-                    MainViewModel.ActiveProject.Background = swatch.Color;
+                        if (MainViewModel.ActiveProject.Selection != null && !MainViewModel.ActiveProject.Selection.IsEmpty)
+                        {
+                            MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.ForegroundProperty, new SolidColorBrush(swatch.Color));
+                        }
+                        break;
 
-                    if (MainViewModel.ActiveProject.Selection != null && !MainViewModel.ActiveProject.Selection.IsEmpty)
-                    {
-                        MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.BackgroundProperty, new SolidColorBrush(swatch.Color));
-                    }
-                    break;
+                    case MouseButton.Right:
+                        MainViewModel.ActiveProject.Background = swatch.Color;
 
-                case MouseButton.Middle:
-                    MainViewModel.ActiveProject.Backdrop = swatch.Color;
-                    break;
+                        if (MainViewModel.ActiveProject.Selection != null && !MainViewModel.ActiveProject.Selection.IsEmpty)
+                        {
+                            MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.BackgroundProperty, new SolidColorBrush(swatch.Color));
+                        }
+                        break;
 
-                default:
-                    return;
+                    case MouseButton.Middle:
+                        MainViewModel.ActiveProject.Backdrop = swatch.Color;
+                        break;
+
+                    default:
+                        return;
+                }
+
+                MainViewModel.ActiveProject.State.IsDirty = true;
+
+                eventArgs.Handled = true;
             }
-
-            MainViewModel.ActiveProject.State.IsDirty = true;
-
-            eventArgs.Handled = true;
+            catch (Exception ex)
+            {
+                Logger.Log.Error("Exception", ex);
+            }
         }
 
         private bool CanSelectSwatch(MouseButtonEventArgs eventArgs)

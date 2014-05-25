@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Managers;
 using ProjectVoid.TheCreationist.Model;
 using ProjectVoid.TheCreationist.Properties;
@@ -95,6 +96,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
             LoadLibraries();
 
             LoadProjects();
+
+            Logger.Log.Info("Initialized");
         }
 
         private void LoadLibraries()
@@ -106,6 +109,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
             ActiveLibrary = Libraries[0];
             WindowManager.PaletteViewModel.ActiveLibrary = Libraries[0];
+
+            Logger.Log.Info("Loaded");
         }
 
         private List<FileInfo> GetLibraries()
@@ -132,6 +137,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
                 fileStream.Close();
             }
+
+            Logger.Log.Info(String.Format("Deserialized ID[{0}] Name[{1}] Description[{2}] Swatches[{3}]", library.Id, library.Name, library.Description, library.Swatches.Count));
 
             Libraries.Add(new LibraryViewModel(this, library));
         }

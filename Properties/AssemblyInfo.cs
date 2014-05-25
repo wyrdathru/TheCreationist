@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("ProjectVoid.TheCreationist")]
 [assembly: AssemblyDescription("This product has been licensed as Open Source software under The MIT License (MIT).")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Kyle Wernham")]
+[assembly: AssemblyCompany("ProjectVoid")]
 [assembly: AssemblyProduct("ProjectVoid.TheCreationist")]
 [assembly: AssemblyCopyright("Copyright © Kyle Wernham 2014")]
 [assembly: AssemblyTrademark("")]
@@ -40,6 +40,8 @@ using System.Windows;
     // app, or any theme specific resource dictionaries)
 )]
 
+//Log4Net Configuration File
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
 
 // Version information for an assembly consists of the following four values:
 //

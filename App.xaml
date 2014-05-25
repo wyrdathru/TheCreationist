@@ -5,8 +5,8 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              StartupUri="View\MainView.xaml" 
-             Startup="Application_Startup" 
-             Exit="Application_Exit" 
+             Startup="OnStartup" 
+             Exit="OnExit"
              ShutdownMode="OnMainWindowClose"
              d1p1:Ignorable="d">
     <Application.Resources>
