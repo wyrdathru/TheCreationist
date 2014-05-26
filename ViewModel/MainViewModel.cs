@@ -93,16 +93,22 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         private void Initialize()
         {
+            Logger.Log.Debug("Initializing");
+
             LoadLibraries();
 
             LoadProjects();
 
-            Logger.Log.Info("Initialized");
+            Logger.Log.Debug("Initialized");
         }
 
         private void LoadLibraries()
         {
-            foreach (FileInfo file in GetLibraries())
+            Logger.Log.Debug("Loading");
+
+            var libraries = GetLibraries();
+
+            foreach (FileInfo file in libraries)
             {
                 DeserializeLibrary(file.FullName);
             }
@@ -110,7 +116,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
             ActiveLibrary = Libraries[0];
             WindowManager.PaletteViewModel.ActiveLibrary = Libraries[0];
 
-            Logger.Log.Info("Loaded");
+            Logger.Log.DebugFormat("Loaded Libraries[{0}]", libraries.Count);
         }
 
         private List<FileInfo> GetLibraries()
@@ -122,6 +128,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
             foreach (FileInfo file in directory.GetFiles("*.xml"))
             {
                 files.Add(file);
+
+                Logger.Log.DebugFormat("Found File[{0}]", file.Name);
             }
 
             return files;
@@ -138,7 +146,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
                 fileStream.Close();
             }
 
-            Logger.Log.Info(String.Format("Deserialized ID[{0}] Name[{1}] Description[{2}] Swatches[{3}]", library.Id, library.Name, library.Description, library.Swatches.Count));
+            Logger.Log.Debug(String.Format("Deserialized ID[{0}] Name[{1}] Description[{2}] Swatches[{3}]", library.Id, library.Name, library.Description, library.Swatches.Count));
 
             Libraries.Add(new LibraryViewModel(this, library));
         }

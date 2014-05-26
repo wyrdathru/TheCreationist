@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using ProjectVoid.TheCreationist.Enum;
 using ProjectVoid.TheCreationist.Model;
 using System;
@@ -15,10 +16,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
         private TextSelection _Selection;
         private bool _IsSpellCheckEnabled;
 
-        public ProjectViewModel(MainViewModel mainViewModel)
+        public ProjectViewModel()
         {
-            MainViewModel = mainViewModel;
-
             Project = new Project();
 
             State = new ProjectState() { IsDirty = false, IsSaved = false };
@@ -26,9 +25,17 @@ namespace ProjectVoid.TheCreationist.ViewModel
             _IsSpellCheckEnabled = false;
         }
 
-        public MainViewModel MainViewModel { get; private set; }
+        [PreferredConstructor]
+        public ProjectViewModel(MainViewModel mainViewModel) : this()
+        {
+            MainViewModel = mainViewModel;
+        }
+
+        public MainViewModel MainViewModel { get; set; }
 
         public Project Project { get; set; }
+
+        public string Id { get { return Project.Id.ToString(); } }
 
         public string Name
         {

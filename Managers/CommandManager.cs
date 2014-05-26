@@ -6,6 +6,7 @@ using ProjectVoid.TheCreationist.Properties;
 using ProjectVoid.TheCreationist.View;
 using ProjectVoid.TheCreationist.ViewModel;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -60,10 +61,13 @@ namespace ProjectVoid.TheCreationist.Managers
             ExitApplicationCommand = new RelayCommand<Window>(
                 (p) => ExitApplication(p),
                 (p) => CanExitApplication(p));
-
             SelectSwatchCommand = new RelayCommand<MouseButtonEventArgs>(
                 (e) => SelectSwatch(e),
                 (e) => CanSelectSwatch(e));
+
+            OpenLogLocationCommand = new RelayCommand(
+                () => OpenLogLocation(),
+                () => CanOpenLogLocation());
         }
 
         public MainViewModel MainViewModel { get; private set; }
@@ -88,13 +92,19 @@ namespace ProjectVoid.TheCreationist.Managers
 
         public RelayCommand<MouseButtonEventArgs> SelectSwatchCommand { get; private set; }
 
+        public RelayCommand OpenLogLocationCommand { get; private set; }
+
         private void CreateProject()
         {
+            Logger.Log.Debug("Creating Project");
+
             ProjectViewModel project = new ProjectViewModel(MainViewModel);
 
             MainViewModel.Projects.Add(project);
 
             MainViewModel.ActiveProject = project;
+
+            Logger.Log.DebugFormat("Created Project ID[{0}]", project.Id);
         }
 
         private bool CanCreateProject()
@@ -104,6 +114,8 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void OpenProject(MainViewModel mainViewModel)
         {
+            Logger.Log.Debug("Opening Project");
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile).ToString();
@@ -115,6 +127,7 @@ namespace ProjectVoid.TheCreationist.Managers
 
             if (result == false || result == null)
             {
+                Logger.Log.Debug("Dialog Aborted");
                 return;
             }
 
@@ -123,6 +136,7 @@ namespace ProjectVoid.TheCreationist.Managers
             using (FileStream fileStream = new FileStream(file, FileMode.Open))
             {
                 ProjectViewModel project = XamlReader.Load(fileStream) as ProjectViewModel;
+                project.MainViewModel = mainViewModel;
 
                 if (mainViewModel.Projects.Any(p => p.Project.Id.Equals(project.Project.Id)))
                 {
@@ -137,6 +151,7 @@ namespace ProjectVoid.TheCreationist.Managers
                         if (canReload == MessageBoxResult.No)
                         {
                             fileStream.Close();
+                            Logger.Log.Debug("Project Already Exists - Aborting");
                             return;
                         }
 
@@ -145,6 +160,7 @@ namespace ProjectVoid.TheCreationist.Managers
                     else
                     {
                         fileStream.Close();
+                        Logger.Log.DebugFormat("Project Already Exists - Reloading From Disk");
                         return;
                     }
                 }
@@ -156,6 +172,8 @@ namespace ProjectVoid.TheCreationist.Managers
                 mainViewModel.ActiveProject = project;
 
                 fileStream.Close();
+
+                Logger.Log.DebugFormat("Opened Project ID[{0}]", project.Id);
             }
         }
 
@@ -166,6 +184,8 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void SaveProject(ProjectViewModel projectViewModel)
         {
+            Logger.Log.Debug("Saving Project");
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile).ToString();
@@ -176,6 +196,7 @@ namespace ProjectVoid.TheCreationist.Managers
 
             if (result == false || result == null)
             {
+                Logger.Log.Debug("Dialog Aborted");
                 return;
             }
 
@@ -188,6 +209,7 @@ namespace ProjectVoid.TheCreationist.Managers
                 XamlWriter.Save(projectViewModel, fileStream);
 
                 fileStream.Close();
+                Logger.Log.DebugFormat("Saved Project ID[{0}] to {1}", projectViewModel.Id, file);
             }
 
             projectViewModel.State.IsSaved = true;
@@ -206,24 +228,31 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void CloseProject(ProjectViewModel projectViewModel)
         {
+            Logger.Log.Debug("Closing Project");
+
             if (projectViewModel.State.IsDirty == true)
             {
                 var result = MessageBox.Show(String.Format("{0} has unsaved changes, are you sure you want to close it?", projectViewModel.Name), String.Format("Close {0}?", projectViewModel.Name), MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.No)
                 {
+                    Logger.Log.Debug("Unsaved Changes Detected - Aborting Close");
                     return;
                 }
+
+                Logger.Log.Debug("Unsaved Changes Detected - Discarding Changes");
             }
 
             MainViewModel.Projects.Remove(projectViewModel);
+
+            Logger.Log.DebugFormat("Closed Project ID[{0}]", projectViewModel.Id);
         }
 
         private bool CanCloseProject(ProjectViewModel projectViewModel)
         {
             if (MainViewModel.Projects.Count > 0)
             {
-                return true;   
+                return true;
             }
 
             return false;
@@ -231,10 +260,14 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void CloseAllProjects()
         {
+            Logger.Log.Debug("Closing All Projects");
+
             for (int i = MainViewModel.Projects.Count - 1; i > -1; i--)
             {
                 CloseProject(MainViewModel.Projects[i]);
             }
+
+            Logger.Log.Debug("Closed All Projects");
         }
 
         private bool CanCloseAllProjects()
@@ -249,6 +282,8 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void CloseAllProjectsExcept(ProjectViewModel projectViewModel)
         {
+            Logger.Log.DebugFormat("Closing All Projects Except: Project ID[{0}]", projectViewModel.Id);
+
             for (int i = MainViewModel.Projects.Count - 1; i > -1; i--)
             {
                 if (MainViewModel.Projects[i].Project.Id.Equals(projectViewModel.Project.Id))
@@ -258,6 +293,8 @@ namespace ProjectVoid.TheCreationist.Managers
 
                 CloseProject(MainViewModel.Projects[i]);
             }
+
+            Logger.Log.DebugFormat("Closed All Projects Except: Project ID[{0}]", projectViewModel.Id);
         }
 
         private bool CanCloseAllProjectsExcept(ProjectViewModel projectViewModel)
@@ -272,22 +309,33 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void ConvertProject(ProjectViewModel projectViewModel)
         {
-            var project = projectViewModel;
+            try
+            {
+                Logger.Log.DebugFormat("Converting Project ID[{0}]", projectViewModel.Id);
 
-            Brush _DefaultForeground = ColorUtility.ConvertBrushFromString(Settings.Default.Foreground.ToString());
-            Brush _DefaultBackground = ColorUtility.ConvertBrushFromString(Settings.Default.Background.ToString());
+                var project = projectViewModel;
 
-            Brush _LastForeground;
-            Brush _LastBackground;
+                Brush _DefaultForeground = ColorUtility.ConvertBrushFromString(Settings.Default.Foreground.ToString());
+                Brush _DefaultBackground = ColorUtility.ConvertBrushFromString(Settings.Default.Background.ToString());
 
-            _LastForeground = _DefaultForeground;
-            _LastBackground = _DefaultBackground;
+                Brush _LastForeground;
+                Brush _LastBackground;
 
-            string result = ProcessBlocks(project.Document.Blocks, _DefaultForeground, _DefaultBackground, _LastForeground, _LastBackground);
+                _LastForeground = _DefaultForeground;
+                _LastBackground = _DefaultBackground;
 
-            project.Project.Document.Blocks.Clear();
+                string result = ProcessBlocks(project.Document.Blocks, _DefaultForeground, _DefaultBackground, _LastForeground, _LastBackground);
 
-            project.Project.Document.Blocks.Add(new Paragraph(new Run(result) { Foreground = _DefaultForeground, Background = _DefaultBackground }));
+                project.Project.Document.Blocks.Clear();
+
+                project.Project.Document.Blocks.Add(new Paragraph(new Run(result) { Foreground = _DefaultForeground, Background = _DefaultBackground }));
+
+                Logger.Log.DebugFormat("Converted Project ID[{0}]", projectViewModel.Id);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error("Exception", ex);
+            }
         }
 
         private string ProcessBlocks(BlockCollection blocks, Brush defaultForeground, Brush defaultBackground, Brush lastForeground, Brush lastBackground)
@@ -461,38 +509,41 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void CompileProject(ProjectViewModel projectViewModel)
         {
-            var project = projectViewModel;
-
-            DocumentBuilder document = CreateDocument(project);
-
-            project.Project.Document.Blocks.Clear();
-
-            if (document == null)
+            try
             {
-                return;
-            }
+                Logger.Log.DebugFormat("Compiling Project ID[{0}]", projectViewModel.Id);
 
-            if (document.Blocks.Count < 1)
+                var project = projectViewModel;
+
+                DocumentBuilder document = CreateDocument(project);
+
+                project.Project.Document.Blocks.Clear();
+
+                if (document == null)
+                {
+                    return;
+                }
+
+                if (document.Blocks.Count < 1)
+                {
+                    return;
+                }
+
+                project.Project.Document.Blocks.AddRange(document.Blocks);
+
+                Logger.Log.DebugFormat("Compiled Project ID[{0}]", projectViewModel.Id);
+            }
+            catch (Exception ex)
             {
-                return;
+                Logger.Log.Error("Exception", ex);
             }
-
-            project.Project.Document.Blocks.AddRange(document.Blocks);
-
         }
 
         private DocumentBuilder CreateDocument(ProjectViewModel project)
         {
             string text = null;
 
-            try
-            {
-                text = new TextRange(project.Document.ContentStart.GetNextInsertionPosition(LogicalDirection.Forward), project.Document.ContentEnd.GetNextInsertionPosition(LogicalDirection.Backward)).Text;
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-            }
+            text = new TextRange(project.Document.ContentStart.GetNextInsertionPosition(LogicalDirection.Forward), project.Document.ContentEnd.GetNextInsertionPosition(LogicalDirection.Backward)).Text;
 
             if (string.IsNullOrWhiteSpace(text))
             {
@@ -815,7 +866,11 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void ExitApplication(Window window)
         {
+            Logger.Log.DebugFormat("Exiting Window Title[{0}]", window.Title);
+
             window.Close();
+
+            Logger.Log.DebugFormat("Exited Window Title[{0}]", window.Title);
         }
 
         private bool CanExitApplication(Window window)
@@ -829,6 +884,8 @@ namespace ProjectVoid.TheCreationist.Managers
             {
                 SwatchViewModel swatch = ((SwatchView)eventArgs.Source).DataContext as SwatchViewModel;
 
+                Logger.Log.DebugFormat("Select Swatch Color[{0}]", swatch.Color.ToString());
+
                 switch (eventArgs.ChangedButton)
                 {
                     case MouseButton.Left:
@@ -837,6 +894,7 @@ namespace ProjectVoid.TheCreationist.Managers
                         if (MainViewModel.ActiveProject.Selection != null && !MainViewModel.ActiveProject.Selection.IsEmpty)
                         {
                             MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.ForegroundProperty, new SolidColorBrush(swatch.Color));
+                            Logger.Log.DebugFormat("Set Foreground to {0}", swatch.Color.ToString());
                         }
                         break;
 
@@ -846,11 +904,13 @@ namespace ProjectVoid.TheCreationist.Managers
                         if (MainViewModel.ActiveProject.Selection != null && !MainViewModel.ActiveProject.Selection.IsEmpty)
                         {
                             MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.BackgroundProperty, new SolidColorBrush(swatch.Color));
+                            Logger.Log.DebugFormat("Set Background to {0}", swatch.Color.ToString());
                         }
                         break;
 
                     case MouseButton.Middle:
                         MainViewModel.ActiveProject.Backdrop = swatch.Color;
+                        Logger.Log.DebugFormat("Set Backdrop to {0}", swatch.Color.ToString());
                         break;
 
                     default:
@@ -868,6 +928,16 @@ namespace ProjectVoid.TheCreationist.Managers
         }
 
         private bool CanSelectSwatch(MouseButtonEventArgs eventArgs)
+        {
+            return true;
+        }
+
+        private void OpenLogLocation()
+        {
+            Process.Start(System.IO.Path.GetDirectoryName(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
+        }
+
+        private bool CanOpenLogLocation()
         {
             return true;
         }

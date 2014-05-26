@@ -20,14 +20,14 @@ namespace ProjectVoid.TheCreationist
 
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(OnUnhandledException);
 
-            Logger.Log.Info("Started");
+            Logger.Log.Debug("Started");
         }
 
         private void OnExit(object sender, ExitEventArgs e)
         {
             Settings.Default.Save();
 
-            Logger.Log.Info("Exited");
+            Logger.Log.Debug("Exited");
         }
 
         private void OnUnhandledException(object sender, UnhandledExceptionEventArgs args) 
