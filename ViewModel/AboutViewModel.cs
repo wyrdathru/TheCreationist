@@ -18,7 +18,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
             _FileInfo = FileVersionInfo.GetVersionInfo(_Assembly.Location);
 
             Version = _FileInfo.FileVersion;
-            Product = _FileInfo.FileDescription;
+            Product = _FileInfo.ProductName;
             Author = _FileInfo.CompanyName;
             Copyright = _FileInfo.LegalCopyright;
             Description = _FileInfo.Comments;

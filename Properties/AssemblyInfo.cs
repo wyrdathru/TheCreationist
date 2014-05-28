@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyDescription("This product has been licensed as Open Source software under The MIT License (MIT).")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ProjectVoid")]
-[assembly: AssemblyProduct("ProjectVoid.TheCreationist")]
+[assembly: AssemblyProduct("TheCreationist")]
 [assembly: AssemblyCopyright("Copyright © Kyle Wernham 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

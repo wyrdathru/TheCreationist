@@ -20,6 +20,12 @@
         <converters:ColorStringToBoolConverter x:Key="ColorStringToBoolConverter" />
     </metro:MetroWindow.Resources>
 
+    <metro:MetroWindow.WindowCommands>
+        <metro:WindowCommands>
+            <Button Content="create library" Command="{Binding MainViewModel.LibraryManager.CreateLibraryCommand}" />
+        </metro:WindowCommands>
+    </metro:MetroWindow.WindowCommands>
+
     <Grid DockPanel.Dock="Bottom">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -45,6 +51,19 @@
                 </DataTemplate>
             </metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
 
+            <metro:MetroAnimatedSingleRowTabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type metro:MetroTabItem}">
+                    <Setter Property="ContextMenu">
+                        <Setter.Value>
+                            <ContextMenu>
+                                <MenuItem Header="Edit" Command="{Binding MainViewModel.LibraryManager.EditLibraryCommand}" CommandParameter="{Binding}" />
+                                <MenuItem Header="Delete" Command="{Binding MainViewModel.LibraryManager.DeleteLibraryCommand}" CommandParameter="{Binding}" />
+                            </ContextMenu>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </metro:MetroAnimatedSingleRowTabControl.ItemContainerStyle>
+
             <metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
                 <DataTemplate>
                     <GroupBox DockPanel.Dock="Top" Header="{Binding Description}">
@@ -53,7 +72,7 @@
                                 <Style TargetType="{x:Type ListBoxItem}">
                                     <Setter Property="Padding" Value="5" />
                                     <Setter Property="Margin" Value="5" />
-                                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
                                 </Style>
                             </ListBox.ItemContainerStyle>
 
@@ -98,7 +117,6 @@
                 Content="Remove" 
                 Margin="0,0,5,5" 
                 HorizontalAlignment="Left"
-                IsEnabled="{Binding ElementName=SwatchListView, Path=SelectedItem, Converter={StaticResource NullToBoolConverter}}" 
                 Command="{Binding MainViewModel.LibraryManager.RemoveSwatchCommand}" 
                 CommandParameter="{Binding ActiveLibrary}" />
 

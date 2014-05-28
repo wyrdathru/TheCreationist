@@ -36,6 +36,18 @@ namespace ProjectVoid.TheCreationist.Managers
             RemoveSwatchCommand = new RelayCommand<LibraryViewModel>(
                 (l) => RemoveSwatch(l),
                 (l) => CanRemoveSwatch(l));
+
+            CreateLibraryCommand = new RelayCommand(
+                () => CreateLibrary(),
+                () => CanCreateLibrary());
+
+            EditLibraryCommand = new RelayCommand<LibraryViewModel>(
+                (l) => EditLibrary(l),
+                (l) => CanEditLibrary(l));
+
+            DeleteLibraryCommand = new RelayCommand<LibraryViewModel>(
+                (l) => DeleteLibrary(l),
+                (l) => CanDeleteLibrary(l));
         }
 
         public MainViewModel MainViewModel { get; private set; }
@@ -49,6 +61,12 @@ namespace ProjectVoid.TheCreationist.Managers
         public RelayCommand<LibraryViewModel> AddSwatchCommand { get; set; }
 
         public RelayCommand<LibraryViewModel> RemoveSwatchCommand { get; set; }
+
+        public RelayCommand CreateLibraryCommand { get; set; }
+
+        public RelayCommand<LibraryViewModel> EditLibraryCommand { get; set; }
+
+        public RelayCommand<LibraryViewModel> DeleteLibraryCommand { get; set; }
 
         public void SetActiveLibrary(LibraryViewModel libraryViewModel)
         {
@@ -68,7 +86,19 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanSaveChanges(LibraryViewModel libraryViewModel)
         {
-            return true;
+            LibraryViewModel library = MainViewModel.ActiveLibrary;
+
+            if (libraryViewModel != null)
+            {
+                library = libraryViewModel;
+            }
+
+            if (library.IsDirty)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void DiscardChanges(LibraryViewModel libraryViewModel)
@@ -87,7 +117,19 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanDiscardChanges(LibraryViewModel libraryViewModel)
         {
-            return true;
+            LibraryViewModel library = MainViewModel.ActiveLibrary;
+
+            if (libraryViewModel != null)
+            {
+                library = libraryViewModel;
+            }
+
+            if (library.IsDirty)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void AddSwatch(LibraryViewModel libraryViewModel)
@@ -125,6 +167,48 @@ namespace ProjectVoid.TheCreationist.Managers
         }
 
         private bool CanRemoveSwatch(LibraryViewModel libraryViewModel)
+        {
+            LibraryViewModel library = MainViewModel.ActiveLibrary;
+
+            if (libraryViewModel != null)
+            {
+                library = libraryViewModel;
+            }
+
+            if (library.Swatches.Where(s => s.IsSelected).Any())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void CreateLibrary()
+        {
+            Logger.Log.Debug("Not Implemented");
+        }
+
+        private bool CanCreateLibrary()
+        {
+            return true;
+        }
+
+        private void EditLibrary(LibraryViewModel libraryViewModel)
+        {
+            Logger.Log.Debug("Not Implemented");
+        }
+
+        private bool CanEditLibrary(LibraryViewModel libraryViewModel)
+        {
+            return true;
+        }
+
+        private void DeleteLibrary(LibraryViewModel libraryViewModel)
+        {
+            Logger.Log.Debug("Not Implemented");
+        }
+
+        private bool CanDeleteLibrary(LibraryViewModel libraryViewModel)
         {
             return true;
         }

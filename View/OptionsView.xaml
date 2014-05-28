@@ -14,8 +14,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
         </Grid.RowDefinitions>
 
         <GroupBox Padding="10" Header="SpellCheck">
