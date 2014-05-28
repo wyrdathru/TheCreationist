@@ -67,7 +67,7 @@
             <metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
                 <DataTemplate>
                     <GroupBox DockPanel.Dock="Top" Header="{Binding Description}">
-                        <ListBox x:Name="SwatchListView" ItemsSource="{Binding Swatches}">
+                        <ListBox x:Name="SwatchListView" ItemsSource="{Binding Swatches}" SelectionMode="Extended">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
                                     <Setter Property="Padding" Value="5" />
