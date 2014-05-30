@@ -15,7 +15,7 @@ using System.Xaml;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IDisposable
     {
         private LibraryViewModel _ActiveLibrary;
 
@@ -177,6 +177,11 @@ namespace ProjectVoid.TheCreationist.ViewModel
                     return;
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            //TODO: Implement Dispose
         }
     }
 }

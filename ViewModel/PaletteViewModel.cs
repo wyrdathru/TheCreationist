@@ -1,10 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using ProjectVoid.TheCreationist.ViewModel;
+using System;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
-    public class PaletteViewModel : ViewModelBase
+    public class PaletteViewModel : ViewModelBase, IDisposable
     {
         private string _NewSwatchValue;
 
@@ -42,6 +43,11 @@ namespace ProjectVoid.TheCreationist.ViewModel
                 _NewSwatchValue = value;
                 RaisePropertyChanged("NewSwatchValue");
             }
+        }
+
+        public void Dispose()
+        {
+            //TODO: Implement Dispose
         }
     }
 }

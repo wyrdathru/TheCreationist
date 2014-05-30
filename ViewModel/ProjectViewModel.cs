@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
-    public class ProjectViewModel : ViewModelBase
+    public class ProjectViewModel : ViewModelBase, IDisposable
     {
         private DateTime _LastChanged;
         private ProjectState _State;
@@ -173,6 +173,11 @@ namespace ProjectVoid.TheCreationist.ViewModel
         private void FireStatePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             RaisePropertyChanged("State");
+        }
+
+        public void Dispose()
+        {
+            //TODO: Implement Dispose
         }
     }
 }
