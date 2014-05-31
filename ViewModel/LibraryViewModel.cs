@@ -93,6 +93,34 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
+        public string Tags
+        {
+            get
+            {
+                return Library.Tags;
+            }
+
+            set
+            {
+                Library.Tags = value;
+                RaisePropertyChanged("Tags");
+            }
+        }
+
+        public string Author
+        {
+            get
+            {
+                return Library.Author;
+            }
+
+            set
+            {
+                Library.Author = value;
+                RaisePropertyChanged("Author");
+            }
+        }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsDirty
         {

@@ -1,0 +1,109 @@
+﻿<metro:MetroWindow x:Class="ProjectVoid.TheCreationist.View.PaletteEditorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:ProjectVoid.Core.Controls;assembly=ProjectVoid.Core"
+        xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
+        xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
+        xmlns:view="clr-namespace:ProjectVoid.TheCreationist.View"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        Title="Swatch Libraries"
+        Height="480"
+        Width="640"
+        TitleCaps="False"
+        ResizeMode="NoResize"
+        GlowBrush="{StaticResource AccentColorBrush}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <commands:EventToCommand Command="{Binding MainViewModel.WindowManager.ClosePaletteEditorCommand}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Padding="10" Header="Name">
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="You can specify a name for your library here; it will show up in the palette selection screen." TextWrapping="Wrap" Margin="0,0,0,10" />
+
+                    <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Name, Mode=TwoWay}" />
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Padding="10" Header="Author">
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="You can specify an author here; this can be whatever alias you like and is not required." TextWrapping="Wrap" Margin="0,0,0,10" />
+
+                    <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Author, Mode=TwoWay}" />
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+
+        <GroupBox Grid.Row="2" Padding="10" Header="Tags">
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="A comma-separated string of keywords for your library, such as: 'whites, winter, bright'." TextWrapping="Wrap" Margin="0,0,0,10" />
+
+                    <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Tags, Mode=TwoWay}" />
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.RowSpan="3" Grid.Column="1" Padding="10" Header="Description">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="You can specify a description for what your library is used for here. It may be helpful tips about your swatches or anything else you like." TextWrapping="Wrap" Margin="0,0,0,10" />
+
+                <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding LibraryViewModel.Description, Mode=TwoWay}" />
+            </Grid>
+        </GroupBox>
+
+        <!--<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+            <Button Content="Save" 
+                    Margin="0,0,5,5" 
+                    HorizontalAlignment="Right"
+                    Command="{Binding MainViewModel.LibraryManager.SaveChangesCommand}" 
+                    CommandParameter="{Binding LibraryViewModel}" />
+
+            <Button Content="Discard Changes" 
+                    Margin="0,0,5,5" 
+                    HorizontalAlignment="Right"
+                    Command="{Binding MainViewModel.LibraryManager.DiscardChangesCommand}" 
+                    CommandParameter="{Binding LibraryViewModel}" />
+        </StackPanel>-->
+    </Grid>
+</metro:MetroWindow>

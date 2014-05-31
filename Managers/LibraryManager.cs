@@ -1,9 +1,11 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Model;
+using ProjectVoid.TheCreationist.Properties;
 using ProjectVoid.TheCreationist.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,10 +43,6 @@ namespace ProjectVoid.TheCreationist.Managers
                 () => CreateLibrary(),
                 () => CanCreateLibrary());
 
-            EditLibraryCommand = new RelayCommand<LibraryViewModel>(
-                (l) => EditLibrary(l),
-                (l) => CanEditLibrary(l));
-
             DeleteLibraryCommand = new RelayCommand<LibraryViewModel>(
                 (l) => DeleteLibrary(l),
                 (l) => CanDeleteLibrary(l));
@@ -64,8 +62,6 @@ namespace ProjectVoid.TheCreationist.Managers
 
         public RelayCommand CreateLibraryCommand { get; set; }
 
-        public RelayCommand<LibraryViewModel> EditLibraryCommand { get; set; }
-
         public RelayCommand<LibraryViewModel> DeleteLibraryCommand { get; set; }
 
         public void SetActiveLibrary(LibraryViewModel libraryViewModel)
@@ -75,7 +71,12 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanSetActiveLibrary(LibraryViewModel libraryViewModel)
         {
-            return true;
+            if (libraryViewModel != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void SaveChanges(LibraryViewModel libraryViewModel)
@@ -185,7 +186,13 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void CreateLibrary()
         {
-            Logger.Log.Debug("Not Implemented");
+            Library library = new Library();
+
+            LibraryViewModel libraryViewModel = new LibraryViewModel(MainViewModel, library);
+
+            MainViewModel.Libraries.Add(libraryViewModel);
+
+            libraryViewModel.SerializeToFile();
         }
 
         private bool CanCreateLibrary()
@@ -193,19 +200,18 @@ namespace ProjectVoid.TheCreationist.Managers
             return true;
         }
 
-        private void EditLibrary(LibraryViewModel libraryViewModel)
-        {
-            Logger.Log.Debug("Not Implemented");
-        }
-
-        private bool CanEditLibrary(LibraryViewModel libraryViewModel)
-        {
-            return true;
-        }
-
         private void DeleteLibrary(LibraryViewModel libraryViewModel)
         {
-            Logger.Log.Debug("Not Implemented");
+            MainViewModel.Libraries.Remove(libraryViewModel);
+
+            try
+            {
+                File.Delete(Settings.Default.Libraries + "\\" + libraryViewModel.Name + ".xml");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error("Exception DeleteFailed", ex);
+            }
         }
 
         private bool CanDeleteLibrary(LibraryViewModel libraryViewModel)

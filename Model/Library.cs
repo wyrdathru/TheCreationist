@@ -12,6 +12,8 @@ namespace ProjectVoid.TheCreationist.Model
             Name = Id.ToString().Substring(0, 5);
             Swatches = new List<Swatch>();
             Description = string.Empty;
+            Tags = string.Empty;
+            Author = string.Empty;
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
@@ -25,5 +27,11 @@ namespace ProjectVoid.TheCreationist.Model
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public string Description { get; set; }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public string Tags { get; set; }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public string Author { get; set; }
     }
 }

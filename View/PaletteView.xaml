@@ -56,7 +56,7 @@
                     <Setter Property="ContextMenu">
                         <Setter.Value>
                             <ContextMenu>
-                                <MenuItem Header="Edit" Command="{Binding MainViewModel.LibraryManager.EditLibraryCommand}" CommandParameter="{Binding}" />
+                                <MenuItem Header="Edit" Command="{Binding MainViewModel.WindowManager.DisplayPaletteEditorCommand}" CommandParameter="{Binding}" />
                                 <MenuItem Header="Delete" Command="{Binding MainViewModel.LibraryManager.DeleteLibraryCommand}" CommandParameter="{Binding}" />
                             </ContextMenu>
                         </Setter.Value>

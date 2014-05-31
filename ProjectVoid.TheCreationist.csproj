@@ -94,6 +94,7 @@
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\LibraryViewModel.cs" />
     <Compile Include="ViewModel\OptionsViewModel.cs" />
+    <Compile Include="ViewModel\PaletteEditorViewModel.cs" />
     <Compile Include="ViewModel\PaletteViewModel.cs" />
     <Compile Include="ViewModel\ProjectViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -108,6 +109,9 @@
     </Compile>
     <Compile Include="View\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaletteEditorView.xaml.cs">
+      <DependentUpon>PaletteEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PaletteView.xaml.cs">
       <DependentUpon>PaletteView.xaml</DependentUpon>
@@ -126,6 +130,10 @@
     <Page Include="View\OptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PaletteEditorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PaletteView.xaml">
       <SubType>Designer</SubType>
