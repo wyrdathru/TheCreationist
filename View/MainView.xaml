@@ -36,6 +36,7 @@
     
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+        <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
         <lconverters:StateToBrushConverter x:Key="StateToBrushConverter" />
     </metro:MetroWindow.Resources>
 
@@ -85,45 +86,61 @@
         </Menu>
 
         <GroupBox Grid.RowSpan="2" Grid.Row="1" Header="Workspace">
-            <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Projects}" SelectedIndex="0" SelectedItem="{Binding ActiveProject, Mode=TwoWay}">
-                <metro:MetroAnimatedSingleRowTabControl.ItemContainerStyle>
-                    <Style TargetType="{x:Type metro:MetroTabItem}">
-                        <Setter Property="ContextMenu">
-                            <Setter.Value>
-                                <ContextMenu>
-                                    <MenuItem Header="Close" Command="{Binding MainViewModel.CommandManager.CloseProjectCommand}" CommandParameter="{Binding}" />
-                                    <MenuItem Header="Close All" Command="{Binding MainViewModel.CommandManager.CloseAllProjectsCommand}" />
-                                    <MenuItem Header="Close All Except This" Command="{Binding MainViewModel.CommandManager.CloseAllProjectsExceptCommand}" CommandParameter="{Binding}" />
-                                    <Separator />
-                                    <MenuItem Header="Convert" Command="{Binding MainViewModel.CommandManager.ConvertProjectCommand}" CommandParameter="{Binding}" />
-                                    <MenuItem Header="Compile" Command="{Binding MainViewModel.CommandManager.CompileProjectCommand}" CommandParameter="{Binding}" />
-                                </ContextMenu>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </metro:MetroAnimatedSingleRowTabControl.ItemContainerStyle>
+            <Grid>
+                <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Projects}" SelectedIndex="0" SelectedItem="{Binding ActiveProject, Mode=TwoWay}">
+                    <metro:MetroAnimatedSingleRowTabControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type metro:MetroTabItem}">
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu>
+                                        <MenuItem Header="Close" Command="{Binding MainViewModel.CommandManager.CloseProjectCommand}" CommandParameter="{Binding}" />
+                                        <MenuItem Header="Close All" Command="{Binding MainViewModel.CommandManager.CloseAllProjectsCommand}" />
+                                        <MenuItem Header="Close All Except This" Command="{Binding MainViewModel.CommandManager.CloseAllProjectsExceptCommand}" CommandParameter="{Binding}" />
+                                        <Separator />
+                                        <MenuItem Header="Convert" Command="{Binding MainViewModel.CommandManager.ConvertProjectCommand}" CommandParameter="{Binding}" />
+                                        <MenuItem Header="Compile" Command="{Binding MainViewModel.CommandManager.CompileProjectCommand}" CommandParameter="{Binding}" />
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </metro:MetroAnimatedSingleRowTabControl.ItemContainerStyle>
 
-                <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
+                    <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
 
-                            <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Name}" />
 
-                            <Rectangle Height="3" Grid.Row="1" Fill="{Binding State, Converter={StaticResource StateToBrushConverter}}" />
-                        </Grid>
-                    </DataTemplate>
-                </metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
+                                <Rectangle Height="3" Grid.Row="1" Fill="{Binding State, Converter={StaticResource StateToBrushConverter}}" />
+                            </Grid>
+                        </DataTemplate>
+                    </metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
 
-                <metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
-                    <DataTemplate>
-                        <view:ProjectView />
-                    </DataTemplate>
-                </metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
-            </metro:MetroAnimatedSingleRowTabControl>
+                    <metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
+                        <DataTemplate>
+                            <view:ProjectView />
+                        </DataTemplate>
+                    </metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
+                </metro:MetroAnimatedSingleRowTabControl>
+                
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="No Projects">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Hidden" />
+                            
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Projects.Count}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
         </GroupBox>
 
         <GroupBox Grid.Column="1" Grid.Row="1" Header="Swatches">
@@ -132,26 +149,57 @@
                     <MenuItem Header="Manage Swatches" Command="{Binding WindowManager.DisplayPaletteCommand}" />
                 </ContextMenu>
             </GroupBox.ContextMenu>
-            <ListBox ItemsSource="{Binding ActiveLibrary.Swatches}" 
+            
+            <Grid>
+                <ListBox ItemsSource="{Binding ActiveLibrary.Swatches}" 
                      ItemContainerStyle="{StaticResource ListBoxItemTemplate}">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns="2" VerticalAlignment="Top" />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2" VerticalAlignment="Top" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <view:SwatchView>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewMouseDown">
-                                    <commands:EventToCommand Command="{Binding MainViewModel.CommandManager.SelectSwatchCommand}" PassEventArgsToCommand="True"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </view:SwatchView>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <view:SwatchView>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PreviewMouseDown">
+                                        <commands:EventToCommand Command="{Binding MainViewModel.CommandManager.SelectSwatchCommand}" PassEventArgsToCommand="True"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </view:SwatchView>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="No Swatches">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Hidden" />
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ActiveLibrary.Swatches.Count}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="No Active Library">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Hidden" />
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ActiveLibrary, Converter={StaticResource NullToBoolConverter}}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
         </GroupBox>
 
         <GroupBox Grid.Column="1" Grid.Row="2" Header="Active">

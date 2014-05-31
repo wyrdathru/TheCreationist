@@ -87,12 +87,14 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanSaveChanges(LibraryViewModel libraryViewModel)
         {
+            if (libraryViewModel == null)
+            {
+                return false;
+            }
+
             LibraryViewModel library = MainViewModel.ActiveLibrary;
 
-            if (libraryViewModel != null)
-            {
-                library = libraryViewModel;
-            }
+            library = libraryViewModel;
 
             if (library.IsDirty)
             {
@@ -118,12 +120,14 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanDiscardChanges(LibraryViewModel libraryViewModel)
         {
+            if (libraryViewModel == null)
+            {
+                return false;
+            }
+
             LibraryViewModel library = MainViewModel.ActiveLibrary;
 
-            if (libraryViewModel != null)
-            {
-                library = libraryViewModel;
-            }
+            library = libraryViewModel;
 
             if (library.IsDirty)
             {
@@ -169,12 +173,14 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanRemoveSwatch(LibraryViewModel libraryViewModel)
         {
+            if (libraryViewModel == null)
+            {
+                return false;
+            }
+
             LibraryViewModel library = MainViewModel.ActiveLibrary;
 
-            if (libraryViewModel != null)
-            {
-                library = libraryViewModel;
-            }
+            library = libraryViewModel;
 
             if (library.Swatches.Where(s => s.IsSelected).Any())
             {
@@ -191,6 +197,7 @@ namespace ProjectVoid.TheCreationist.Managers
             LibraryViewModel libraryViewModel = new LibraryViewModel(MainViewModel, library);
 
             MainViewModel.Libraries.Add(libraryViewModel);
+            MainViewModel.WindowManager.PaletteViewModel.ActiveLibrary = libraryViewModel;
 
             libraryViewModel.SerializeToFile();
         }
@@ -204,6 +211,11 @@ namespace ProjectVoid.TheCreationist.Managers
         {
             MainViewModel.Libraries.Remove(libraryViewModel);
 
+            if (MainViewModel.ActiveLibrary.Equals(libraryViewModel))
+            {
+                MainViewModel.ActiveLibrary = MainViewModel.Libraries.FirstOrDefault();
+            }
+
             try
             {
                 File.Delete(Settings.Default.Libraries + "\\" + libraryViewModel.Name + ".xml");
@@ -212,6 +224,8 @@ namespace ProjectVoid.TheCreationist.Managers
             {
                 Logger.Log.Error("Exception DeleteFailed", ex);
             }
+
+            Logger.Log.DebugFormat("Deleted Library[{0}]", libraryViewModel.Library.Id);
         }
 
         private bool CanDeleteLibrary(LibraryViewModel libraryViewModel)

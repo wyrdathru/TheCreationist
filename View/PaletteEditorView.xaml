@@ -88,7 +88,7 @@
 
                 <TextBlock Text="You can specify a description for what your library is used for here. It may be helpful tips about your swatches or anything else you like." TextWrapping="Wrap" Margin="0,0,0,10" />
 
-                <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding LibraryViewModel.Description, Mode=TwoWay}" />
+                <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding LibraryViewModel.Description, Mode=TwoWay}" MaxLength="100" TextWrapping="Wrap" />
             </Grid>
         </GroupBox>
 
