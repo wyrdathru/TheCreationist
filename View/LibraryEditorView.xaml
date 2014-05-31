@@ -1,4 +1,4 @@
-﻿<metro:MetroWindow x:Class="ProjectVoid.TheCreationist.View.PaletteEditorView"
+﻿<metro:MetroWindow x:Class="ProjectVoid.TheCreationist.View.LibraryEditorView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:ProjectVoid.Core.Controls;assembly=ProjectVoid.Core"
@@ -16,7 +16,7 @@
         GlowBrush="{StaticResource AccentColorBrush}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
-            <commands:EventToCommand Command="{Binding MainViewModel.WindowManager.ClosePaletteEditorCommand}" PassEventArgsToCommand="True"/>
+            <commands:EventToCommand Command="{Binding MainViewModel.WindowManager.CloseLibraryEditorCommand}" PassEventArgsToCommand="True"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -91,19 +91,5 @@
                 <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding LibraryViewModel.Description, Mode=TwoWay}" MaxLength="100" TextWrapping="Wrap" />
             </Grid>
         </GroupBox>
-
-        <!--<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Button Content="Save" 
-                    Margin="0,0,5,5" 
-                    HorizontalAlignment="Right"
-                    Command="{Binding MainViewModel.LibraryManager.SaveChangesCommand}" 
-                    CommandParameter="{Binding LibraryViewModel}" />
-
-            <Button Content="Discard Changes" 
-                    Margin="0,0,5,5" 
-                    HorizontalAlignment="Right"
-                    Command="{Binding MainViewModel.LibraryManager.DiscardChangesCommand}" 
-                    CommandParameter="{Binding LibraryViewModel}" />
-        </StackPanel>-->
     </Grid>
 </metro:MetroWindow>

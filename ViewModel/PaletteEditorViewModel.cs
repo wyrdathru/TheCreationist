@@ -1,13 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using ProjectVoid.TheCreationist.ViewModel;
+using ProjectVoid.Core.Utilities;
 using System;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
-    public class PaletteEditorViewModel : ViewModelBase, IDisposable
+    public class LibraryEditorViewModel : ViewModelBase, IDisposable
     {
-        public PaletteEditorViewModel(MainViewModel mainViewModel)
+        public LibraryEditorViewModel(MainViewModel mainViewModel)
         {
             MainViewModel = mainViewModel;
         }
@@ -20,7 +19,15 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public void Dispose()
         {
-            //TODO: Implement Dispose
+            Logger.Log.Debug("Disposing");
+
+            MainViewModel = null;
+
+            LibraryViewModel = null;
+
+            LastEditedLibrary = string.Empty;
+
+            Logger.Log.Debug("Disposed");
         }
     }
 }

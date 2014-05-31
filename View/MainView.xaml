@@ -28,11 +28,11 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <!--<metro:MetroWindow.WindowCommands>
+    <metro:MetroWindow.WindowCommands>
         <metro:WindowCommands>
             <Button Content="open logs" Command="{Binding CommandManager.OpenLogLocationCommand}" />
         </metro:WindowCommands>
-    </metro:MetroWindow.WindowCommands>-->
+    </metro:MetroWindow.WindowCommands>
     
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
@@ -64,7 +64,7 @@
                 <MenuItem Header="Convert" Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <MenuItem Header="Compile" Command="{Binding CommandManager.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}" />
                 <Separator />
-                <MenuItem Header="Exit" Command="{Binding CommandManager.ExitApplicationCommand}" CommandParameter="{Binding ElementName=MainApplicationWindow}" />
+                <MenuItem Header="Exit" Command="{Binding CommandManager.CloseWindowCommand}" CommandParameter="{Binding ElementName=MainApplicationWindow}" />
             </MenuItem>
 
             <MenuItem Header="Edit">
@@ -77,11 +77,11 @@
             </MenuItem>
 
             <MenuItem Header="Tools">
-                <MenuItem Header="Options" Command="{Binding WindowManager.DisplayOptionsCommand}" />
+                <MenuItem Header="Options" Command="{Binding WindowManager.OpenOptionsCommand}" />
             </MenuItem>
 
             <MenuItem Header="Help">
-                <MenuItem Header="About" Command="{Binding WindowManager.DisplayAboutCommand}" />
+                <MenuItem Header="About" Command="{Binding WindowManager.OpenAboutCommand}" />
             </MenuItem>
         </Menu>
 
@@ -146,7 +146,7 @@
         <GroupBox Grid.Column="1" Grid.Row="1" Header="Swatches">
             <GroupBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Manage Swatches" Command="{Binding WindowManager.DisplayPaletteCommand}" />
+                    <MenuItem Header="Manage Swatches" Command="{Binding WindowManager.OpenLibraryManagementCommand}" />
                 </ContextMenu>
             </GroupBox.ContextMenu>
             

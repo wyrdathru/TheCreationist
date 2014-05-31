@@ -13,7 +13,7 @@ using System.Windows.Media;
 
 namespace ProjectVoid.TheCreationist.Managers
 {
-    public class LibraryManager
+    public class LibraryManager : IDisposable
     {
         public LibraryManager(MainViewModel mainViewModel)
         {
@@ -66,7 +66,11 @@ namespace ProjectVoid.TheCreationist.Managers
 
         public void SetActiveLibrary(LibraryViewModel libraryViewModel)
         {
+            Logger.Log.Debug("Setting");
+
             MainViewModel.ActiveLibrary = libraryViewModel;
+
+            Logger.Log.Debug("Set");
         }
 
         private bool CanSetActiveLibrary(LibraryViewModel libraryViewModel)
@@ -81,8 +85,12 @@ namespace ProjectVoid.TheCreationist.Managers
 
         public void SaveChanges(LibraryViewModel libraryViewModel)
         {
-            libraryViewModel.SerializeToFile();
+            Logger.Log.Debug("Saving");
+
+            MainViewModel.SerializeToFile(libraryViewModel.Library);
             libraryViewModel.IsDirty = false;
+
+            Logger.Log.Debug("Saved");
         }
 
         private bool CanSaveChanges(LibraryViewModel libraryViewModel)
@@ -106,7 +114,9 @@ namespace ProjectVoid.TheCreationist.Managers
 
         public void DiscardChanges(LibraryViewModel libraryViewModel)
         {
-            libraryViewModel.Library = libraryViewModel.DeserializeFromFile();
+            Logger.Log.Debug("Discarding");
+
+            libraryViewModel.Library = MainViewModel.DeserializeFromFile(libraryViewModel.Name);
 
             libraryViewModel.Swatches.Clear();
 
@@ -116,6 +126,8 @@ namespace ProjectVoid.TheCreationist.Managers
             }
 
             libraryViewModel.IsDirty = false;
+
+            Logger.Log.Debug("Discarded");
         }
 
         private bool CanDiscardChanges(LibraryViewModel libraryViewModel)
@@ -139,16 +151,23 @@ namespace ProjectVoid.TheCreationist.Managers
 
         public void AddSwatch(LibraryViewModel libraryViewModel)
         {
-            Color color = ColorUtility.ConvertColorFromString(MainViewModel.WindowManager.PaletteViewModel.NewSwatchValue);
+            Logger.Log.Debug("Adding");
+
+            Color color = ColorUtility.ConvertColorFromString(MainViewModel.WindowManager.LibraryManagementViewModel.NewSwatchValue);
 
             if (libraryViewModel.Swatches.Where(s => s.Color == color).Any())
             {
                 return;
             }
 
-            libraryViewModel.Swatches.Add(new SwatchViewModel(MainViewModel, new Swatch(color)));
+            var swatch = new Swatch(color);
+            var swatchViewModel = new SwatchViewModel(MainViewModel, swatch);
+
+            libraryViewModel.Swatches.Add(swatchViewModel);
 
             libraryViewModel.IsDirty = true;
+
+            Logger.Log.DebugFormat("Added Color[{0}]", swatchViewModel.Color);
         }
 
         private bool CanAddSwatch(LibraryViewModel libraryViewModel)
@@ -158,6 +177,8 @@ namespace ProjectVoid.TheCreationist.Managers
 
         public void RemoveSwatch(LibraryViewModel libraryViewModel)
         {
+            Logger.Log.Debug("Removing");
+
             for (int i = libraryViewModel.Swatches.Count - 1; i > -1; i--)
             {
                 if (libraryViewModel.Swatches[i].IsSelected)
@@ -169,6 +190,8 @@ namespace ProjectVoid.TheCreationist.Managers
             }
 
             libraryViewModel.IsDirty = true;
+
+            Logger.Log.DebugFormat("Removed ID[{0}] Name[{1}]", libraryViewModel.Id, libraryViewModel.Name);
         }
 
         private bool CanRemoveSwatch(LibraryViewModel libraryViewModel)
@@ -192,14 +215,18 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void CreateLibrary()
         {
+            Logger.Log.Debug("Creating");
+
             Library library = new Library();
 
             LibraryViewModel libraryViewModel = new LibraryViewModel(MainViewModel, library);
 
             MainViewModel.Libraries.Add(libraryViewModel);
-            MainViewModel.WindowManager.PaletteViewModel.ActiveLibrary = libraryViewModel;
+            MainViewModel.WindowManager.LibraryManagementViewModel.ActiveLibrary = libraryViewModel;
 
-            libraryViewModel.SerializeToFile();
+            MainViewModel.SerializeToFile(libraryViewModel.Library);
+
+            Logger.Log.DebugFormat("Created ID[{0}] Name[{1}]", libraryViewModel.Id, libraryViewModel.Name);
         }
 
         private bool CanCreateLibrary()
@@ -209,6 +236,8 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void DeleteLibrary(LibraryViewModel libraryViewModel)
         {
+            Logger.Log.Debug("Deleting");
+
             MainViewModel.Libraries.Remove(libraryViewModel);
 
             if (MainViewModel.ActiveLibrary.Equals(libraryViewModel))
@@ -222,15 +251,24 @@ namespace ProjectVoid.TheCreationist.Managers
             }
             catch (Exception ex)
             {
-                Logger.Log.Error("Exception DeleteFailed", ex);
+                Logger.Log.Error("Delete Exception", ex);
             }
 
-            Logger.Log.DebugFormat("Deleted Library[{0}]", libraryViewModel.Library.Id);
+            Logger.Log.DebugFormat("Deleted ID[{0}] Name[{1}]", libraryViewModel.Id, libraryViewModel.Name);
         }
 
         private bool CanDeleteLibrary(LibraryViewModel libraryViewModel)
         {
             return true;
+        }
+
+        public void Dispose()
+        {
+            Logger.Log.Debug("Disposing");
+
+            MainViewModel = null;
+
+            Logger.Log.Debug("Disposed");
         }
     }
 }

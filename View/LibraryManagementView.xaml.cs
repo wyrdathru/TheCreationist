@@ -2,11 +2,11 @@
 namespace ProjectVoid.TheCreationist.View
 {
     /// <summary>
-    /// Interaction logic for OptionsView.xaml
+    /// Interaction logic for PaletteView.xaml
     /// </summary>
-    public partial class OptionsView
+    public partial class LibraryManagementView
     {
-        public OptionsView()
+        public LibraryManagementView()
         {
             InitializeComponent();
         }

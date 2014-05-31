@@ -1,11 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
+using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Model;
-using ProjectVoid.TheCreationist.Properties;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
-using System.Xaml;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
@@ -20,7 +18,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         public LibraryViewModel(MainViewModel mainViewModel)
             : this(mainViewModel, new Library())
         {
-            //
+
         }
 
         public LibraryViewModel(MainViewModel mainViewModel, Library library)
@@ -38,10 +36,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public Library Library
         {
-            get
-            {
-                return _Library;
-            }
+            get { return _Library; }
 
             set
             {
@@ -50,13 +45,9 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
-
         public ObservableCollection<SwatchViewModel> Swatches
         {
-            get
-            {
-                return _Swatches;
-            }
+            get { return _Swatches; }
 
             set
             {
@@ -65,12 +56,14 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
+        public string Id
+        {
+            get { return Library.Id.ToString(); }
+        }
+
         public string Name
         {
-            get
-            {
-                return Library.Name;
-            }
+            get { return Library.Name; }
 
             set
             {
@@ -81,10 +74,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public string Description
         {
-            get
-            {
-                return Library.Description;
-            }
+            get { return Library.Description; }
 
             set
             {
@@ -95,10 +85,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public string Tags
         {
-            get
-            {
-                return Library.Tags;
-            }
+            get { return Library.Tags; }
 
             set
             {
@@ -109,10 +96,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public string Author
         {
-            get
-            {
-                return Library.Author;
-            }
+            get { return Library.Author; }
 
             set
             {
@@ -124,10 +108,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsDirty
         {
-            get
-            {
-                return _IsDirty;
-            }
+            get { return _IsDirty; }
 
             set
             {
@@ -136,45 +117,41 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
-        public void Initialize()
+        private void Initialize()
         {
+            Logger.Log.Debug("Initializing");
+
+            LoadSwatches();
+
+            Logger.Log.Debug("Initialized");
+        }
+
+        private void LoadSwatches()
+        {
+            Logger.Log.Debug("Loading");
+
             foreach (Swatch s in Library.Swatches)
             {
                 Swatches.Add(new SwatchViewModel(MainViewModel, s));
             }
+
+            Logger.Log.DebugFormat("Loaded Swatches[{0}]", Swatches.Count);
         }
 
         public void Dispose()
         {
+            Logger.Log.Debug("Disposing");
+
+            Library = null;
+
+            Swatches.Clear();
+            Swatches = null;
+
             MainViewModel = null;
 
             Library = null;
-        }
 
-        public void SerializeToFile()
-        {
-            Library library = Library;
-
-            using (FileStream fileStream = new FileStream(Settings.Default.Libraries + "\\" + library.Name + ".xml", FileMode.Create))
-            {
-                XamlServices.Save(fileStream, library);
-
-                fileStream.Close();
-            }
-        }
-
-        public Library DeserializeFromFile()
-        {
-            Library library;
-
-            using (FileStream fileStream = new FileStream(Settings.Default.Libraries + "\\" + Name + ".xml", FileMode.Open))
-            {
-                library = XamlServices.Load(fileStream) as Library;
-
-                fileStream.Close();
-            }
-
-            return library;
+            Logger.Log.Debug("Disposed");
         }
     }
 }

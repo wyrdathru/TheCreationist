@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ProjectVoid.TheCreationist.Enum
+namespace ProjectVoid.TheCreationist.Composite
 {
     public class ProjectState : INotifyPropertyChanged
     {
@@ -11,10 +11,7 @@ namespace ProjectVoid.TheCreationist.Enum
 
         public bool IsSaved
         {
-            get
-            {
-                return _IsSaved;
-            }
+            get { return _IsSaved; }
 
             set
             {
@@ -25,10 +22,7 @@ namespace ProjectVoid.TheCreationist.Enum
 
         public bool IsDirty
         {
-            get
-            {
-                return _IsDirty;
-            }
+            get { return _IsDirty; }
 
             set
             {

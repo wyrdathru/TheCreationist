@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using ProjectVoid.TheCreationist.Enum;
+using ProjectVoid.Core.Utilities;
+using ProjectVoid.TheCreationist.Composite;
 using ProjectVoid.TheCreationist.Model;
 using System;
 using System.ComponentModel;
@@ -39,10 +40,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public string Name
         {
-            get
-            {
-                return Project.Name;
-            }
+            get { return Project.Name; }
 
             set
             {
@@ -53,10 +51,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public FlowDocument Document
         {
-            get
-            {
-                return Project.Document;
-            }
+            get { return Project.Document; }
 
             set
             {
@@ -67,10 +62,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public Color Foreground
         {
-            get
-            {
-                return Project.Foreground;
-            }
+            get { return Project.Foreground; }
 
             set
             {
@@ -81,10 +73,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public Color Background
         {
-            get
-            {
-                return Project.Background;
-            }
+            get { return Project.Background; }
 
             set
             {
@@ -95,10 +84,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public Color Backdrop
         {
-            get
-            {
-                return Project.Backdrop;
-            }
+            get { return Project.Backdrop; }
 
             set
             {
@@ -110,10 +96,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DateTime LastChanged
         {
-            get
-            {
-                return _LastChanged;
-            }
+            get { return _LastChanged; }
 
             set
             {
@@ -127,10 +110,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ProjectState State
         {
-            get
-            {
-                return _State;
-            }
+            get { return _State; }
 
             set
             {
@@ -143,10 +123,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TextSelection Selection
         {
-            get
-            {
-                return _Selection;
-            }
+            get { return _Selection; }
 
             set
             {
@@ -158,10 +135,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsSpellCheckEnabled
         {
-            get
-            {
-                return _IsSpellCheckEnabled;
-            }
+            get { return _IsSpellCheckEnabled; }
 
             set
             {
@@ -177,7 +151,17 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public void Dispose()
         {
-            //TODO: Implement Dispose
+            Logger.Log.Debug("Disposing");
+
+            State = null;
+
+            Selection = null;
+
+            MainViewModel = null;
+
+            Project = null;
+
+            Logger.Log.Debug("Disposed");
         }
     }
 }

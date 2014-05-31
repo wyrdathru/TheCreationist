@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using ProjectVoid.Core.Utilities;
 using System;
 
 namespace ProjectVoid.TheCreationist.ViewModel
@@ -14,10 +15,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public bool IsSpellCheckEnabled
         {
-            get
-            {
-                return MainViewModel.ActiveProject.IsSpellCheckEnabled;
-            }
+            get { return MainViewModel.ActiveProject.IsSpellCheckEnabled; }
 
             set
             {
@@ -28,7 +26,11 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public void Dispose()
         {
+            Logger.Log.Debug("Disposing");
 
+            MainViewModel = null;
+
+            Logger.Log.Debug("Disposed");
         }
     }
 }

@@ -1,17 +1,16 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using ProjectVoid.TheCreationist.ViewModel;
+using ProjectVoid.Core.Utilities;
 using System;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
-    public class PaletteViewModel : ViewModelBase, IDisposable
+    public class LibraryManagementViewModel : ViewModelBase, IDisposable
     {
         private string _NewSwatchValue;
 
         private LibraryViewModel _ActiveLibrary;
 
-        public PaletteViewModel(MainViewModel mainViewModel)
+        public LibraryManagementViewModel(MainViewModel mainViewModel)
         {
             MainViewModel = mainViewModel;
 
@@ -33,10 +32,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public string NewSwatchValue
         {
-            get
-            {
-                return _NewSwatchValue;
-            }
+            get { return _NewSwatchValue; }
 
             set
             {
@@ -47,7 +43,15 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public void Dispose()
         {
-            //TODO: Implement Dispose
+            Logger.Log.Debug("Disposing");
+
+            NewSwatchValue = string.Empty;
+
+            ActiveLibrary = null;
+
+            MainViewModel = null;
+
+            Logger.Log.Debug("Disposed");
         }
     }
 }

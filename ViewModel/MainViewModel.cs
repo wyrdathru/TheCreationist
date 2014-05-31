@@ -110,13 +110,15 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
             foreach (FileInfo file in libraries)
             {
-                DeserializeLibrary(file.FullName);
+                var library = DeserializeFromFile(file.Name.Replace(".xml", string.Empty));
+
+                Libraries.Add(new LibraryViewModel(this, library));
             }
 
             ActiveLibrary = Libraries[0];
-            WindowManager.PaletteViewModel.ActiveLibrary = Libraries[0];
+            WindowManager.LibraryManagementViewModel.ActiveLibrary = Libraries[0];
 
-            Logger.Log.DebugFormat("Loaded Libraries[{0}]", libraries.Count);
+            Logger.Log.DebugFormat("Loaded Libraries[{0}]", Libraries.Count);
         }
 
         private List<FileInfo> GetLibraries()
@@ -135,41 +137,60 @@ namespace ProjectVoid.TheCreationist.ViewModel
             return files;
         }
 
-        private void DeserializeLibrary(string path)
+        public void SerializeToFile(Library library)
+        {
+            Logger.Log.Debug("Serializing");
+
+            var path = Settings.Default.Libraries + "\\" + library.Name + ".xml";
+
+            using (FileStream fileStream = new FileStream(path, FileMode.Create))
+            {
+                XamlServices.Save(fileStream, library);
+
+                Logger.Log.DebugFormat("Serialized ID[{0}] Name[{1}] Path[{2}]", library.Id, library.Name, path);
+
+                fileStream.Close();
+            }
+        }
+
+        public Library DeserializeFromFile(string name)
         {
             Library library;
+
+            var path = Settings.Default.Libraries + "\\" + name + ".xml";
 
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
                 library = XamlServices.Load(fileStream) as Library;
 
+                Logger.Log.DebugFormat("Deseralized ID[{0}] Name[{1}] Path[{2}]", library.Id, library.Name, path);
+
                 fileStream.Close();
             }
 
-            Logger.Log.Debug(String.Format("Deserialized ID[{0}] Name[{1}] Description[{2}] Swatches[{3}]", library.Id, library.Name, library.Description, library.Swatches.Count));
-
-            Libraries.Add(new LibraryViewModel(this, library));
+            return library;
         }
 
         private void LoadProjects()
         {
+            Logger.Log.Debug("Loading");
+
+
             for (int i = 0; i < 1; i++)
             {
                 Projects.Add(new ProjectViewModel(this));
             }
 
             ActiveProject = Projects[0];
+
+            Logger.Log.DebugFormat("Loaded Projects[{0}]", Projects.Count);
         }
 
         private void OnWindowClosing(CancelEventArgs e)
         {
-            if (Projects.Any<ProjectViewModel>(p => p.State.CanClose()))
+            if (Projects.Any<ProjectViewModel>(p => !p.State.CanClose()))
             {
-                return;
-            }
-            else
-            {
-                var result = MessageBox.Show(String.Format("If you have unsaved projects, you may lose work. Are you sure you want to exit?"), String.Format("Exit"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                var result = MessageBox.Show(String.Format("If you have unsaved work in your project(s) and may lose work. Are you sure you want to exit?"), String.Format("Exit"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.No)
                 {
@@ -181,7 +202,26 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public void Dispose()
         {
-            //TODO: Implement Dispose
+            Logger.Log.Debug("Disposing");
+
+            ActiveLibrary = null;
+            Libraries.Clear();
+            Libraries = null;
+
+            ActiveProject = null;
+            Projects.Clear();
+            Projects = null;
+
+            CommandManager.Dispose();
+            CommandManager = null;
+
+            LibraryManager.Dispose();
+            LibraryManager = null;
+
+            WindowManager.Dispose();
+            WindowManager = null;
+
+            Logger.Log.Debug("Disposed");
         }
     }
 }

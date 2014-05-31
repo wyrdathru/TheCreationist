@@ -86,7 +86,7 @@
     </ApplicationDefinition>
     <Compile Include="Managers\CommandManager.cs" />
     <Compile Include="Converters\StateToBrushConverter.cs" />
-    <Compile Include="Enum\ProjectState.cs" />
+    <Compile Include="Composite\ProjectState.cs" />
     <Compile Include="Managers\LibraryManager.cs" />
     <Compile Include="Model\Library.cs" />
     <Compile Include="Model\Project.cs" />
@@ -110,11 +110,11 @@
     <Compile Include="View\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PaletteEditorView.xaml.cs">
-      <DependentUpon>PaletteEditorView.xaml</DependentUpon>
+    <Compile Include="View\LibraryEditorView.xaml.cs">
+      <DependentUpon>LibraryEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PaletteView.xaml.cs">
-      <DependentUpon>PaletteView.xaml</DependentUpon>
+    <Compile Include="View\LibraryManagementView.xaml.cs">
+      <DependentUpon>LibraryManagementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SwatchView.xaml.cs">
       <DependentUpon>SwatchView.xaml</DependentUpon>
@@ -131,11 +131,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PaletteEditorView.xaml">
+    <Page Include="View\LibraryEditorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\PaletteView.xaml">
+    <Page Include="View\LibraryManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

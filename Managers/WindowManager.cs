@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace ProjectVoid.TheCreationist.Managers
 {
-    public class WindowManager
+    public class WindowManager : IDisposable
     {
         public WindowManager(MainViewModel mainViewModel)
         {
@@ -18,45 +18,47 @@ namespace ProjectVoid.TheCreationist.Managers
 
             OptionsViewModel = new OptionsViewModel(MainViewModel);
             AboutViewModel = new AboutViewModel(MainViewModel);
-            PaletteViewModel = new PaletteViewModel(MainViewModel);
-            PaletteEditorViewModel = new PaletteEditorViewModel(MainViewModel);
+            LibraryManagementViewModel = new LibraryManagementViewModel(MainViewModel);
+            LibraryEditorViewModel = new LibraryEditorViewModel(MainViewModel);
 
-            DisplayOptionsCommand = new RelayCommand(
-                () => DisplayOptions(),
-                () => CanDisplayOptions());
+            OpenOptionsCommand = new RelayCommand(
+                () => OpenOptions(),
+                () => CanOpenOptions());
 
-            DisplayAboutCommand = new RelayCommand(
-                () => DisplayAbout(),
-                () => CanDisplayAbout());
+            OpenAboutCommand = new RelayCommand(
+                () => OpenAbout(),
+                () => CanOpenAbout());
 
-            DisplayPaletteCommand = new RelayCommand(
-                () => DisplayPalette(),
-                () => CanDisplayPalette());
+            OpenLibraryManagementCommand = new RelayCommand(
+                () => OpenLibraryManagement(),
+                () => CanOpenLibraryManagement());
 
-            DisplayPaletteEditorCommand = new RelayCommand<LibraryViewModel>(
-                (l) => DisplayPaletteEditor(l),
-                (l) => CanDisplayPaletteEditor(l));
+            OpenLibraryEditorCommand = new RelayCommand<LibraryViewModel>(
+                (l) => OpenLibraryEditor(l),
+                (l) => CanOpenLibraryEditor(l));
 
-            ClosePaletteEditorCommand = new RelayCommand<CancelEventArgs>(
-                (e) => ClosePaletteEditor(e),
-                (e) => CanClosePaletteEditor(e));
+            CloseLibraryEditorCommand = new RelayCommand<CancelEventArgs>(
+                (e) => CloseLibraryEditor(e),
+                (e) => CanCloseLibraryEditor(e));
         }
 
         public MainViewModel MainViewModel { get; private set; }
 
         public OptionsViewModel OptionsViewModel { get; private set; }
         public AboutViewModel AboutViewModel { get; private set; }
-        public PaletteViewModel PaletteViewModel { get; private set; }
-        public PaletteEditorViewModel PaletteEditorViewModel { get; private set; }
+        public LibraryManagementViewModel LibraryManagementViewModel { get; private set; }
+        public LibraryEditorViewModel LibraryEditorViewModel { get; private set; }
 
-        public RelayCommand DisplayOptionsCommand { get; private set; }
-        public RelayCommand DisplayAboutCommand { get; private set; }
-        public RelayCommand DisplayPaletteCommand { get; private set; }
-        public RelayCommand<LibraryViewModel> DisplayPaletteEditorCommand { get; private set; }
-        public RelayCommand<CancelEventArgs> ClosePaletteEditorCommand { get; private set; }
+        public RelayCommand OpenOptionsCommand { get; private set; }
+        public RelayCommand OpenAboutCommand { get; private set; }
+        public RelayCommand OpenLibraryManagementCommand { get; private set; }
+        public RelayCommand<LibraryViewModel> OpenLibraryEditorCommand { get; private set; }
+        public RelayCommand<CancelEventArgs> CloseLibraryEditorCommand { get; private set; }
 
-        private void DisplayOptions()
+        private void OpenOptions()
         {
+            Logger.Log.Debug("Opened");
+
             OptionsView optionsView = new OptionsView();
 
             optionsView.DataContext = OptionsViewModel;
@@ -64,15 +66,19 @@ namespace ProjectVoid.TheCreationist.Managers
             optionsView.Owner = Application.Current.MainWindow;
 
             optionsView.ShowDialog();
+
+            Logger.Log.Debug("Closed");
         }
 
-        private bool CanDisplayOptions()
+        private bool CanOpenOptions()
         {
             return true;
         }
 
-        private void DisplayAbout()
+        private void OpenAbout()
         {
+            Logger.Log.Debug("Opened");
+
             AboutView aboutView = new AboutView();
 
             aboutView.DataContext = AboutViewModel;
@@ -80,59 +86,69 @@ namespace ProjectVoid.TheCreationist.Managers
             aboutView.Owner = Application.Current.MainWindow;
 
             aboutView.ShowDialog();
+
+            Logger.Log.Debug("Closed");
         }
 
-        private bool CanDisplayAbout()
+        private bool CanOpenAbout()
         {
             return true;
         }
 
-        private void DisplayPalette()
+        private void OpenLibraryManagement()
         {
-            PaletteView paletteView = new PaletteView();
+            Logger.Log.Debug("Opened");
 
-            paletteView.DataContext = PaletteViewModel;
-            paletteView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            paletteView.Owner = Application.Current.MainWindow;
+            LibraryManagementView libraryManagementView = new LibraryManagementView();
 
-            paletteView.ShowDialog();
+            libraryManagementView.DataContext = LibraryManagementViewModel;
+            libraryManagementView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            libraryManagementView.Owner = Application.Current.MainWindow;
+
+            libraryManagementView.ShowDialog();
+
+            Logger.Log.Debug("Closed");
         }
 
-        private bool CanDisplayPalette()
+        private bool CanOpenLibraryManagement()
         {
             return true;
         }
 
-        private void DisplayPaletteEditor(LibraryViewModel libraryViewModel)
+        private void OpenLibraryEditor(LibraryViewModel libraryViewModel)
         {
-            PaletteEditorViewModel.LibraryViewModel = libraryViewModel;
-            PaletteEditorViewModel.LastEditedLibrary = libraryViewModel.Name;
+            Logger.Log.Debug("Opened");
+
+            LibraryEditorViewModel.LibraryViewModel = libraryViewModel;
+            LibraryEditorViewModel.LastEditedLibrary = libraryViewModel.Name;
             libraryViewModel.IsDirty = true;
 
-            PaletteEditorView paletteEditorView = new PaletteEditorView();
+            LibraryEditorView libraryEditorView = new LibraryEditorView();
 
-            paletteEditorView.DataContext = PaletteEditorViewModel;
-            paletteEditorView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            paletteEditorView.Owner = Application.Current.MainWindow;
+            libraryEditorView.DataContext = LibraryEditorViewModel;
+            libraryEditorView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            libraryEditorView.Owner = Application.Current.MainWindow;
 
-            paletteEditorView.ShowDialog();
+            libraryEditorView.ShowDialog();
+
+            Logger.Log.Debug("Closed");
         }
 
-        private bool CanDisplayPaletteEditor(LibraryViewModel libraryViewModel)
+        private bool CanOpenLibraryEditor(LibraryViewModel libraryViewModel)
         {
             return true;
         }
 
-        private void ClosePaletteEditor(CancelEventArgs eventArgs)
+        private void CloseLibraryEditor(CancelEventArgs eventArgs)
         {
-            PaletteEditorViewModel.LibraryViewModel.SerializeToFile();
-            PaletteEditorViewModel.LibraryViewModel.IsDirty = false;
+            MainViewModel.SerializeToFile(LibraryEditorViewModel.LibraryViewModel.Library);
+            LibraryEditorViewModel.LibraryViewModel.IsDirty = false;
 
-            if (!PaletteEditorViewModel.LastEditedLibrary.Equals(PaletteEditorViewModel.LibraryViewModel.Name))
+            if (!LibraryEditorViewModel.LastEditedLibrary.Equals(LibraryEditorViewModel.LibraryViewModel.Name))
             {
                 try
                 {
-                    File.Delete(Settings.Default.Libraries + "\\" + PaletteEditorViewModel.LastEditedLibrary + ".xml");
+                    File.Delete(Settings.Default.Libraries + "\\" + LibraryEditorViewModel.LastEditedLibrary + ".xml");
                 }
                 catch (Exception ex)
                 {
@@ -141,9 +157,26 @@ namespace ProjectVoid.TheCreationist.Managers
             }
         }
 
-        private bool CanClosePaletteEditor(CancelEventArgs eventArgs)
+        private bool CanCloseLibraryEditor(CancelEventArgs eventArgs)
         {
             return true;
+        }
+
+        public void Dispose()
+        {
+            Logger.Log.Debug("Disposing");
+
+            MainViewModel = null;
+
+            OptionsViewModel = null;
+
+            AboutViewModel = null;
+
+            LibraryManagementViewModel = null;
+
+            LibraryEditorViewModel = null;
+
+            Logger.Log.Debug("Disposed");
         }
     }
 }

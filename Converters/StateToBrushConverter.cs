@@ -1,4 +1,4 @@
-﻿using ProjectVoid.TheCreationist.Enum;
+﻿using ProjectVoid.TheCreationist.Composite;
 using ProjectVoid.TheCreationist.ViewModel;
 using System;
 using System.Globalization;
@@ -10,8 +10,6 @@ namespace ProjectVoid.TheCreationist.Converters
     [ValueConversion(typeof(ProjectViewModel), typeof(Brush))]
     public class StateToBrushConverter : IValueConverter
     {
-        #region Public Methods
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             ProjectState state = (ProjectState)value;
@@ -42,7 +40,5 @@ namespace ProjectVoid.TheCreationist.Converters
         {
             return null;
         }
-
-        #endregion Public Methods
     }
 }

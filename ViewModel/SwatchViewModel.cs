@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Model;
 using System;
 using System.Windows.Media;
@@ -7,8 +8,6 @@ namespace ProjectVoid.TheCreationist.ViewModel
 {
     public class SwatchViewModel : ViewModelBase, IDisposable
     {
-        private Swatch _Swatch;
-
         private bool _IsSelected;
 
         public SwatchViewModel(MainViewModel mainViewModel, Swatch swatch)
@@ -26,10 +25,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public Color Color
         {
-            get
-            {
-                return Swatch.Color;
-            }
+            get { return Swatch.Color; }
+
             set
             {
                 Swatch.Color = value;
@@ -39,10 +36,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public bool IsSelected
         {
-            get
-            {
-                return _IsSelected;
-            }
+            get { return _IsSelected; }
+
             set
             {
                 _IsSelected = value;
@@ -52,7 +47,13 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public void Dispose()
         {
-            //
+            Logger.Log.Debug("Disposing");
+
+            MainViewModel = null;
+
+            Swatch = null;
+
+            Logger.Log.Debug("Disposed");
         }
     }
 }
