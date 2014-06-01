@@ -70,6 +70,10 @@ namespace ProjectVoid.TheCreationist.Managers
             OpenLogLocationCommand = new RelayCommand(
                 () => OpenLogLocation(),
                 () => CanOpenLogLocation());
+
+            StripColorsCommand = new RelayCommand(
+                () => StripColors(),
+                () => CanStripColors());
         }
 
         public MainViewModel MainViewModel { get; private set; }
@@ -95,6 +99,8 @@ namespace ProjectVoid.TheCreationist.Managers
         public RelayCommand<MouseButtonEventArgs> SelectSwatchCommand { get; private set; }
 
         public RelayCommand OpenLogLocationCommand { get; private set; }
+
+        public RelayCommand StripColorsCommand { get; private set; }
 
         private void CreateProject()
         {
@@ -948,6 +954,25 @@ namespace ProjectVoid.TheCreationist.Managers
         }
 
         private bool CanOpenLogLocation()
+        {
+            return true;
+        }
+
+        private void StripColors()
+        {
+            if (MainViewModel.ActiveProject.Selection != null && !MainViewModel.ActiveProject.Selection.IsEmpty)
+            {
+                MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.ForegroundProperty, new SolidColorBrush(Settings.Default.Foreground));
+                MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.BackgroundProperty, new SolidColorBrush(Settings.Default.Background));
+            }
+
+            MainViewModel.ActiveProject.Foreground = Settings.Default.Foreground;
+            MainViewModel.ActiveProject.Background = Settings.Default.Background;
+
+            MainViewModel.ActiveProject.State.IsDirty = true;
+        }
+
+        private bool CanStripColors()
         {
             return true;
         }

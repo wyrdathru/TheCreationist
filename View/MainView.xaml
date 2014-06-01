@@ -49,6 +49,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -85,8 +86,27 @@
                 <MenuItem Header="About" Command="{Binding WindowManager.OpenAboutCommand}" />
             </MenuItem>
         </Menu>
+        
+        <ToolBarTray Grid.Row="1">
+            <ToolBar>
+                <Button Content="New" Command="{Binding CommandManager.CreateProjectCommand}" />
+                <Button Content="Open" Command="{Binding CommandManager.OpenProjectCommand}" CommandParameter="{Binding}" />
+                <Button Content="Save" Command="{Binding CommandManager.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <Separator />
+                <Button Content="Close" Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <Button Content="Close All" Command="{Binding CommandManager.CloseAllProjectsCommand}" />
+                <Button Content="Close All Except" Command="{Binding CommandManager.CloseAllProjectsExceptCommand}" CommandParameter="{Binding ActiveProject}" />
+                <Separator />
+                <Button Content="Convert" Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <Button Content="Compile" Command="{Binding CommandManager.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <Separator />
+                <Button Content="Strip Colors" Command="{Binding CommandManager.StripColorsCommand}" />
+                <Separator />
+                <Button Content="Manage Libraries" Command="{Binding WindowManager.OpenLibraryManagementCommand}" />
+            </ToolBar>
+        </ToolBarTray>
 
-        <GroupBox Grid.RowSpan="2" Grid.Row="1" Header="Workspace">
+        <GroupBox Grid.RowSpan="2" Grid.Row="2" Header="Workspace">
             <Grid>
                 <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Projects}" SelectedIndex="0" SelectedItem="{Binding ActiveProject, Mode=TwoWay}">
                     <metro:MetroAnimatedSingleRowTabControl.ItemContainerStyle>
@@ -144,7 +164,7 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Grid.Column="1" Grid.Row="1" Header="Swatches">
+        <GroupBox Grid.Column="1" Grid.Row="2" Header="Swatches">
             <GroupBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Manage Swatches" Command="{Binding WindowManager.OpenLibraryManagementCommand}" />
@@ -203,7 +223,7 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Grid.Column="1" Grid.Row="2" Header="Active">
+        <GroupBox Grid.Column="1" Grid.Row="3" Header="Active">
             <StackPanel>
                 <Grid>
                     <Grid.Resources>
@@ -228,7 +248,7 @@
             </StackPanel>
         </GroupBox>
 
-        <StatusBar Grid.Row="3" 
+        <StatusBar Grid.Row="4" 
                    Grid.ColumnSpan="2" 
                    Style="{StaticResource StatusBarTemplate}">
             <TextBlock Foreground="{StaticResource IdealForegroundColorBrush}" 
