@@ -1,5 +1,5 @@
 ﻿using log4net;
-using ProjectVoid.Core.Utilities;
+using log4net.Config;
 using ProjectVoid.TheCreationist.Properties;
 using System;
 using System.Reflection;
@@ -9,7 +9,22 @@ namespace ProjectVoid.TheCreationist
 {
     /// <summary>
     /// Interaction logic for App.xaml
-    /// </summary>
+    /// </summary> 
+    public class Logger
+    {
+        public static ILog Log { get; private set; }
+
+        public static void Create()
+        {
+            if (Log != null)
+            {
+                return;
+            }
+
+            Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        }
+    }
+
     public partial class App : Application
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);

@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using ProjectVoid.Core.Utilities;
+//using ProjectVoid.Core.Utilities;
 using System;
 
 namespace ProjectVoid.TheCreationist.ViewModel
