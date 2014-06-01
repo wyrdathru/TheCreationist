@@ -29,12 +29,6 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <!--<metro:MetroWindow.WindowCommands>
-        <metro:WindowCommands>
-            <Button Content="open logs" Command="{Binding CommandManager.OpenLogLocationCommand}" />
-        </metro:WindowCommands>
-    </metro:MetroWindow.WindowCommands>-->
-    
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
@@ -86,44 +80,42 @@
                 <MenuItem Header="About" Command="{Binding WindowManager.OpenAboutCommand}" />
             </MenuItem>
         </Menu>
-        
-        <ToolBarTray Grid.Row="1">
-            <ToolBar>
-                <Button Command="{Binding CommandManager.CreateProjectCommand}">
-                    <Image Source="\..\Resources\Images\new.png" Width="32" Height="32" />
-                </Button>
 
-                <Button Command="{Binding CommandManager.OpenProjectCommand}" CommandParameter="{Binding}">
-                    <Image Source="\..\Resources\Images\open.png" Width="32" Height="32" />
-                </Button>
-                
-                <Button Command="{Binding CommandManager.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}">
-                    <Image Source="\..\Resources\Images\save.png" Width="32" Height="32" />
-                </Button>
-                
-                <Separator />
-                
-                <Button Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}">
-                    <Image Source="\..\Resources\Images\close.png" Width="32" Height="32" />
-                </Button>
-                
-                <Separator />
-                
-                <Button Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}">
-                    <Image Source="\..\Resources\Images\convert.png" Width="32" Height="32" />
-                </Button>
-                
-                <Button Command="{Binding CommandManager.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}">
-                    <Image Source="\..\Resources\Images\compile.png" Width="32" Height="32" />
-                </Button>
-                
-                <Separator />
-                
-                <Button Command="{Binding CommandManager.StripColorsCommand}">
-                    <Image Source="\..\Resources\Images\strip.png" Width="32" Height="32" />
-                </Button>
-            </ToolBar>
-        </ToolBarTray>
+        <ToolBar Grid.Row="1">
+            <Button ToolTip="New Project" Command="{Binding CommandManager.CreateProjectCommand}">
+                <Image Source="\..\Resources\Images\new.png" Width="24" Height="24" />
+            </Button>
+
+            <Button ToolTip="Open Project" Command="{Binding CommandManager.OpenProjectCommand}" CommandParameter="{Binding}">
+                <Image Source="\..\Resources\Images\open.png" Width="24" Height="24" />
+            </Button>
+
+            <Button ToolTip="Save Project" Command="{Binding CommandManager.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}">
+                <Image Source="\..\Resources\Images\save.png" Width="24" Height="24" />
+            </Button>
+
+            <Separator />
+
+            <Button ToolTip="Close Project" Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}">
+                <Image Source="\..\Resources\Images\close.png" Width="24" Height="24" />
+            </Button>
+
+            <Separator />
+
+            <Button ToolTip="Convert Project" Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}">
+                <Image Source="\..\Resources\Images\convert.png" Width="24" Height="24" />
+            </Button>
+
+            <Button ToolTip="Compile Project" Command="{Binding CommandManager.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}">
+                <Image Source="\..\Resources\Images\compile.png" Width="24" Height="24" />
+            </Button>
+
+            <Separator />
+
+            <Button ToolTip="Strip Colors" Command="{Binding CommandManager.StripColorsCommand}">
+                <Image Source="\..\Resources\Images\strip.png" Width="24" Height="24" />
+            </Button>
+        </ToolBar>
 
         <GroupBox Grid.RowSpan="2" Grid.Row="2" Header="Workspace">
             <Grid>
@@ -166,12 +158,12 @@
                         </DataTemplate>
                     </metro:MetroAnimatedSingleRowTabControl.ContentTemplate>
                 </metro:MetroAnimatedSingleRowTabControl>
-                
+
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="No Projects">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Visibility" Value="Hidden" />
-                            
+
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Projects.Count}" Value="0">
                                     <Setter Property="Visibility" Value="Visible" />
@@ -189,7 +181,7 @@
                     <MenuItem Header="Manage Swatches" Command="{Binding WindowManager.OpenLibraryManagementCommand}" />
                 </ContextMenu>
             </GroupBox.ContextMenu>
-            
+
             <Grid>
                 <ListBox ItemsSource="{Binding ActiveLibrary.Swatches}" 
                      ItemContainerStyle="{StaticResource ListBoxItemTemplate}">
