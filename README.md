@@ -37,3 +37,4 @@ I would like to thank the following projects and their authors for making much o
 
 - MahApps.Metro (http://mahapps.com/) has been used to implement Windows 8 (Metro) styling in TheCreationist.
 - MVVM Light Toolkit (http://www.galasoft.ch/mvvm) has been used to implement the MVVM design pattern in TheCreationst.
+- Windows (Metro) Icons (http://icons8.com/) has been used to supply the icons for TheCreationist.
