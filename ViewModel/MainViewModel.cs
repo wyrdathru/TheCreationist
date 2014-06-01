@@ -141,15 +141,28 @@ namespace ProjectVoid.TheCreationist.ViewModel
         {
             Logger.Log.Debug("Serializing");
 
-            var path = Settings.Default.Libraries + "\\" + library.Name + ".xml";
-
-            using (FileStream fileStream = new FileStream(path, FileMode.Create))
+            try
             {
-                XamlServices.Save(fileStream, library);
+                var path = Settings.Default.Libraries + "\\" + library.Name + ".xml";
 
-                Logger.Log.DebugFormat("Serialized ID[{0}] Name[{1}] Path[{2}]", library.Id, library.Name, path);
+                using (FileStream fileStream = new FileStream(path, FileMode.Create))
+                {
+                    XamlServices.Save(fileStream, library);
 
-                fileStream.Close();
+                    Logger.Log.DebugFormat("Serialized ID[{0}] Name[{1}] Path[{2}]", library.Id, library.Name, path);
+
+                    fileStream.Close();
+                }
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                MessageBox.Show("Invalid file name, please do not use special characters.");
+
+                Logger.Log.Error("Serialize DirectoryNotFoundException", ex);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error("Serialize Exception", ex);
             }
         }
 

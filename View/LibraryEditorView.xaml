@@ -4,6 +4,7 @@
         xmlns:controls="clr-namespace:ProjectVoid.Core.Controls;assembly=ProjectVoid.Core"
         xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
         xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
+        xmlns:validation="clr-namespace:ProjectVoid.Core.Validation;assembly=ProjectVoid.Core"
         xmlns:view="clr-namespace:ProjectVoid.TheCreationist.View"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
@@ -40,9 +41,17 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="You can specify a name for your library here; it will show up in the palette selection screen." TextWrapping="Wrap" Margin="0,0,0,10" />
+                    <TextBlock Text="Name" TextWrapping="Wrap" Margin="0,0,0,10" />
 
-                    <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Name, Mode=TwoWay}" />
+                    <TextBox metro:TextboxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <TextBox.Text>
+                            <Binding Path="LibraryViewModel.Name" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <validation:FileNameValidator />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                 </Grid>
             </StackPanel>
         </GroupBox>
@@ -55,9 +64,9 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="You can specify an author here; this can be whatever alias you like and is not required." TextWrapping="Wrap" Margin="0,0,0,10" />
+                    <TextBlock Text="Author" TextWrapping="Wrap" Margin="0,0,0,10" />
 
-                    <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Author, Mode=TwoWay}" />
+                    <TextBox metro:TextboxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Author, Mode=TwoWay}" />
                 </Grid>
             </StackPanel>
         </GroupBox>
@@ -71,9 +80,9 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="A comma-separated string of keywords for your library, such as: 'whites, winter, bright'." TextWrapping="Wrap" Margin="0,0,0,10" />
+                    <TextBlock Text="Tags" TextWrapping="Wrap" Margin="0,0,0,10" />
 
-                    <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Tags, Mode=TwoWay}" />
+                    <TextBox metro:TextboxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Tags, Mode=TwoWay}" />
                 </Grid>
             </StackPanel>
         </GroupBox>
@@ -86,7 +95,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="You can specify a description for what your library is used for here. It may be helpful tips about your swatches or anything else you like." TextWrapping="Wrap" Margin="0,0,0,10" />
+                <TextBlock Text="Description" TextWrapping="Wrap" Margin="0,0,0,10" />
 
                 <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding LibraryViewModel.Description, Mode=TwoWay}" MaxLength="100" TextWrapping="Wrap" />
             </Grid>
