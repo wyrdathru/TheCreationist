@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
              mc:Ignorable="d"
              Title="Options"
              Height="480"
@@ -19,27 +20,42 @@
         </Grid.RowDefinitions>
 
         <GroupBox Padding="10" Header="SpellCheck">
-            <StackPanel>
-                <TextBlock Margin="5" VerticalAlignment="Center" TextWrapping="Wrap" Text="SpellCheck" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="SpellCheck" />
 
-                <metro:ToggleSwitch IsChecked="{Binding IsSpellCheckEnabled, Mode=TwoWay}" />
-            </StackPanel>
+                <metro:ToggleSwitch Grid.Row="1" VerticalAlignment="Bottom" IsChecked="{Binding IsSpellCheckEnabled, Mode=TwoWay}" />
+            </Grid>
         </GroupBox>
 
         <GroupBox Padding="10" Header="Font Size" Grid.Row="1">
-            <StackPanel>
-                <TextBlock Margin="5" VerticalAlignment="Center" TextWrapping="Wrap" Text="Font Size" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="Font Size" />
 
-                <metro:DropDownButton />
-            </StackPanel>
+                <ComboBox Grid.Row="1" VerticalAlignment="Bottom" ItemsSource="{Binding FontSizes}" SelectedItem="{Binding FontSize, Source={x:Static properties:Settings.Default}, Mode=TwoWay}" />
+            </Grid>
         </GroupBox>
 
         <GroupBox Padding="10" Header="Font Family" Grid.Row="2">
-            <StackPanel>
-                <TextBlock Margin="5" VerticalAlignment="Center" TextWrapping="Wrap" Text="Font Family" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="Font Family" />
 
-                <metro:DropDownButton />
-            </StackPanel>
+                <ComboBox Grid.Row="1" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" SelectedItem="{Binding FontFamily, Source={x:Static properties:Settings.Default}, Mode=TwoWay}" />
+            </Grid>
         </GroupBox>
     </Grid>
 </metro:MetroWindow>

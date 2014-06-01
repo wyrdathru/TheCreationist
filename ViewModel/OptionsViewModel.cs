@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using ProjectVoid.Core.Utilities;
 using System;
+using System.Collections.ObjectModel;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
@@ -9,9 +10,13 @@ namespace ProjectVoid.TheCreationist.ViewModel
         public OptionsViewModel(MainViewModel mainViewModel)
         {
             MainViewModel = mainViewModel;
+
+            Initialize();
         }
 
         public MainViewModel MainViewModel { get; private set; }
+
+        public ObservableCollection<int> FontSizes { get; private set; }
 
         public bool IsSpellCheckEnabled
         {
@@ -21,6 +26,21 @@ namespace ProjectVoid.TheCreationist.ViewModel
             {
                 MainViewModel.ActiveProject.IsSpellCheckEnabled = value;
                 RaisePropertyChanged("IsSpellCheckEnabled");
+            }
+        }
+
+        private void Initialize()
+        {
+            GetFontSizes();
+        }
+
+        private void GetFontSizes()
+        {
+            FontSizes = new ObservableCollection<int>();
+
+            for (int i = 8; i < 31; i++)
+            {
+                FontSizes.Add(i);
             }
         }
 

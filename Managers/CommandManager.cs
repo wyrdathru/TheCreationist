@@ -890,8 +890,6 @@ namespace ProjectVoid.TheCreationist.Managers
             {
                 SwatchViewModel swatch = ((SwatchView)eventArgs.Source).DataContext as SwatchViewModel;
 
-                Logger.Log.DebugFormat("Selected Color[{0}]", swatch.Color.ToString());
-
                 switch (eventArgs.ChangedButton)
                 {
                     case MouseButton.Left:
@@ -900,7 +898,6 @@ namespace ProjectVoid.TheCreationist.Managers
                         if (MainViewModel.ActiveProject.Selection != null && !MainViewModel.ActiveProject.Selection.IsEmpty)
                         {
                             MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.ForegroundProperty, new SolidColorBrush(swatch.Color));
-                            Logger.Log.DebugFormat("SetForeground Color[{0}]", swatch.Color.ToString());
                         }
                         break;
 
@@ -910,18 +907,18 @@ namespace ProjectVoid.TheCreationist.Managers
                         if (MainViewModel.ActiveProject.Selection != null && !MainViewModel.ActiveProject.Selection.IsEmpty)
                         {
                             MainViewModel.ActiveProject.Selection.ApplyPropertyValue(TextBlock.BackgroundProperty, new SolidColorBrush(swatch.Color));
-                            Logger.Log.DebugFormat("SetBackground Color[{0}]", swatch.Color.ToString());
                         }
                         break;
 
                     case MouseButton.Middle:
                         MainViewModel.ActiveProject.Backdrop = swatch.Color;
-                            Logger.Log.DebugFormat("SetBackdrop Color[{0}]", swatch.Color.ToString());
                         break;
 
                     default:
                         return;
                 }
+
+                Logger.Log.DebugFormat("Selected Color[{0}] Click[{1}]", swatch.Color, eventArgs.ChangedButton);
 
                 MainViewModel.ActiveProject.State.IsDirty = true;
 
