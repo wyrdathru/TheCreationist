@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using ProjectVoid.Core.Helpers;
 using ProjectVoid.Core.Utilities;
+using ProjectVoid.TheCreationist.Model;
 //using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Properties;
 using ProjectVoid.TheCreationist.View;
@@ -143,12 +144,11 @@ namespace ProjectVoid.TheCreationist.Managers
 
             using (FileStream fileStream = new FileStream(file, FileMode.Open))
             {
-                ProjectViewModel project = XamlReader.Load(fileStream) as ProjectViewModel;
-                project.MainViewModel = mainViewModel;
+                Project project = XamlReader.Load(fileStream) as Project;
 
-                if (mainViewModel.Projects.Any(p => p.Project.Id.Equals(project.Project.Id)))
+                if (mainViewModel.Projects.Any(p => p.Project.Id.Equals(project.Id)))
                 {
-                    var match = mainViewModel.Projects.First(p => p.Project.Id.Equals(project.Project.Id));
+                    var match = mainViewModel.Projects.First(p => p.Project.Id.Equals(project.Id));
 
                     mainViewModel.ActiveProject = match;
 
@@ -173,11 +173,13 @@ namespace ProjectVoid.TheCreationist.Managers
                     }
                 }
 
-                project.State.IsSaved = true;
-                project.State.IsDirty = false;
+                var projectViewModel = new ProjectViewModel(MainViewModel, project);
 
-                mainViewModel.Projects.Add(project);
-                mainViewModel.ActiveProject = project;
+                projectViewModel.State.IsSaved = true;
+                projectViewModel.State.IsDirty = false;
+
+                mainViewModel.Projects.Add(projectViewModel);
+                mainViewModel.ActiveProject = projectViewModel;
 
                 fileStream.Close();
 
@@ -193,6 +195,8 @@ namespace ProjectVoid.TheCreationist.Managers
         private void SaveProject(ProjectViewModel projectViewModel)
         {
             Logger.Log.Debug("Saving");
+
+            var project = projectViewModel.Project;
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
@@ -214,10 +218,10 @@ namespace ProjectVoid.TheCreationist.Managers
 
             using (FileStream fileStream = new FileStream(file, FileMode.Create))
             {
-                XamlWriter.Save(projectViewModel, fileStream);
+                XamlWriter.Save(project, fileStream);
 
                 fileStream.Close();
-                Logger.Log.DebugFormat("Saved Project ID[{0}] Name[{1}]", projectViewModel.Id, projectViewModel.Name);
+                Logger.Log.DebugFormat("Saved Project ID[{0}] Name[{1}]", project.Id, project.Name);
             }
 
             projectViewModel.State.IsSaved = true;

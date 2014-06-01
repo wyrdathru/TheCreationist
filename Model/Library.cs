@@ -16,22 +16,16 @@ namespace ProjectVoid.TheCreationist.Model
             Author = string.Empty;
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public Guid Id { get; private set; }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public string Name { get; set; }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public List<Swatch> Swatches { get; set; }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public string Description { get; set; }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public string Tags { get; set; }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public string Author { get; set; }
     }
 }

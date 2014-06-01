@@ -105,7 +105,6 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsDirty
         {
             get { return _IsDirty; }
