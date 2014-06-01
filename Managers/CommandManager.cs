@@ -939,7 +939,7 @@ namespace ProjectVoid.TheCreationist.Managers
         {
             Logger.Log.Debug("Opening");
 
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var path = MainViewModel.WindowManager.AboutViewModel.Assembly.Location;
 
             Process.Start(System.IO.Path.GetDirectoryName(path));
 
