@@ -89,20 +89,39 @@
         
         <ToolBarTray Grid.Row="1">
             <ToolBar>
-                <Button Content="New" Command="{Binding CommandManager.CreateProjectCommand}" />
-                <Button Content="Open" Command="{Binding CommandManager.OpenProjectCommand}" CommandParameter="{Binding}" />
-                <Button Content="Save" Command="{Binding CommandManager.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                <Button Command="{Binding CommandManager.CreateProjectCommand}">
+                    <Image Source="\..\Resources\Images\new.png" Width="32" Height="32" />
+                </Button>
+
+                <Button Command="{Binding CommandManager.OpenProjectCommand}" CommandParameter="{Binding}">
+                    <Image Source="\..\Resources\Images\open.png" Width="32" Height="32" />
+                </Button>
+                
+                <Button Command="{Binding CommandManager.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}">
+                    <Image Source="\..\Resources\Images\save.png" Width="32" Height="32" />
+                </Button>
+                
                 <Separator />
-                <Button Content="Close" Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}" />
-                <Button Content="Close All" Command="{Binding CommandManager.CloseAllProjectsCommand}" />
-                <Button Content="Close All Except" Command="{Binding CommandManager.CloseAllProjectsExceptCommand}" CommandParameter="{Binding ActiveProject}" />
+                
+                <Button Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}">
+                    <Image Source="\..\Resources\Images\close.png" Width="32" Height="32" />
+                </Button>
+                
                 <Separator />
-                <Button Content="Convert" Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}" />
-                <Button Content="Compile" Command="{Binding CommandManager.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}" />
+                
+                <Button Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}">
+                    <Image Source="\..\Resources\Images\convert.png" Width="32" Height="32" />
+                </Button>
+                
+                <Button Command="{Binding CommandManager.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}">
+                    <Image Source="\..\Resources\Images\compile.png" Width="32" Height="32" />
+                </Button>
+                
                 <Separator />
-                <Button Content="Strip Colors" Command="{Binding CommandManager.StripColorsCommand}" />
-                <Separator />
-                <Button Content="Manage Libraries" Command="{Binding WindowManager.OpenLibraryManagementCommand}" />
+                
+                <Button Command="{Binding CommandManager.StripColorsCommand}">
+                    <Image Source="\..\Resources\Images\strip.png" Width="32" Height="32" />
+                </Button>
             </ToolBar>
         </ToolBarTray>
 

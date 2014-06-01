@@ -180,6 +180,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\new.png" />
+    <Resource Include="Resources\Images\open.png" />
+    <Resource Include="Resources\Images\save.png" />
+    <Resource Include="Resources\Images\close.png" />
+    <Resource Include="Resources\Images\compile.png" />
+    <Resource Include="Resources\Images\convert.png" />
+    <Resource Include="Resources\Images\strip.png" />
     <Content Include="Resources\Libraries\4Bit.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

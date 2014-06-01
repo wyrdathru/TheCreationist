@@ -527,18 +527,18 @@ namespace ProjectVoid.TheCreationist.Managers
 
                 var project = projectViewModel;
 
+                if (project.Document.Blocks.Count < 1)
+                {
+                    Logger.Log.Debug("Compiling Cancelled[InsufficientBlockCount]");
+                    return;
+                }
+
                 DocumentBuilder document = CreateDocument(project);
 
                 project.Project.Document.Blocks.Clear();
 
                 if (document == null)
                 {
-                    return;
-                }
-
-                if (document.Blocks.Count < 1)
-                {
-                    Logger.Log.Debug("Compiling Cancelled[InsufficientBlockCount]");
                     return;
                 }
 
@@ -974,7 +974,17 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanStripColors()
         {
-            return true;
+            if (MainViewModel.ActiveProject == null)
+            {
+                return false;
+            }
+
+            if (MainViewModel.ActiveProject.Selection != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void Dispose()
