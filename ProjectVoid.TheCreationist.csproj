@@ -94,8 +94,8 @@
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\LibraryViewModel.cs" />
     <Compile Include="ViewModel\OptionsViewModel.cs" />
-    <Compile Include="ViewModel\PaletteEditorViewModel.cs" />
-    <Compile Include="ViewModel\PaletteViewModel.cs" />
+    <Compile Include="ViewModel\LibraryEditorViewModel.cs" />
+    <Compile Include="ViewModel\LibraryManagementViewModel.cs" />
     <Compile Include="ViewModel\ProjectViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SwatchViewModel.cs" />
