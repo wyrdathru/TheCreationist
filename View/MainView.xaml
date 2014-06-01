@@ -29,11 +29,11 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <metro:MetroWindow.WindowCommands>
+    <!--<metro:MetroWindow.WindowCommands>
         <metro:WindowCommands>
             <Button Content="open logs" Command="{Binding CommandManager.OpenLogLocationCommand}" />
         </metro:WindowCommands>
-    </metro:MetroWindow.WindowCommands>
+    </metro:MetroWindow.WindowCommands>-->
     
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
