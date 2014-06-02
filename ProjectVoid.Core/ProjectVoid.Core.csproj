@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ColorUtility.cs" />
     <Compile Include="Utilities\DocumentBuilder.cs" />
+    <Compile Include="Validation\IntegarValidator.cs" />
     <Compile Include="Validation\FileNameValidator.cs" />
   </ItemGroup>
   <ItemGroup>

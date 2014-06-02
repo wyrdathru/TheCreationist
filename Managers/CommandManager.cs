@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using ProjectVoid.Core.Helpers;
 using ProjectVoid.Core.Utilities;
+using ProjectVoid.TheCreationist.Enum;
 using ProjectVoid.TheCreationist.Model;
 //using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Properties;
@@ -75,6 +76,10 @@ namespace ProjectVoid.TheCreationist.Managers
             StripColorsCommand = new RelayCommand(
                 () => StripColors(),
                 () => CanStripColors());
+
+            ProcessColorRuleCommand = new RelayCommand<ColorRulesViewModel>(
+                (r) => ProcessColorRule(r),
+                (r) => CanProcessColorRule(r));
         }
 
         public MainViewModel MainViewModel { get; private set; }
@@ -102,6 +107,8 @@ namespace ProjectVoid.TheCreationist.Managers
         public RelayCommand OpenLogLocationCommand { get; private set; }
 
         public RelayCommand StripColorsCommand { get; private set; }
+
+        public RelayCommand<ColorRulesViewModel> ProcessColorRuleCommand { get; private set; }
 
         private void CreateProject()
         {
@@ -989,6 +996,33 @@ namespace ProjectVoid.TheCreationist.Managers
             }
 
             return false;
+        }
+
+        private void ProcessColorRule(ColorRulesViewModel colorRulesViewModel)
+        {
+            if (colorRulesViewModel.Selection == null)
+            {
+                return;
+            }
+
+            var target = colorRulesViewModel.Selection;
+
+            switch (colorRulesViewModel.Type)
+            {
+                case RuleTypes.Alternating:
+                    break;
+
+                case RuleTypes.Scaling:
+                    break;
+
+                case RuleTypes.Random:
+                    break;
+            }
+        }
+
+        private bool CanProcessColorRule(ColorRulesViewModel colorRulesViewModel)
+        {
+            return true;
         }
 
         public void Dispose()

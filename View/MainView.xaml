@@ -74,6 +74,7 @@
 
             <MenuItem Header="Tools">
                 <MenuItem Header="Options" Command="{Binding WindowManager.OpenOptionsCommand}" />
+                <MenuItem Header="Rules" Command="{Binding WindowManager.OpenColorRulesCommand}" CommandParameter="{Binding ActiveProject}" />
             </MenuItem>
 
             <MenuItem Header="Help">

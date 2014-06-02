@@ -28,6 +28,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>TheCreationist</ProductName>
+    <PublisherName>ProjectVoid</PublisherName>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>2.0.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
@@ -115,6 +117,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enum\RuleTypes.cs" />
     <Compile Include="Managers\CommandManager.cs" />
     <Compile Include="Converters\StateToBrushConverter.cs" />
     <Compile Include="Composite\ProjectState.cs" />
@@ -123,6 +126,7 @@
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\Swatch.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\ColorRulesViewModel.cs" />
     <Compile Include="ViewModel\LibraryViewModel.cs" />
     <Compile Include="ViewModel\OptionsViewModel.cs" />
     <Compile Include="ViewModel\LibraryEditorViewModel.cs" />
@@ -134,6 +138,9 @@
     <Compile Include="Managers\WindowManager.cs" />
     <Compile Include="View\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ColorRulesView.xaml.cs">
+      <DependentUpon>ColorRulesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LibraryView.xaml.cs">
       <DependentUpon>LibraryView.xaml</DependentUpon>
@@ -153,6 +160,10 @@
     <Page Include="View\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ColorRulesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\LibraryView.xaml">
       <SubType>Designer</SubType>

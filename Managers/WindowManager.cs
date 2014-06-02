@@ -23,6 +23,7 @@ namespace ProjectVoid.TheCreationist.Managers
             AboutViewModel = new AboutViewModel(MainViewModel);
             LibraryManagementViewModel = new LibraryManagementViewModel(MainViewModel);
             LibraryEditorViewModel = new LibraryEditorViewModel(MainViewModel);
+            ColorRulesViewModel = new ColorRulesViewModel(MainViewModel);
 
             OpenOptionsCommand = new RelayCommand(
                 () => OpenOptions(),
@@ -43,6 +44,10 @@ namespace ProjectVoid.TheCreationist.Managers
             CloseLibraryEditorCommand = new RelayCommand<CancelEventArgs>(
                 (e) => CloseLibraryEditor(e),
                 (e) => CanCloseLibraryEditor(e));
+
+            OpenColorRulesCommand = new RelayCommand<ProjectViewModel>(
+                (p) => OpenColorRules(p),
+                (p) => CanOpenColorRules(p));
         }
 
         public MainViewModel MainViewModel { get; private set; }
@@ -51,13 +56,15 @@ namespace ProjectVoid.TheCreationist.Managers
         public AboutViewModel AboutViewModel { get; private set; }
         public LibraryManagementViewModel LibraryManagementViewModel { get; private set; }
         public LibraryEditorViewModel LibraryEditorViewModel { get; private set; }
+        public ColorRulesViewModel ColorRulesViewModel { get; private set; }
 
         public RelayCommand OpenOptionsCommand { get; private set; }
         public RelayCommand OpenAboutCommand { get; private set; }
         public RelayCommand OpenLibraryManagementCommand { get; private set; }
         public RelayCommand<LibraryViewModel> OpenLibraryEditorCommand { get; private set; }
         public RelayCommand<CancelEventArgs> CloseLibraryEditorCommand { get; private set; }
-
+        public RelayCommand<ProjectViewModel> OpenColorRulesCommand { get; private set; }
+        
         private void OpenOptions()
         {
             Logger.Log.Debug("Opened");
@@ -161,6 +168,29 @@ namespace ProjectVoid.TheCreationist.Managers
         }
 
         private bool CanCloseLibraryEditor(CancelEventArgs eventArgs)
+        {
+            return true;
+        }
+
+        private void OpenColorRules(ProjectViewModel projectViewModel)
+        {
+            Logger.Log.Debug("Opened");
+
+            ColorRulesView colorRulesView = new ColorRulesView();
+
+            var colorRulesViewModel = new ColorRulesViewModel(MainViewModel);
+            colorRulesViewModel.Selection = projectViewModel.Selection;
+
+            colorRulesView.DataContext = colorRulesViewModel;
+            colorRulesView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            colorRulesView.Owner = Application.Current.MainWindow;
+
+            colorRulesView.ShowDialog();
+
+            Logger.Log.Debug("Closed");
+        }
+
+        private bool CanOpenColorRules(ProjectViewModel projectViewModel)
         {
             return true;
         }
