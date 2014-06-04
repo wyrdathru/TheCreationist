@@ -192,6 +192,16 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanOpenColorRules(ProjectViewModel projectViewModel)
         {
+            if (projectViewModel.Selection == null)
+            {
+                return false;
+            }
+
+            if (projectViewModel.Selection.Text.Length < 1)
+            {
+                return false;
+            }
+
             return true;
         }
 

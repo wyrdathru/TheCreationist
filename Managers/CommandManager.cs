@@ -4,11 +4,11 @@ using ProjectVoid.Core.Helpers;
 using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Enum;
 using ProjectVoid.TheCreationist.Model;
-//using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Properties;
 using ProjectVoid.TheCreationist.View;
 using ProjectVoid.TheCreationist.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -1005,19 +1005,141 @@ namespace ProjectVoid.TheCreationist.Managers
                 return;
             }
 
-            var target = colorRulesViewModel.Selection;
-
             switch (colorRulesViewModel.Type)
             {
                 case RuleTypes.Alternating:
+                    ProcessAlternatingRule(colorRulesViewModel);
                     break;
 
                 case RuleTypes.Scaling:
+                    ProcessScalingRule(colorRulesViewModel);
                     break;
 
                 case RuleTypes.Random:
+                    ProcessRandomRule(colorRulesViewModel);
                     break;
             }
+        }
+
+        private void ProcessAlternatingRule(ColorRulesViewModel colorRulesViewModel)
+        {
+            var selection = MaterializeSelection(colorRulesViewModel);
+
+            if (selection.GetType() == typeof(Section))
+            {
+                //
+            }
+            else if (selection.GetType() == typeof(Span))
+            {
+                //
+            }
+            else
+            {
+                MessageBox.Show(selection.GetType().ToString());
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (selection.GetType() == typeof(Section))
+            {
+                var section = selection as Section;
+
+                foreach (Block block in section.Blocks)
+                {
+                    var paragraph = block as Paragraph;
+
+                    foreach (Inline inline in paragraph.Inlines)
+                    {
+                        var run = inline as Run;
+
+                        if (run.Text.Length <= 0)
+                        {
+                            //stringBuilder.Append(Environment.NewLine);
+                        }
+
+                        stringBuilder.Append(run.Text);
+
+                        //stringBuilder.Append(Environment.NewLine);
+                    }
+                }
+
+                List<String> array = StringUtilities.SplitIntoParts(stringBuilder.ToString(), colorRulesViewModel.Interval).ToList<string>();
+
+                Section newSection = new Section();
+                Paragraph newParagraph = new Paragraph();
+
+                Queue<Brush> brushes = new Queue<Brush>();
+
+                foreach (SwatchViewModel swatchViewModel in colorRulesViewModel.ChosenColors)
+                {
+                    brushes.Enqueue(new SolidColorBrush(swatchViewModel.Color));
+                }
+
+                for (int i = 0; i < array.Count; i++)
+                {
+                    Run run = new Run();
+                    run.Text = array[i];
+
+                    var brush = brushes.Dequeue();
+
+                    run.Foreground = brush;
+
+                    brushes.Enqueue(brush);
+
+                    newParagraph.Inlines.Add(run);
+                }
+
+                newSection.Blocks.Add(newParagraph);
+
+                using (StreamWriter writer = new StreamWriter("temp.xaml"))
+                {
+                    XamlWriter.Save(newSection, writer.BaseStream);
+
+                    writer.Close();
+                }
+
+                using (StreamReader reader = new StreamReader("temp.xaml"))
+                {
+                    MainViewModel.ActiveProject.Selection.Load(reader.BaseStream, DataFormats.Xaml);
+
+                    reader.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show(selection.GetType().ToString());
+            }
+        }
+
+        private object MaterializeSelection(ColorRulesViewModel colorRulesViewModel)
+        {
+            object selection = null;
+
+            using (StreamWriter writer = new StreamWriter("temp.xaml"))
+            {
+                colorRulesViewModel.Selection.Save(writer.BaseStream, DataFormats.Xaml);
+
+                writer.Close();
+            }
+
+            using (StreamReader reader = new StreamReader("temp.xaml"))
+            {
+                selection = XamlReader.Load(reader.BaseStream);
+
+                reader.Close();
+            }
+
+            return selection;
+        }
+
+        private void ProcessScalingRule(ColorRulesViewModel colorRulesViewModel)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void ProcessRandomRule(ColorRulesViewModel colorRulesViewModel)
+        {
+            //throw new NotImplementedException();
         }
 
         private bool CanProcessColorRule(ColorRulesViewModel colorRulesViewModel)
