@@ -1011,13 +1011,13 @@ namespace ProjectVoid.TheCreationist.Managers
                     ProcessAlternatingRule(colorRulesViewModel);
                     break;
 
-                case RuleTypes.Scaling:
-                    ProcessScalingRule(colorRulesViewModel);
-                    break;
+                //case RuleTypes.Scaling:
+                //    ProcessScalingRule(colorRulesViewModel);
+                //    break;
 
-                case RuleTypes.Random:
-                    ProcessRandomRule(colorRulesViewModel);
-                    break;
+                //case RuleTypes.Random:
+                //    ProcessRandomRule(colorRulesViewModel);
+                //    break;
             }
         }
 
@@ -1068,11 +1068,17 @@ namespace ProjectVoid.TheCreationist.Managers
                 Section newSection = new Section();
                 Paragraph newParagraph = new Paragraph();
 
-                Queue<Brush> brushes = new Queue<Brush>();
+                Queue<Brush> foregroundBrushes = new Queue<Brush>();
+                Queue<Brush> backgroundBrushes = new Queue<Brush>();
 
-                foreach (SwatchViewModel swatchViewModel in colorRulesViewModel.ChosenColors)
+                foreach (SwatchViewModel swatchViewModel in colorRulesViewModel.ForegroundColors)
                 {
-                    brushes.Enqueue(new SolidColorBrush(swatchViewModel.Color));
+                    foregroundBrushes.Enqueue(new SolidColorBrush(swatchViewModel.Color));
+                }
+
+                foreach (SwatchViewModel swatchViewModel in colorRulesViewModel.BackgroundColors)
+                {
+                    backgroundBrushes.Enqueue(new SolidColorBrush(swatchViewModel.Color));
                 }
 
                 for (int i = 0; i < array.Count; i++)
@@ -1080,11 +1086,25 @@ namespace ProjectVoid.TheCreationist.Managers
                     Run run = new Run();
                     run.Text = array[i];
 
-                    var brush = brushes.Dequeue();
+                    var foregorundBrush = foregroundBrushes.Dequeue();
+                    var backgroundBrush = backgroundBrushes.Dequeue();
 
-                    run.Foreground = brush;
+                    if (colorRulesViewModel.Scope == RuleScopes.Foreground)
+                    {
+                        run.Foreground = foregorundBrush;
+                    }
+                    else if (colorRulesViewModel.Scope == RuleScopes.Background)
+                    {
+                        run.Background = backgroundBrush;
+                    }
+                    else if (colorRulesViewModel.Scope == RuleScopes.Both)
+                    {
+                        run.Foreground = foregorundBrush;
+                        run.Background = backgroundBrush;
+                    }
 
-                    brushes.Enqueue(brush);
+                    foregroundBrushes.Enqueue(foregorundBrush);
+                    backgroundBrushes.Enqueue(backgroundBrush);
 
                     newParagraph.Inlines.Add(run);
                 }

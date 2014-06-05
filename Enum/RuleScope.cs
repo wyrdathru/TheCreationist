@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjectVoid.TheCreationist.Enum
 {
-    public enum RuleTypes
+    public enum RuleScopes
     {
-        Alternating,
-        //Scaling,
-        //Random
+        Foreground,
+        Background,
+        Both
     }
 }

@@ -23,6 +23,12 @@
                 <x:Type TypeName="enum:RuleTypes" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+
+        <ObjectDataProvider x:Key="ruleScopes" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enum:RuleScopes" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </metro:MetroWindow.Resources>
 
     <Grid>
@@ -60,15 +66,7 @@
 
                 <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="Scope" />
 
-                <TextBox metro:TextboxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxLength="1">
-                    <TextBox.Text>
-                        <Binding Path="Scope" Mode="TwoWay">
-                            <Binding.ValidationRules>
-                                <validation:IntegarValidator />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
+                <ComboBox Grid.Row="1" VerticalAlignment="Bottom" ItemsSource="{Binding Source={StaticResource ruleScopes}}" SelectedItem="{Binding Scope}" />
             </Grid>
         </GroupBox>
 
@@ -94,37 +92,76 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Grid.RowSpan="3" Grid.Column="1" Padding="10" Header="Colors">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+        <Grid Grid.RowSpan="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-                <TextBlock Text="Colors" TextWrapping="Wrap" Margin="0,0,0,10" />
+            <GroupBox Grid.Row="0" Padding="10" Header="Foreground">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <ListBox ItemsSource="{Binding ChosenColors}">
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListBoxItem}">
-                            <Setter Property="Padding" Value="5"/>
-                            <Setter Property="Margin" Value="5"/>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
+                    <TextBlock Text="Colors" TextWrapping="Wrap" Margin="0,0,0,10" />
 
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="4" VerticalAlignment="Top" HorizontalAlignment="Center" />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <view:SwatchView />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-        </GroupBox>
+                    <ListBox ItemsSource="{Binding ForegroundColors}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Margin" Value="5"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="4" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <view:SwatchView />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="1" Padding="10" Header="Background">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Colors" TextWrapping="Wrap" Margin="0,0,0,10" />
+
+                    <ListBox ItemsSource="{Binding BackgroundColors}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Margin" Value="5"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="4" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <view:SwatchView />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </GroupBox>
+        </Grid>
 
         <Button Grid.Row="3" 
                 Grid.ColumnSpan="2" 

@@ -10,20 +10,24 @@ namespace ProjectVoid.TheCreationist.ViewModel
 {
     public class ColorRulesViewModel : ViewModelBase, IDisposable
     {
-        private ObservableCollection<SwatchViewModel> _ChosenColors;
+        private ObservableCollection<SwatchViewModel> _ForegroundColors;
+
+        private ObservableCollection<SwatchViewModel> _BackgroundColors;
 
         public ColorRulesViewModel(MainViewModel mainViewModel)
         {
             MainViewModel = mainViewModel;
 
-            _ChosenColors = new ObservableCollection<SwatchViewModel>();
+            _ForegroundColors = new ObservableCollection<SwatchViewModel>();
+            _BackgroundColors = new ObservableCollection<SwatchViewModel>();
 
-            _ChosenColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Red)));
-            _ChosenColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Green)));
-            _ChosenColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Blue)));
-            //_ChosenColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Red)));
-            //_ChosenColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Green)));
-            //_ChosenColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Blue)));
+            ForegroundColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Red)));
+            ForegroundColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Green)));
+            ForegroundColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Blue)));
+
+            BackgroundColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Yellow)));
+            BackgroundColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Purple)));
+            BackgroundColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Silver)));
         }
 
         public MainViewModel MainViewModel { get; set; }
@@ -32,20 +36,33 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public RuleTypes Type { get; set; }
 
-        public int Scope { get; set; }
+        public RuleScopes Scope { get; set; }
 
         public int Interval { get; set; }
 
-        public ObservableCollection<SwatchViewModel> ChosenColors
+        public ObservableCollection<SwatchViewModel> ForegroundColors
         {
             get
             {
-                return _ChosenColors;
+                return _ForegroundColors;
             }
             set
             {
-                _ChosenColors = value;
-                RaisePropertyChanged("ChosenColors");
+                _ForegroundColors = value;
+                RaisePropertyChanged("ForegroundColors");
+            }
+        }
+
+        public ObservableCollection<SwatchViewModel> BackgroundColors
+        {
+            get
+            {
+                return _BackgroundColors;
+            }
+            set
+            {
+                _BackgroundColors = value;
+                RaisePropertyChanged("BackgroundColors");
             }
         }
 
