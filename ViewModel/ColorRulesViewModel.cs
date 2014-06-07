@@ -28,6 +28,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
             BackgroundColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Yellow)));
             BackgroundColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Purple)));
             BackgroundColors.Add(new SwatchViewModel(MainViewModel, new Swatch(Colors.Silver)));
+
+            Interval = 1;
         }
 
         public MainViewModel MainViewModel { get; set; }
