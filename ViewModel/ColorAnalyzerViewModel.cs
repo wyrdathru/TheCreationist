@@ -68,6 +68,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
         {
             Logger.Log.Debug("Disposing");
 
+            Selection = null;
+
             MainViewModel = null;
 
             Logger.Log.Debug("Disposed");

@@ -1,10 +1,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-//using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Composite;
 using ProjectVoid.TheCreationist.Model;
 using System;
-using System.ComponentModel;
 using System.Windows.Documents;
 using System.Windows.Media;
 
@@ -28,7 +26,8 @@ namespace ProjectVoid.TheCreationist.ViewModel
         }
 
         [PreferredConstructor]
-        public ProjectViewModel(MainViewModel mainViewModel) : this(mainViewModel, new Project())
+        public ProjectViewModel(MainViewModel mainViewModel)
+            : this(mainViewModel, new Project())
         {
 
         }

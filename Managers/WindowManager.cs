@@ -1,15 +1,11 @@
 ﻿using GalaSoft.MvvmLight.Command;
-//using ProjectVoid.Core.Utilities;
-using ProjectVoid.Core.Validation;
 using ProjectVoid.TheCreationist.Properties;
 using ProjectVoid.TheCreationist.View;
 using ProjectVoid.TheCreationist.ViewModel;
 using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace ProjectVoid.TheCreationist.Managers
 {
@@ -71,7 +67,7 @@ namespace ProjectVoid.TheCreationist.Managers
         public RelayCommand<CancelEventArgs> CloseLibraryEditorCommand { get; private set; }
         public RelayCommand<ProjectViewModel> OpenColorRulesCommand { get; private set; }
         public RelayCommand<ProjectViewModel> OpenColorAnalyzerCommand { get; private set; }
-        
+
         private void OpenOptions()
         {
             Logger.Log.Debug("Opened");
@@ -222,7 +218,7 @@ namespace ProjectVoid.TheCreationist.Managers
             colorAnalyzerView.DataContext = ColorAnalyzerViewModel;
             colorAnalyzerView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             colorAnalyzerView.Owner = Application.Current.MainWindow;
-            
+
             colorAnalyzerView.ShowDialog();
 
             Logger.Log.Debug("Closed");

@@ -1,5 +1,4 @@
 ﻿using log4net;
-using log4net.Config;
 using ProjectVoid.TheCreationist.Properties;
 using System;
 using System.Reflection;
@@ -45,7 +44,7 @@ namespace ProjectVoid.TheCreationist
             Logger.Log.Debug("Exited");
         }
 
-        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs args) 
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
             Logger.Log.Fatal("Exception", (Exception)args.ExceptionObject);
         }

@@ -2,7 +2,7 @@
 
 namespace ProjectVoid.TheCreationist.View
 {
-    public partial class MainView : MetroWindow
+    public partial class MainView
     {
         public MainView()
         {

@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-//using ProjectVoid.Core.Utilities;
 using System;
 using System.Diagnostics;
 using System.Reflection;

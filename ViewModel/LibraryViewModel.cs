@@ -1,9 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
-//using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Model;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {

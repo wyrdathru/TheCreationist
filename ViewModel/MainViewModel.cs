@@ -1,6 +1,5 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-//using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Managers;
 using ProjectVoid.TheCreationist.Model;
 using ProjectVoid.TheCreationist.Properties;

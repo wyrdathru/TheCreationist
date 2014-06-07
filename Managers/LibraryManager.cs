@@ -1,15 +1,11 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using ProjectVoid.Core.Utilities;
-//using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Model;
 using ProjectVoid.TheCreationist.Properties;
 using ProjectVoid.TheCreationist.ViewModel;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace ProjectVoid.TheCreationist.Managers
