@@ -1,9 +1,9 @@
 ﻿
 namespace ProjectVoid.TheCreationist.View
 {
-    public partial class AboutView
+    public partial class ColorAnalyzerView
     {
-        public AboutView()
+        public ColorAnalyzerView()
         {
             InitializeComponent();
         }

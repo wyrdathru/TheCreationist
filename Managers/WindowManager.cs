@@ -24,6 +24,7 @@ namespace ProjectVoid.TheCreationist.Managers
             LibraryManagementViewModel = new LibraryManagementViewModel(MainViewModel);
             LibraryEditorViewModel = new LibraryEditorViewModel(MainViewModel);
             ColorRulesViewModel = new ColorRulesViewModel(MainViewModel);
+            ColorAnalyzerViewModel = new ColorAnalyzerViewModel(MainViewModel);
 
             OpenOptionsCommand = new RelayCommand(
                 () => OpenOptions(),
@@ -48,6 +49,10 @@ namespace ProjectVoid.TheCreationist.Managers
             OpenColorRulesCommand = new RelayCommand<ProjectViewModel>(
                 (p) => OpenColorRules(p),
                 (p) => CanOpenColorRules(p));
+
+            OpenColorAnalyzerCommand = new RelayCommand<ProjectViewModel>(
+                (p) => OpenColorAnalyzer(p),
+                (p) => CanOpenColorAnalyzer(p));
         }
 
         public MainViewModel MainViewModel { get; private set; }
@@ -57,6 +62,7 @@ namespace ProjectVoid.TheCreationist.Managers
         public LibraryManagementViewModel LibraryManagementViewModel { get; private set; }
         public LibraryEditorViewModel LibraryEditorViewModel { get; private set; }
         public ColorRulesViewModel ColorRulesViewModel { get; private set; }
+        public ColorAnalyzerViewModel ColorAnalyzerViewModel { get; private set; }
 
         public RelayCommand OpenOptionsCommand { get; private set; }
         public RelayCommand OpenAboutCommand { get; private set; }
@@ -64,6 +70,7 @@ namespace ProjectVoid.TheCreationist.Managers
         public RelayCommand<LibraryViewModel> OpenLibraryEditorCommand { get; private set; }
         public RelayCommand<CancelEventArgs> CloseLibraryEditorCommand { get; private set; }
         public RelayCommand<ProjectViewModel> OpenColorRulesCommand { get; private set; }
+        public RelayCommand<ProjectViewModel> OpenColorAnalyzerCommand { get; private set; }
         
         private void OpenOptions()
         {
@@ -192,6 +199,42 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanOpenColorRules(ProjectViewModel projectViewModel)
         {
+            if (projectViewModel.Selection == null)
+            {
+                return false;
+            }
+
+            if (projectViewModel.Selection.Text.Length < 1)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void OpenColorAnalyzer(ProjectViewModel projectViewModel)
+        {
+            Logger.Log.Debug("Opened");
+
+            ColorAnalyzerView colorAnalyzerView = new ColorAnalyzerView();
+            ColorAnalyzerViewModel.Selection = projectViewModel.Selection;
+
+            colorAnalyzerView.DataContext = ColorAnalyzerViewModel;
+            colorAnalyzerView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            colorAnalyzerView.Owner = Application.Current.MainWindow;
+            
+            colorAnalyzerView.ShowDialog();
+
+            Logger.Log.Debug("Closed");
+        }
+
+        private bool CanOpenColorAnalyzer(ProjectViewModel projectViewModel)
+        {
+            if (projectViewModel == null)
+            {
+                return false;
+            }
+
             if (projectViewModel.Selection == null)
             {
                 return false;

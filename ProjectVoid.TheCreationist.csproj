@@ -127,6 +127,7 @@
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\Swatch.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\ColorAnalyzerViewModel.cs" />
     <Compile Include="ViewModel\ColorRulesViewModel.cs" />
     <Compile Include="ViewModel\LibraryViewModel.cs" />
     <Compile Include="ViewModel\OptionsViewModel.cs" />
@@ -139,6 +140,9 @@
     <Compile Include="Managers\WindowManager.cs" />
     <Compile Include="View\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ColorAnalyzerView.xaml.cs">
+      <DependentUpon>ColorAnalyzerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ColorRulesView.xaml.cs">
       <DependentUpon>ColorRulesView.xaml</DependentUpon>
@@ -161,6 +165,10 @@
     <Page Include="View\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ColorAnalyzerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ColorRulesView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -227,6 +235,7 @@
     <Resource Include="Resources\Images\compile.png" />
     <Resource Include="Resources\Images\convert.png" />
     <Resource Include="Resources\Images\strip.png" />
+    <Resource Include="Resources\Images\inspect.png" />
     <Content Include="Resources\Libraries\4Bit.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

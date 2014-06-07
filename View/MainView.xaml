@@ -45,6 +45,7 @@
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
+        <converters:NullToBoolConverter x:Key="BrushToStringConverter" />
         <lconverters:StateToBrushConverter x:Key="StateToBrushConverter" />
     </metro:MetroWindow.Resources>
 
@@ -129,6 +130,10 @@
             <Button ToolTip="Strip Colors" Command="{Binding CommandManager.StripColorsCommand}">
                 <Image Source="\..\Resources\Images\strip.png" Width="24" Height="24" />
             </Button>
+
+            <Button ToolTip="Color Analyzer" Command="{Binding WindowManager.OpenColorAnalyzerCommand}" CommandParameter="{Binding ActiveProject}">
+                <Image Source="\..\Resources\Images\inspect.png" Width="24" Height="24" />
+            </Button>
         </ToolBar>
 
         <GroupBox Grid.RowSpan="2" Grid.Row="2" Header="Workspace">
@@ -192,7 +197,7 @@
         <GroupBox Grid.Column="1" Grid.Row="2" Header="Swatches">
             <GroupBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Manage Swatches" Command="{Binding WindowManager.OpenLibraryManagementCommand}" />
+                    <MenuItem Header="Manage Swatch Libraries" Command="{Binding WindowManager.OpenLibraryManagementCommand}" />
                 </ContextMenu>
             </GroupBox.ContextMenu>
 
@@ -251,15 +256,6 @@
         <GroupBox Grid.Column="1" Grid.Row="3" Header="Active">
             <StackPanel>
                 <Grid>
-                    <Grid.Resources>
-                        <Style TargetType="Rectangle" x:Key="ActiveSwatchTemplate">
-                            <Setter Property="Width" Value="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}" />
-                            <Setter Property="Height" Value="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}" />
-                            <Setter Property="Stroke" Value="{StaticResource AccentColorBrush}" />
-                            <Setter Property="StrokeThickness" Value="1" />
-                        </Style>
-                    </Grid.Resources>
-
                     <Rectangle Fill="{Binding ActiveProject.Background, Converter={StaticResource ColorToBrushConverter}}"
                                Style="{StaticResource ActiveSwatchTemplate}"
                                Margin="25,15,0,0"

@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
              StartupUri="View\MainView.xaml" 
              Startup="OnStartup" 
              Exit="OnExit"
@@ -12,6 +13,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+
                 <ResourceDictionary>
                     <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:ProjectVoid.TheCreationist.ViewModel" />
 
@@ -29,13 +36,14 @@
                     <Style TargetType="{x:Type ListBoxItem}" x:Key="ListBoxItemTemplate">
                         <Setter Property="Padding" Value="0" />
                     </Style>
-                </ResourceDictionary>
 
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+                    <Style TargetType="{x:Type Rectangle}" x:Key="ActiveSwatchTemplate">
+                        <Setter Property="Width" Value="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}" />
+                        <Setter Property="Height" Value="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}" />
+                        <Setter Property="Stroke" Value="{StaticResource AccentColorBrush}" />
+                        <Setter Property="StrokeThickness" Value="1" />
+                    </Style>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

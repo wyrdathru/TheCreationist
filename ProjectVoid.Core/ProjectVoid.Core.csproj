@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Behaviors\TextSelectionBehavior.cs" />
     <Compile Include="Controls\BindableRichTextBox.xaml.cs" />
+    <Compile Include="Converters\StringToBrushConverter.cs" />
     <Compile Include="Converters\ColorStringToBoolConverter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Converters\NullToBoolConverter.cs" />

@@ -1,0 +1,55 @@
+﻿<metro:MetroWindow x:Class="ProjectVoid.TheCreationist.View.ColorAnalyzerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:ProjectVoid.Core.Controls;assembly=ProjectVoid.Core"
+        xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
+        xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
+        xmlns:validation="clr-namespace:ProjectVoid.Core.Validation;assembly=ProjectVoid.Core"
+        xmlns:view="clr-namespace:ProjectVoid.TheCreationist.View"
+        xmlns:enum="clr-namespace:ProjectVoid.TheCreationist.Enum"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Title="Color Analyzer"
+        Height="240"
+        Width="320"
+        TitleCaps="False"
+        ResizeMode="NoResize"
+        GlowBrush="{StaticResource AccentColorBrush}">
+    <metro:MetroWindow.Resources>
+        <converters:StringToBrushConverter x:Key="StringToBrushConverter" />
+    </metro:MetroWindow.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="Foreground">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Rectangle Style="{StaticResource ActiveSwatchTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding SelectionForeground, Mode=OneWay}" Width="50" Height="50" />
+
+                <TextBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SelectionForeground, Mode=OneWay}" IsReadOnly="True" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Background" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Rectangle Style="{StaticResource ActiveSwatchTemplate}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding SelectionBackground, Mode=OneWay}" Width="50" Height="50" />
+
+                <TextBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SelectionBackground, Mode=OneWay}" IsReadOnly="True" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</metro:MetroWindow>
