@@ -182,9 +182,9 @@ namespace ProjectVoid.TheCreationist.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("18")]
-        public int FontSize {
+        public double FontSize {
             get {
-                return ((int)(this["FontSize"]));
+                return ((double)(this["FontSize"]));
             }
             set {
                 this["FontSize"] = value;

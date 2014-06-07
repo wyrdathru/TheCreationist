@@ -41,7 +41,7 @@
     <Setting Name="SwatchSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
-    <Setting Name="FontSize" Type="System.Int32" Scope="User">
+    <Setting Name="FontSize" Type="System.Double" Scope="User">
       <Value Profile="(Default)">18</Value>
     </Setting>
     <Setting Name="FontFamily" Type="System.Windows.Media.FontFamily" Scope="User">

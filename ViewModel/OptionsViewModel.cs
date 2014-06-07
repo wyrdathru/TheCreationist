@@ -31,17 +31,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         private void Initialize()
         {
-            GetFontSizes();
-        }
-
-        private void GetFontSizes()
-        {
-            FontSizes = new ObservableCollection<int>();
-
-            for (int i = 8; i < 31; i++)
-            {
-                FontSizes.Add(i);
-            }
+            //
         }
 
         public void Dispose()

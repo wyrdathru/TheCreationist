@@ -41,7 +41,7 @@
                 
                 <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="The font size can be changed to help you view your project better, as required." />
 
-                <ComboBox Grid.Row="1" VerticalAlignment="Bottom" ItemsSource="{Binding FontSizes}" SelectedItem="{Binding FontSize, Source={x:Static properties:Settings.Default}, Mode=TwoWay}" />
+                <metro:NumericUpDown Grid.Row="1" VerticalAlignment="Bottom" Maximum="80" Minimum="8" Value="{Binding FontSize, Source={x:Static properties:Settings.Default}, Mode=TwoWay}" />
             </Grid>
         </GroupBox>
 

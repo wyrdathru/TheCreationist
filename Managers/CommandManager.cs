@@ -137,7 +137,7 @@ namespace ProjectVoid.TheCreationist.Managers
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile).ToString();
             openFileDialog.Multiselect = false;
             openFileDialog.DefaultExt = ".xml";
-            openFileDialog.Filter = "XML|*.xml";
+            openFileDialog.Filter = "New Project Format|*.xml|Old Project Format|*.rtf|Text Files|*.txt";
 
             var result = openFileDialog.ShowDialog();
 
@@ -149,13 +149,136 @@ namespace ProjectVoid.TheCreationist.Managers
 
             var file = openFileDialog.FileName;
 
+            switch (Path.GetExtension(file).ToLower())
+            {
+                case ".rtf":
+                    OpenRtfProject(mainViewModel, file);
+                    break;
+
+                case ".txt":
+                    OpenTxtProject(mainViewModel, file);
+                    break;
+
+                case ".xml":
+                    OpenXmlProject(mainViewModel, file);
+                    break;
+            }
+        }
+
+        private void OpenRtfProject(MainViewModel mainViewModel, string file)
+        {
+            using (FileStream fileStream = new FileStream(file, FileMode.Open))
+            {
+                var fileName = Path.GetFileNameWithoutExtension(file);
+
+                ProjectViewModel projectViewModel = new ProjectViewModel(mainViewModel);
+                var range = new TextRange(projectViewModel.Document.ContentStart, projectViewModel.Document.ContentEnd);
+
+                range.Load(fileStream, DataFormats.Rtf);
+
+                range.ApplyPropertyValue(TextBlock.FontFamilyProperty, Settings.Default.FontFamily);
+                range.ApplyPropertyValue(TextBlock.FontSizeProperty, Settings.Default.FontSize);
+
+                if (mainViewModel.Projects.Any(p => p.Project.Name.Equals(fileName)))
+                {
+                    var match = mainViewModel.Projects.First(p => p.Project.Name.Equals(fileName));
+
+                    mainViewModel.ActiveProject = match;
+
+                    if (match.State.IsDirty)
+                    {
+                        var canReload = MessageBox.Show(String.Format("{0} has unsaved changes, are you sure you want to reload it?", match.Name), String.Format("Reload {0}?", match.Name), MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                        if (canReload == MessageBoxResult.No)
+                        {
+                            fileStream.Close();
+                            Logger.Log.Debug("Aborted ProjectAlreadyExits");
+                            return;
+                        }
+
+                        MainViewModel.Projects.Remove(match);
+                    }
+                    else
+                    {
+                        fileStream.Close();
+                        Logger.Log.DebugFormat("Aborted ProjectAlreadyExits");
+                        return;
+                    }
+                }
+
+                projectViewModel.State.IsSaved = true;
+                projectViewModel.State.IsDirty = false;
+                projectViewModel.Name = fileName;
+
+                mainViewModel.Projects.Add(projectViewModel);
+                mainViewModel.ActiveProject = projectViewModel;
+
+                fileStream.Close();
+
+                Logger.Log.DebugFormat("Opened ID[{0}] Name[{1}]", projectViewModel.Id, projectViewModel.Name);
+            }
+        }
+
+        private void OpenTxtProject(MainViewModel mainViewModel, string file)
+        {
+            using (FileStream fileStream = new FileStream(file, FileMode.Open))
+            {
+                var fileName = Path.GetFileNameWithoutExtension(file);
+
+                ProjectViewModel projectViewModel = new ProjectViewModel(mainViewModel);
+                var range = new TextRange(projectViewModel.Document.ContentStart, projectViewModel.Document.ContentEnd);
+
+                range.Load(fileStream, DataFormats.Text);
+
+                if (mainViewModel.Projects.Any(p => p.Project.Name.Equals(fileName)))
+                {
+                    var match = mainViewModel.Projects.First(p => p.Project.Name.Equals(fileName));
+
+                    mainViewModel.ActiveProject = match;
+
+                    if (match.State.IsDirty)
+                    {
+                        var canReload = MessageBox.Show(String.Format("{0} has unsaved changes, are you sure you want to reload it?", match.Name), String.Format("Reload {0}?", match.Name), MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                        if (canReload == MessageBoxResult.No)
+                        {
+                            fileStream.Close();
+                            Logger.Log.Debug("Aborted ProjectAlreadyExits");
+                            return;
+                        }
+
+                        MainViewModel.Projects.Remove(match);
+                    }
+                    else
+                    {
+                        fileStream.Close();
+                        Logger.Log.DebugFormat("Aborted ProjectAlreadyExits");
+                        return;
+                    }
+                }
+
+                projectViewModel.State.IsSaved = true;
+                projectViewModel.State.IsDirty = false;
+                projectViewModel.Name = fileName;
+
+                mainViewModel.Projects.Add(projectViewModel);
+                mainViewModel.ActiveProject = projectViewModel;
+
+                fileStream.Close();
+
+                Logger.Log.DebugFormat("Opened ID[{0}] Name[{1}]", projectViewModel.Id, projectViewModel.Name);
+            }
+        }
+
+        private void OpenXmlProject(MainViewModel mainViewModel, string file)
+        {
             using (FileStream fileStream = new FileStream(file, FileMode.Open))
             {
                 Project project = XamlReader.Load(fileStream) as Project;
 
-                if (mainViewModel.Projects.Any(p => p.Project.Id.Equals(project.Id)))
+                if (mainViewModel.Projects.Any(p => p.Project.Name.Equals(project.Name)))
                 {
-                    var match = mainViewModel.Projects.First(p => p.Project.Id.Equals(project.Id));
+                    var match = mainViewModel.Projects.First(p => p.Project.Name.Equals(project.Name));
 
                     mainViewModel.ActiveProject = match;
 

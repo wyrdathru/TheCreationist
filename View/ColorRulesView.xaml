@@ -80,15 +80,7 @@
 
                 <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="Interval" />
 
-                <TextBox metro:TextboxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxLength="1">
-                    <TextBox.Text>
-                        <Binding Path="Interval" Mode="TwoWay">
-                            <Binding.ValidationRules>
-                                <validation:IntegarValidator />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
+                <metro:NumericUpDown Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Maximum="10" Minimum="1" Value="{Binding Interval, Mode=TwoWay}" />
             </Grid>
         </GroupBox>
 

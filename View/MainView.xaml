@@ -29,6 +29,19 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
+    <metro:MetroWindow.InputBindings>
+        <KeyBinding Command="{Binding CommandManager.CreateProjectCommand}" Modifiers="Control" Key="N" />
+        <KeyBinding Command="{Binding CommandManager.OpenProjectCommand}" Modifiers="Control" Key="O" />
+        <KeyBinding Command="{Binding CommandManager.SaveProjectCommand}" Modifiers="Control" Key="S" CommandParameter="{Binding ActiveProject}" />
+        <KeyBinding Command="{Binding CommandManager.CloseProjectCommand}" Modifiers="Control" Key="K" CommandParameter="{Binding ActiveProject}" />
+        <KeyBinding Command="{Binding CommandManager.CloseAllProjectsCommand}" Modifiers="Control+Shift" Key="K" />
+        <KeyBinding Command="{Binding CommandManager.ConvertProjectCommand}" Key="F5" CommandParameter="{Binding ActiveProject}" />
+        <KeyBinding Command="{Binding CommandManager.CompileProjectCommand}" Key="F6" CommandParameter="{Binding ActiveProject}" />
+
+        <KeyBinding Command="{Binding WindowManager.OpenOptionsCommand}" Key="F11" CommandParameter="{Binding ActiveProject}" />
+        <KeyBinding Command="{Binding WindowManager.OpenAboutCommand}" Key="F12" CommandParameter="{Binding ActiveProject}" />
+    </metro:MetroWindow.InputBindings>
+
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
