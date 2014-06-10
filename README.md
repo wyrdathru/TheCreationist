@@ -10,7 +10,9 @@ To download the latest available release, please follow this link: https://githu
 Features
 ========
 
-(( This section will be updated regularly during development of TheCreationist 2, stay tuned! ))
+- Conversion and compilation to and from TinyMUX-compatible soft codes
+- Multiple project support for increased productivity in a single instance
+- Organization of color swatches into libraries for task-specific grouping
 
 Contact
 =======
