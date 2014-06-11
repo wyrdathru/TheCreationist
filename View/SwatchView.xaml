@@ -9,6 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+        <converters:ColorToStringConverter x:Key="ColorToStringConverter" />
     </UserControl.Resources>
 
     <UserControl.ContextMenu>
@@ -17,6 +18,7 @@
 
     <Rectangle Width="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}"
                Height="{Binding SwatchSize, Source={x:Static properties:Settings.Default}}"
-               Fill="{Binding Color, Converter={StaticResource ColorToBrushConverter}}">
+               Fill="{Binding Color, Converter={StaticResource ColorToBrushConverter}}"
+               ToolTip="{Binding Color, Converter={StaticResource ColorToStringConverter}}">
     </Rectangle>
 </UserControl>
