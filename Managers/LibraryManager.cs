@@ -155,7 +155,7 @@ namespace ProjectVoid.TheCreationist.Managers
 
             if (libraryViewModel.Swatches.Where(s => s.Color == color).Any())
             {
-                MessageBox.Show(String.Format("{0} already exists in {1}", color.ToString().Substring(3).Insert(0, "#"), libraryViewModel.Name));
+                //MessageBox.Show(String.Format("{0} already exists in {1}", color.ToString().Substring(3).Insert(0, "#"), libraryViewModel.Name));
                 return;
             }
 
@@ -186,13 +186,16 @@ namespace ProjectVoid.TheCreationist.Managers
                 {
                     if (toLibrary.Swatches.Where(s => s.Color == fromLibrary.Swatches[i].Color).Any())
                     {
-                        MessageBox.Show(String.Format("{0} already exists in {1}", fromLibrary.Swatches[i].Color.ToString().Substring(3).Insert(0, "#"), toLibrary.Name));
+                        //MessageBox.Show(String.Format("{0} already exists in {1}", fromLibrary.Swatches[i].Color.ToString().Substring(3).Insert(0, "#"), toLibrary.Name));
                         continue;
                     }
 
-                    toLibrary.Library.Swatches.Add(fromLibrary.Swatches[i].Swatch);
+                    var swatch = new Swatch(fromLibrary.Swatches[i].Color);
+                    var swatchViewModel = new SwatchViewModel(MainViewModel, swatch);
 
-                    toLibrary.Swatches.Add(fromLibrary.Swatches[i]);
+                    toLibrary.Library.Swatches.Add(swatch);
+
+                    toLibrary.Swatches.Add(swatchViewModel);
                 }
             }
 
