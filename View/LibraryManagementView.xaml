@@ -6,7 +6,7 @@
         xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
         xmlns:view="clr-namespace:ProjectVoid.TheCreationist.View"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="Manage Swatch Libraries"
         Height="480"
@@ -14,6 +14,12 @@
         TitleCaps="False"
         ResizeMode="NoResize"
         GlowBrush="{StaticResource AccentColorBrush}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <commands:EventToCommand Command="{Binding OnWindowClosingCommand}" PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <metro:MetroWindow.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
@@ -47,7 +53,7 @@
                                                 SelectedIndex="0">
             <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
+                    <TextBlock Text="{Binding Name}" AllowDrop="True" Drop="TextBlock_Drop" />
                 </DataTemplate>
             </metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
 
@@ -85,7 +91,7 @@
 
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <view:SwatchView />
+                                        <view:SwatchView MouseMove="SwatchView_MouseMove" />
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>

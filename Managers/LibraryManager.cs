@@ -6,6 +6,7 @@ using ProjectVoid.TheCreationist.ViewModel;
 using System;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 
 namespace ProjectVoid.TheCreationist.Managers
@@ -154,11 +155,14 @@ namespace ProjectVoid.TheCreationist.Managers
 
             if (libraryViewModel.Swatches.Where(s => s.Color == color).Any())
             {
+                MessageBox.Show(String.Format("{0} already exists in {1}", color.ToString().Substring(3).Insert(0, "#"), libraryViewModel.Name));
                 return;
             }
 
             var swatch = new Swatch(color);
             var swatchViewModel = new SwatchViewModel(MainViewModel, swatch);
+
+            libraryViewModel.Library.Swatches.Add(swatch);
 
             libraryViewModel.Swatches.Add(swatchViewModel);
 
@@ -171,6 +175,30 @@ namespace ProjectVoid.TheCreationist.Managers
         {
             return true;
         }
+
+        public void AddSelectedSwatches(LibraryViewModel fromLibrary, LibraryViewModel toLibrary)
+        {
+            Logger.Log.Debug("Adding");
+
+            for (int i = fromLibrary.Swatches.Count - 1; i > -1; i--)
+            {
+                if (fromLibrary.Swatches[i].IsSelected)
+                {
+                    if (toLibrary.Swatches.Where(s => s.Color == fromLibrary.Swatches[i].Color).Any())
+                    {
+                        MessageBox.Show(String.Format("{0} already exists in {1}", fromLibrary.Swatches[i].Color.ToString().Substring(3).Insert(0, "#"), toLibrary.Name));
+                        continue;
+                    }
+
+                    toLibrary.Library.Swatches.Add(fromLibrary.Swatches[i].Swatch);
+
+                    toLibrary.Swatches.Add(fromLibrary.Swatches[i]);
+                }
+            }
+
+            toLibrary.IsDirty = true;
+        }
+
 
         public void RemoveSwatch(LibraryViewModel libraryViewModel)
         {
