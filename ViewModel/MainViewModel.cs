@@ -94,11 +94,40 @@ namespace ProjectVoid.TheCreationist.ViewModel
         {
             Logger.Log.Debug("Initializing");
 
+            CreateDefaultLibraries();
+
             LoadLibraries();
 
             LoadProjects();
 
             Logger.Log.Debug("Initialized");
+        }
+
+        private void CreateDefaultLibraries()
+        {
+            DirectoryInfo directory = new DirectoryInfo(Settings.Default.DefaultLibraries);
+
+            var path = Settings.Default.Libraries.Replace("${USERPROFILE}", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+
+            if (!Directory.Exists(path))
+            {
+                try
+                {
+                    Directory.CreateDirectory(path);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log.Error("Exception", ex);
+                    MessageBox.Show(String.Format("Unable to create a folder at {0}, do you have read-write permissions?", path));
+
+                    Application.Current.Shutdown();
+                }
+            }
+
+            foreach (FileInfo file in directory.GetFiles("*.xml"))
+            {
+                file.CopyTo(String.Format("{0}\\{1}", path, file.Name));
+            }
         }
 
         private void LoadLibraries()
@@ -124,7 +153,25 @@ namespace ProjectVoid.TheCreationist.ViewModel
         {
             List<FileInfo> files = new List<FileInfo>();
 
-            DirectoryInfo directory = new DirectoryInfo(Settings.Default.Libraries);
+            var path = Settings.Default.Libraries.Replace("${USERPROFILE}", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+            DirectoryInfo directory = null;
+
+            if (!Directory.Exists(path))
+            {
+                try
+                {
+                    Directory.CreateDirectory(path);
+                }
+                catch (Exception ex) 
+                {
+                    Logger.Log.Error("Exception", ex);
+                    MessageBox.Show(String.Format("Unable to create a folder at {0}, do you have read-write permissions?", path));
+
+                    Application.Current.Shutdown();
+                }
+            }
+
+            directory = new DirectoryInfo(path);
 
             foreach (FileInfo file in directory.GetFiles("*.xml"))
             {
@@ -169,7 +216,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         {
             Library library;
 
-            var path = Settings.Default.Libraries + "\\" + name + ".xml";
+            var path = Settings.Default.Libraries.Replace("${USERPROFILE}", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)) + "\\" + name + ".xml";
 
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {

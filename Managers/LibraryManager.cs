@@ -275,7 +275,7 @@ namespace ProjectVoid.TheCreationist.Managers
 
             try
             {
-                File.Delete(Settings.Default.Libraries + "\\" + libraryViewModel.Name + ".xml");
+                File.Delete(Settings.Default.Libraries.Replace("${USERPROFILE}", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)) + "\\" + libraryViewModel.Name + ".xml");
             }
             catch (Exception ex)
             {

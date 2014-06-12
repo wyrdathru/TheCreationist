@@ -35,9 +35,6 @@
     <Setting Name="Debug" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Libraries" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Resources\Libraries</Value>
-    </Setting>
     <Setting Name="SwatchSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
@@ -52,6 +49,12 @@
     </Setting>
     <Setting Name="Height" Type="System.Double" Scope="User">
       <Value Profile="(Default)">600</Value>
+    </Setting>
+    <Setting Name="Libraries" Type="System.String" Scope="User">
+      <Value Profile="(Default)">${USERPROFILE}\ProjectVoid\TheCreationist\Libraries</Value>
+    </Setting>
+    <Setting Name="DefaultLibraries" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Resources\Libraries</Value>
     </Setting>
   </Settings>
 </SettingsFile>

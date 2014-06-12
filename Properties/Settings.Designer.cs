@@ -157,18 +157,6 @@ namespace ProjectVoid.TheCreationist.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Resources\\Libraries")]
-        public string Libraries {
-            get {
-                return ((string)(this["Libraries"]));
-            }
-            set {
-                this["Libraries"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public int SwatchSize {
             get {
@@ -224,6 +212,30 @@ namespace ProjectVoid.TheCreationist.Properties {
             }
             set {
                 this["Height"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("${USERPROFILE}\\ProjectVoid\\TheCreationist\\Libraries")]
+        public string Libraries {
+            get {
+                return ((string)(this["Libraries"]));
+            }
+            set {
+                this["Libraries"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Resources\\Libraries")]
+        public string DefaultLibraries {
+            get {
+                return ((string)(this["DefaultLibraries"]));
+            }
+            set {
+                this["DefaultLibraries"] = value;
             }
         }
     }
