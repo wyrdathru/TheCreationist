@@ -43,7 +43,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
             FileInfo = FileVersionInfo.GetVersionInfo(Assembly.Location);
 
-            Version = FileInfo.FileVersion;
+            Version = String.Format("v{0}-{1}", FileInfo.FileVersion, FileInfo.ProductVersion);
             Product = FileInfo.ProductName;
             Author = FileInfo.CompanyName;
             Copyright = FileInfo.LegalCopyright;
