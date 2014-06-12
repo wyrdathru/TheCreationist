@@ -94,8 +94,6 @@ namespace ProjectVoid.TheCreationist.ViewModel
         {
             Logger.Log.Debug("Initializing");
 
-            CreateDefaultLibraries();
-
             LoadLibraries();
 
             LoadProjects();
@@ -136,6 +134,12 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
             var libraries = GetLibraries();
 
+            if (libraries.Count == 0)
+            {
+                CreateDefaultLibraries();
+                libraries = GetLibraries();
+            }
+
             foreach (FileInfo file in libraries)
             {
                 var library = DeserializeFromFile(file.Name.Replace(".xml", string.Empty));
@@ -162,7 +166,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
                 {
                     Directory.CreateDirectory(path);
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     Logger.Log.Error("Exception", ex);
                     MessageBox.Show(String.Format("Unable to create a folder at {0}, do you have read-write permissions?", path));
@@ -189,7 +193,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
             try
             {
-                var path = Settings.Default.Libraries + "\\" + library.Name + ".xml";
+                var path = Settings.Default.Libraries.Replace("${USERPROFILE}", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)) + "\\" + library.Name + ".xml";
 
                 using (FileStream fileStream = new FileStream(path, FileMode.Create))
                 {
