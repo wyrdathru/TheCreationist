@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
-using System.Collections.ObjectModel;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
@@ -9,18 +8,9 @@ namespace ProjectVoid.TheCreationist.ViewModel
         public OptionsViewModel(MainViewModel mainViewModel)
         {
             MainViewModel = mainViewModel;
-
-            Initialize();
         }
 
         public MainViewModel MainViewModel { get; private set; }
-
-        public ObservableCollection<int> FontSizes { get; private set; }
-
-        private void Initialize()
-        {
-            //
-        }
 
         public void Dispose()
         {

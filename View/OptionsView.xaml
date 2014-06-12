@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d"
              Title="Options"
              Height="480"
@@ -12,6 +13,14 @@
              TitleCaps="False"
              ResizeMode="NoResize"
              GlowBrush="{StaticResource AccentColorBrush}">
+    <metro:MetroWindow.Resources>
+        <CollectionViewSource x:Key="AlphabetizedFontFamilies" Source="{Binding Source={x:Static Fonts.SystemFontFamilies}}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Source" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </metro:MetroWindow.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -54,7 +63,7 @@
 
                 <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="The font family can be changed to help you see what style best suits your project." />
 
-                <ComboBox Grid.Row="1" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" SelectedItem="{Binding FontFamily, Source={x:Static properties:Settings.Default}, Mode=TwoWay}" />
+                <ComboBox Grid.Row="1" ItemsSource="{Binding Source={StaticResource AlphabetizedFontFamilies}}" SelectedItem="{Binding FontFamily, Source={x:Static properties:Settings.Default}, Mode=TwoWay}" />
             </Grid>
         </GroupBox>
     </Grid>
