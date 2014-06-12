@@ -4,7 +4,7 @@
         xmlns:controls="clr-namespace:ProjectVoid.Core.Controls;assembly=ProjectVoid.Core"
         xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
         xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
-        xmlns:view="clr-namespace:ProjectVoid.TheCreationist.View"
+        xmlns:view="clr-namespace:ProjectVoid.TheCreationist.View;assembly="
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -91,7 +91,7 @@
 
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <view:SwatchView MouseMove="SwatchView_MouseMove" />
+                                        <view:SwatchView PreviewMouseDown="SwatchView_PreviewMouseDown" />
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>

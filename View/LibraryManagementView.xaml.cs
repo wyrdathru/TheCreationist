@@ -20,12 +20,16 @@ namespace ProjectVoid.TheCreationist.View
             library.MainViewModel.LibraryManager.AddSelectedSwatches(library.MainViewModel.WindowManager.LibraryManagementViewModel.ActiveLibrary, library);
         }
 
-        private void SwatchView_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        private void SwatchView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed && Keyboard.IsKeyDown(Key.LeftAlt))
             {
                 var swatch = sender as SwatchView;
-                DragDrop.DoDragDrop(swatch, swatch.DataContext, DragDropEffects.Move);
+                var swatchViewModel = swatch.DataContext as SwatchViewModel;
+
+                DragDrop.DoDragDrop(swatch, swatch.DataContext, DragDropEffects.Copy);
+
+                e.Handled = true;
             }
         }
     }
