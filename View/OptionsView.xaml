@@ -25,10 +25,10 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="SpellCheck is useful for checking mistakes before you've begun colouring project." />
 
-                <metro:ToggleSwitch Grid.Row="1" VerticalAlignment="Bottom" IsChecked="{Binding IsSpellCheckEnabled, Mode=TwoWay}" />
+                <metro:ToggleSwitch Grid.Row="1" VerticalAlignment="Bottom" IsChecked="{Binding MainViewModel.ActiveProject.IsSpellCheckEnabled, Mode=TwoWay}" />
             </Grid>
         </GroupBox>
 
@@ -38,7 +38,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="The font size can be changed to help you view your project better, as required." />
 
                 <metro:NumericUpDown Grid.Row="1" VerticalAlignment="Bottom" Maximum="80" Minimum="8" Value="{Binding FontSize, Source={x:Static properties:Settings.Default}, Mode=TwoWay}" />
@@ -51,7 +51,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock Margin="5" VerticalAlignment="Top" TextWrapping="Wrap" Text="The font family can be changed to help you see what style best suits your project." />
 
                 <ComboBox Grid.Row="1" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" SelectedItem="{Binding FontFamily, Source={x:Static properties:Settings.Default}, Mode=TwoWay}" />

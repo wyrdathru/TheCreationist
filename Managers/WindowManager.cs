@@ -85,6 +85,11 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanOpenOptions()
         {
+            if (MainViewModel.ActiveProject == null)
+            {
+                return false;
+            }
+
             return true;
         }
 

@@ -17,17 +17,6 @@ namespace ProjectVoid.TheCreationist.ViewModel
 
         public ObservableCollection<int> FontSizes { get; private set; }
 
-        public bool IsSpellCheckEnabled
-        {
-            get { return MainViewModel.ActiveProject.IsSpellCheckEnabled; }
-
-            set
-            {
-                MainViewModel.ActiveProject.IsSpellCheckEnabled = value;
-                RaisePropertyChanged("IsSpellCheckEnabled");
-            }
-        }
-
         private void Initialize()
         {
             //

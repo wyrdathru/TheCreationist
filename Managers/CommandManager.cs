@@ -1073,6 +1073,11 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanSelectSwatch(MouseButtonEventArgs eventArgs)
         {
+            if (MainViewModel.ActiveProject == null)
+            {
+                return false;
+            }
+
             return true;
         }
 
