@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Linq;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 
 namespace ProjectVoid.TheCreationist.ViewModel

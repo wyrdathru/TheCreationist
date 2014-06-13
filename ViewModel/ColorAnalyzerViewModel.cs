@@ -1,8 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using ProjectVoid.TheCreationist.Enum;
-using ProjectVoid.TheCreationist.Model;
 using System;
-using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -33,7 +30,7 @@ namespace ProjectVoid.TheCreationist.ViewModel
         private string GetForeground()
         {
             Brush brush = null;
-            
+
             try
             {
                 brush = ((Brush)Selection.GetPropertyValue(TextBlock.ForegroundProperty));

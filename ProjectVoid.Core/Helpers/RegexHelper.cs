@@ -4,24 +4,14 @@ namespace ProjectVoid.Core.Helpers
 {
     public class RegexHelper
     {
-        #region Fields
-
         private Regex _AnsiColor = null;
         private Regex _WhiteSpace = null;
-
-        #endregion Fields
-
-        #region Constructors
 
         public RegexHelper()
         {
             _AnsiColor = new Regex(@"%([x|X])<(#[0-9a-fA-F]{6})>");
             _WhiteSpace = new Regex(@"\[space\(([0-9]*)\)\]");
         }
-
-        #endregion Constructors
-
-        #region Properties
 
         public Regex AnsiColor
         {
@@ -38,7 +28,5 @@ namespace ProjectVoid.Core.Helpers
                 return _WhiteSpace;
             }
         }
-
-        #endregion Properties
     }
 }

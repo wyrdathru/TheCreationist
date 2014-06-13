@@ -9,8 +9,6 @@ namespace ProjectVoid.Core.Controls
 {
     public class BindableRichTextBox : RichTextBox
     {
-        #region Properties
-
         public FlowDocument FlowDocument
         {
             get { return (FlowDocument)GetValue(DocumentProperty); }
@@ -47,10 +45,6 @@ namespace ProjectVoid.Core.Controls
         public static readonly DependencyProperty BackcolorProperty =
             DependencyProperty.Register("Backcolor", typeof(Color), typeof(BindableRichTextBox), new FrameworkPropertyMetadata(Colors.Transparent, null));
 
-        #endregion Properties
-
-        #region Public Methods
-
         public static void OnDocumentChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             if (args.NewValue == null)
@@ -62,10 +56,6 @@ namespace ProjectVoid.Core.Controls
 
             rtb.Document = (FlowDocument)args.NewValue;
         }
-
-        #endregion Public Methods
-
-        #region Protected Methods
 
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
         {
@@ -92,7 +82,5 @@ namespace ProjectVoid.Core.Controls
 
             e.Handled = true;
         }
-
-        #endregion Protected Methods
     }
 }

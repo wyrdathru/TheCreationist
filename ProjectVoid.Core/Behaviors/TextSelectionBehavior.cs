@@ -7,8 +7,6 @@ namespace ProjectVoid.Core.Behaviors
 {
     public class TextSelectionBehavior : Behavior<BindableRichTextBox>
     {
-        #region Properties
-
         public TextSelection SelectedText
         {
             get { return (TextSelection)GetValue(SelectedTextProperty); }
@@ -16,10 +14,6 @@ namespace ProjectVoid.Core.Behaviors
         }
 
         public static readonly DependencyProperty SelectedTextProperty = DependencyProperty.Register("SelectedText", typeof(TextSelection), typeof(TextSelectionBehavior), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedTextChanged));
-
-        #endregion Properties
-
-        #region Protected Methods
 
         protected override void OnAttached()
         {
@@ -33,10 +27,6 @@ namespace ProjectVoid.Core.Behaviors
             AssociatedObject.SelectionChanged -= OnRichTextBoxSelectionChanged;
         }
 
-        #endregion Protected Methods
-
-        #region Private Methods
-
         private void OnRichTextBoxSelectionChanged(object sender, RoutedEventArgs e)
         {
             SelectedText = AssociatedObject.Selection;
@@ -46,7 +36,5 @@ namespace ProjectVoid.Core.Behaviors
         {
             //
         }
-
-        #endregion Private Methods
     }
 }

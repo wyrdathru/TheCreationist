@@ -6,25 +6,15 @@ namespace ProjectVoid.Core.Utilities
 {
     public class DocumentBuilder
     {
-        #region Fields
-
         private Brush _ActiveForeground;
         private Brush _ActiveBackground;
         private List<Block> _Blocks = new List<Block>();
-
-        #endregion Fields
-
-        #region Constructors
 
         public DocumentBuilder(Brush foreground, Brush background)
         {
             _ActiveForeground = foreground;
             _ActiveBackground = background;
         }
-
-        #endregion Constructors
-
-        #region Properties
 
         public List<Block> Blocks
         {
@@ -43,10 +33,6 @@ namespace ProjectVoid.Core.Utilities
             get { return _ActiveBackground; }
             set { _ActiveBackground = value; }
         }
-
-        #endregion Properties
-
-        #region Public Methods
 
         public void AddParagraph()
         {
@@ -71,7 +57,5 @@ namespace ProjectVoid.Core.Utilities
 
             ((Paragraph)Blocks[Blocks.Count - 1]).Inlines.Add(run);
         }
-
-        #endregion Public Methods
     }
 }

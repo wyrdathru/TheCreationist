@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-//using ProjectVoid.Core.Utilities;
 using ProjectVoid.TheCreationist.Model;
 using System;
 using System.Windows.Media;
