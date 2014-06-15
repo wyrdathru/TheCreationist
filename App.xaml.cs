@@ -6,9 +6,6 @@ using System.Windows;
 
 namespace ProjectVoid.TheCreationist
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary> 
     public class Logger
     {
         public static ILog Log { get; private set; }
