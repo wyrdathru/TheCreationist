@@ -124,7 +124,9 @@
     <Compile Include="Managers\CommandManager.cs" />
     <Compile Include="Converters\StateToBrushConverter.cs" />
     <Compile Include="Composite\ProjectState.cs" />
+    <Compile Include="IColorRule.cs" />
     <Compile Include="Managers\LibraryManager.cs" />
+    <Compile Include="Managers\RuleManager.cs" />
     <Compile Include="Model\Library.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\Swatch.cs" />
