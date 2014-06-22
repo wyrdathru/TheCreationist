@@ -538,9 +538,18 @@ namespace ProjectVoid.TheCreationist.Managers
                     foreground = run.Foreground;
                     background = run.Background;
                 }
+                else if (inline.GetType().Equals(typeof(LineBreak)))
+                {
+                    chars = Environment.NewLine.ToString().ToCharArray();
+                }
                 else
                 {
                     MessageBox.Show(inline.GetType().ToString());
+                }
+
+                if (foreground == null)
+                {
+                    foreground = defaultForeground;
                 }
 
                 if (background == null)
@@ -1282,7 +1291,7 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private void ProcessScalingRule(ColorRulesViewModel colorRulesViewModel)
         {
-            //throw new NotImplementedException();
+            
         }
 
         private void ProcessRandomRule(ColorRulesViewModel colorRulesViewModel)
