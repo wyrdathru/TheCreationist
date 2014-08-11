@@ -1,15 +1,18 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using ProjectVoid.TheCreationist.Properties;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 
 namespace ProjectVoid.TheCreationist.ViewModel
 {
     public class LibraryManagementViewModel : ViewModelBase, IDisposable
     {
-        private string _NewSwatchValue;
+        private Color _NewSwatch;
 
         private LibraryViewModel _ActiveLibrary;
 
@@ -17,7 +20,9 @@ namespace ProjectVoid.TheCreationist.ViewModel
         {
             MainViewModel = mainViewModel;
 
-            _NewSwatchValue = "";
+            _NewSwatch = Settings.Default.Foreground;
+
+            RecentColors = new List<Color>();
 
             OnWindowClosingCommand = new RelayCommand<CancelEventArgs>((e) => OnWindowClosing(e));
         }
@@ -37,44 +42,46 @@ namespace ProjectVoid.TheCreationist.ViewModel
             }
         }
 
-        public string NewSwatchValue
+        public Color NewSwatch
         {
-            get { return _NewSwatchValue; }
+            get { return _NewSwatch; }
 
             set
             {
-                _NewSwatchValue = value;
-                RaisePropertyChanged("NewSwatchValue");
+                _NewSwatch = value;
+                RaisePropertyChanged("NewSwatch");
             }
         }
 
+        public List<Color> RecentColors { get; set; }
+        
         private void OnWindowClosing(CancelEventArgs e)
         {
-            if (MainViewModel.Libraries.Any<LibraryViewModel>(l => l.IsDirty))
+            for (int i = MainViewModel.Libraries.Count - 1; i > -1; i--)
             {
-                var result = MessageBox.Show(String.Format("You have unsaved changes in your libraries. Are you sure you want to exit?"), String.Format("Exit"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                Logger.Log.Debug("Closing");
 
-                if (result == MessageBoxResult.No)
+                if (MainViewModel.Libraries[i].IsDirty == true)
                 {
-                    e.Cancel = true;
-                    return;
-                }
+                    var result = MessageBox.Show(String.Format("{0} has unsaved changes, do you want to save your changes?", MainViewModel.Libraries[i].Name), String.Format("Save {0}?", MainViewModel.Libraries[i].Name), MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-                for (int i = MainViewModel.Libraries.Count - 1; i > -1; i--)
-                {
-                    if (MainViewModel.Libraries[i].IsDirty)
+                    if (result == MessageBoxResult.No)
                     {
                         MainViewModel.LibraryManager.DiscardChanges(MainViewModel.Libraries[i]);
+                        Logger.Log.Debug("Aborted UnsavedChangesDetected");
+                        continue;
                     }
+
+                    MainViewModel.LibraryManager.SaveChanges(MainViewModel.Libraries[i]);
                 }
+
+                Logger.Log.DebugFormat("Closed ID[{0}] Name[{1}]", MainViewModel.Libraries[i].Id, MainViewModel.Libraries[i].Name);
             }
         }
 
         public void Dispose()
         {
             Logger.Log.Debug("Disposing");
-
-            NewSwatchValue = string.Empty;
 
             ActiveLibrary = null;
 

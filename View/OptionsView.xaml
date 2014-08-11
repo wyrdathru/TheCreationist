@@ -7,6 +7,7 @@
              xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d"
+             Icon="\..\TheCreationist.ico"
              Title="Options"
              Height="480"
              Width="640"

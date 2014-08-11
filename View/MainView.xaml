@@ -8,6 +8,7 @@
         xmlns:lconverters="clr-namespace:ProjectVoid.TheCreationist.Converters"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+        xmlns:toolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
         Title="{Binding Title, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
         MinWidth="{Binding MinWidth, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"

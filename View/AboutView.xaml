@@ -5,6 +5,7 @@
         xmlns:properties="clr-namespace:ProjectVoid.TheCreationist.Properties"
         xmlns:converters="clr-namespace:ProjectVoid.Core.Converters;assembly=ProjectVoid.Core"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Icon="\..\TheCreationist.ico"
         Title="About"
         Height="480"
         Width="640"

@@ -1147,15 +1147,12 @@ namespace ProjectVoid.TheCreationist.Managers
                 case RuleTypes.Alternating:
                     ProcessAlternatingRule(colorRulesViewModel);
                     break;
-
-                //case RuleTypes.Scaling:
-                //    ProcessScalingRule(colorRulesViewModel);
-                //    break;
-
-                //case RuleTypes.Random:
-                //    ProcessRandomRule(colorRulesViewModel);
-                //    break;
             }
+        }
+
+        private bool CanProcessColorRule(ColorRulesViewModel colorRulesViewModel)
+        {
+            return true;
         }
 
         private void ProcessAlternatingRule(ColorRulesViewModel colorRulesViewModel)
@@ -1287,21 +1284,6 @@ namespace ProjectVoid.TheCreationist.Managers
             }
 
             return selection;
-        }
-
-        private void ProcessScalingRule(ColorRulesViewModel colorRulesViewModel)
-        {
-            
-        }
-
-        private void ProcessRandomRule(ColorRulesViewModel colorRulesViewModel)
-        {
-            //throw new NotImplementedException();
-        }
-
-        private bool CanProcessColorRule(ColorRulesViewModel colorRulesViewModel)
-        {
-            return true;
         }
 
         public void Dispose()

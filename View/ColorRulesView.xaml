@@ -11,6 +11,7 @@
         xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Icon="\..\TheCreationist.ico"
         Title="Rules"
         Height="480"
         Width="640"

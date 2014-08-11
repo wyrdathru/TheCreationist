@@ -10,6 +10,7 @@
         xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="Edit Library"
+        Icon="\..\TheCreationist.ico"
         Height="480"
         Width="640"
         TitleCaps="False"

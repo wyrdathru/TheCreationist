@@ -7,8 +7,10 @@
         xmlns:view="clr-namespace:ProjectVoid.TheCreationist.View;assembly="
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+        xmlns:toolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="Manage Swatch Libraries"
+        Icon="\..\TheCreationist.ico"  
         Height="480"
         Width="640"
         TitleCaps="False"
@@ -129,22 +131,21 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <TextBox x:Name="SwatchTextBox"
-                 Grid.Row="1"
-                 metro:TextboxHelper.Watermark="#FF0000" 
-                 metro:TextboxHelper.ClearTextButton="True" 
-                 Width="100" 
-                 Margin="5,0,5,5" 
-                 MaxLength="7" 
-                 HorizontalAlignment="Left"
-                 Text="{Binding NewSwatchValue, Mode=TwoWay}"  />
+        <toolkit:ColorPicker x:Name="colorPicker"
+                             Grid.Row="1"                  
+                             Width="100"
+                             Margin="5,0,5,5"
+                             HorizontalAlignment="Left"
+                             SelectedColor="{Binding NewSwatch, Mode=TwoWay}"
+                             UsingAlphaChannel="False"
+                             ColorMode="ColorCanvas"
+                             ShowAdvancedButton="False" />
 
         <Button Grid.Row="1"
                 Grid.Column="1" 
                 Content="Add" 
                 Margin="0,0,5,5" 
                 HorizontalAlignment="Left"
-                IsEnabled="{Binding ElementName=SwatchTextBox, Path=Text, Converter={StaticResource ColorStringToBoolConverter}}" 
                 Command="{Binding MainViewModel.LibraryManager.AddSwatchCommand}" 
                 CommandParameter="{Binding ActiveLibrary}"  />
 
@@ -164,7 +165,7 @@
                 Command="{Binding MainViewModel.LibraryManager.SetActiveLibraryCommand}" 
                 CommandParameter="{Binding ActiveLibrary}" />
 
-        <Button Grid.Row="1"
+        <!--<Button Grid.Row="1"
                 Grid.Column="4" 
                 Content="Save" 
                 Margin="0,0,5,5" 
@@ -178,6 +179,6 @@
                 Margin="0,0,5,5" 
                 HorizontalAlignment="Right"
                 Command="{Binding MainViewModel.LibraryManager.DiscardChangesCommand}" 
-                CommandParameter="{Binding ActiveLibrary}" />
+                CommandParameter="{Binding ActiveLibrary}" />-->
     </Grid>
 </metro:MetroWindow>

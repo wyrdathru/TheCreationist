@@ -150,11 +150,11 @@ namespace ProjectVoid.TheCreationist.Managers
         {
             Logger.Log.Debug("Adding");
 
-            Color color = ColorUtility.ConvertColorFromString(MainViewModel.WindowManager.LibraryManagementViewModel.NewSwatchValue);
+            Color color = MainViewModel.WindowManager.LibraryManagementViewModel.NewSwatch;
 
             if (libraryViewModel.Swatches.Where(s => s.Color == color).Any())
             {
-                //MessageBox.Show(String.Format("{0} already exists in {1}", color.ToString().Substring(3).Insert(0, "#"), libraryViewModel.Name));
+                Logger.Log.Debug("Swatch Already Exists");
                 return;
             }
 
@@ -172,6 +172,18 @@ namespace ProjectVoid.TheCreationist.Managers
 
         private bool CanAddSwatch(LibraryViewModel libraryViewModel)
         {
+            if (libraryViewModel == null)
+            {
+                return false;
+            }
+
+            Color color = MainViewModel.WindowManager.LibraryManagementViewModel.NewSwatch;
+
+            if (libraryViewModel.Swatches.Where(s => s.Color == color).Any())
+            {
+                return false;
+            }
+
             return true;
         }
 
