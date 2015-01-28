@@ -14,6 +14,13 @@ Features
 - Multiple project support for increased productivity in a single instance
 - Organization of color swatches into libraries for task-specific grouping
 
+Screenshots
+===========
+
+![Image1](/docs/screenshots/Image1.png?raw=true "Application overview")
+
+![Image2](/docs/screenshots/Image2.png?raw=true "After conversion")
+
 Third Party Dependencies
 ===================
 
