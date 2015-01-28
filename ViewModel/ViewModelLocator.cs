@@ -1,7 +1,7 @@
 /*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:ProjectVoid.TheCreationist"
+      <vm:ViewModelLocator xmlns:vm="clr-namespace:TheCreationist.App"
                            x:Key="Locator" />
   </Application.Resources>
   
@@ -15,7 +15,7 @@
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 
-namespace ProjectVoid.TheCreationist.ViewModel
+namespace TheCreationist.App.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the

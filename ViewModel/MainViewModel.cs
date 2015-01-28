@@ -1,8 +1,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using ProjectVoid.TheCreationist.Managers;
-using ProjectVoid.TheCreationist.Model;
-using ProjectVoid.TheCreationist.Properties;
+using TheCreationist.App.Managers;
+using TheCreationist.App.Model;
+using TheCreationist.App.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Windows;
 using System.Xaml;
 
-namespace ProjectVoid.TheCreationist.ViewModel
+namespace TheCreationist.App.ViewModel
 {
     public class MainViewModel : ViewModelBase, IDisposable
     {

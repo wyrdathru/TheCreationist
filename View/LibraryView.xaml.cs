@@ -1,6 +1,6 @@
 ﻿using MahApps.Metro.Controls;
 
-namespace ProjectVoid.TheCreationist.View
+namespace TheCreationist.App.View
 {
     public partial class LibraryView : MetroTabItem
     {

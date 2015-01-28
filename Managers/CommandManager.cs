@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
-using ProjectVoid.Core.Helpers;
-using ProjectVoid.Core.Utilities;
-using ProjectVoid.TheCreationist.Enum;
-using ProjectVoid.TheCreationist.Model;
-using ProjectVoid.TheCreationist.Properties;
-using ProjectVoid.TheCreationist.View;
-using ProjectVoid.TheCreationist.ViewModel;
+using TheCreationist.Core.Helpers;
+using TheCreationist.Core.Utilities;
+using TheCreationist.App.Enum;
+using TheCreationist.App.Model;
+using TheCreationist.App.Properties;
+using TheCreationist.App.View;
+using TheCreationist.App.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,7 +21,7 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist.Managers
+namespace TheCreationist.App.Managers
 {
     public class CommandManager : IDisposable
     {

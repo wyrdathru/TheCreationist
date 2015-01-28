@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace ProjectVoid.Core.Converters
+namespace TheCreationist.Core.Converters
 {
     [ValueConversion(typeof(object), typeof(bool))]
     public class NullToBoolConverter : IValueConverter

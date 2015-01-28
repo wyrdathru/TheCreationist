@@ -2,7 +2,7 @@
 using System.Windows.Documents;
 using System.Windows.Media;
 
-namespace ProjectVoid.Core.Utilities
+namespace TheCreationist.Core.Utilities
 {
     public class DocumentBuilder
     {

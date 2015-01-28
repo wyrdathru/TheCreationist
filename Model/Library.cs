@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ProjectVoid.TheCreationist.Model
+namespace TheCreationist.App.Model
 {
     public class Library
     {

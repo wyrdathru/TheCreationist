@@ -1,5 +1,5 @@
 ﻿
-namespace ProjectVoid.TheCreationist.View
+namespace TheCreationist.App.View
 {
     public partial class MainView
     {

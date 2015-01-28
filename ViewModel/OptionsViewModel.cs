@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 
-namespace ProjectVoid.TheCreationist.ViewModel
+namespace TheCreationist.App.ViewModel
 {
     public class OptionsViewModel : ViewModelBase, IDisposable
     {

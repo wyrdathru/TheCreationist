@@ -1,9 +1,9 @@
-﻿using ProjectVoid.Core.Utilities;
+﻿using TheCreationist.Core.Utilities;
 using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace ProjectVoid.Core.Converters
+namespace TheCreationist.Core.Converters
 {
     [ValueConversion(typeof(string), typeof(bool))]
     public class ColorStringToBoolConverter : IValueConverter

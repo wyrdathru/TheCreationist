@@ -1,11 +1,11 @@
-ProjectVoid.TheCreationist
+TheCreationist
 ==========================
 
-TheCreationist (THEC) is an Open Source application which helps convert coloured ASCII to custom escape sequences for TinyMUX (http://www.tinymux.org/) platforms.
+TheCreationist is an Open Source application which helps convert coloured ASCII to custom escape sequences for TinyMUX (http://www.tinymux.org/) platforms.
 
 With the introduction of 8-bit colour in MUX 2.10, previous tools that have been used such as A2A (created by PhantomProductions) no longer support the range of colours available. TheCreationist not only supports the new variety of colours, but seeks to provide new and improved aspects of functionality.
 
-To download the latest available release, please follow this link: https://github.com/wyrdathru/ProjectVoid.TheCreationist/releases
+To download the latest available release, please follow this link: https://github.com/wyrdathru/TheCreationist/releases
 
 Features
 ========

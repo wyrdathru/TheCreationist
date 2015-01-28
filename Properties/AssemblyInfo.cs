@@ -10,10 +10,10 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProjectVoid.TheCreationist")]
+[assembly: AssemblyTitle("TheCreationist.App")]
 [assembly: AssemblyDescription("This product has been licensed as Open Source software under The MIT License (MIT).")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ProjectVoid")]
+[assembly: AssemblyCompany("Wyrdathru")]
 [assembly: AssemblyProduct("TheCreationist")]
 [assembly: AssemblyCopyright("Copyright © Kyle Wernham 2014")]
 [assembly: AssemblyTrademark("")]

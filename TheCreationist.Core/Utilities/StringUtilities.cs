@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ProjectVoid.Core.Utilities
+namespace TheCreationist.Core.Utilities
 {
     public static class StringUtilities
     {

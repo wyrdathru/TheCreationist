@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ProjectVoid.Core.Helpers
+namespace TheCreationist.Core.Helpers
 {
     public class RegexHelper
     {

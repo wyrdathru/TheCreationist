@@ -1,9 +1,9 @@
-﻿using ProjectVoid.Core.Controls;
+﻿using TheCreationist.Core.Controls;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Interactivity;
 
-namespace ProjectVoid.Core.Behaviors
+namespace TheCreationist.Core.Behaviors
 {
     public class TextSelectionBehavior : Behavior<BindableRichTextBox>
     {

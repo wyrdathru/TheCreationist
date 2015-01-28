@@ -1,9 +1,9 @@
 ﻿
-using ProjectVoid.TheCreationist.ViewModel;
+using TheCreationist.App.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-namespace ProjectVoid.TheCreationist.View
+namespace TheCreationist.App.View
 {
     public partial class LibraryManagementView
     {

@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
-using ProjectVoid.TheCreationist.Model;
+using TheCreationist.App.Model;
 using System;
 using System.Collections.ObjectModel;
 
-namespace ProjectVoid.TheCreationist.ViewModel
+namespace TheCreationist.App.ViewModel
 {
     public class LibraryViewModel : ViewModelBase, IDisposable
     {

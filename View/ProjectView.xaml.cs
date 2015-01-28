@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ProjectVoid.TheCreationist.View
+namespace TheCreationist.App.View
 {
     public partial class ProjectView : UserControl
     {

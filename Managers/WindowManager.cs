@@ -1,13 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using ProjectVoid.TheCreationist.Properties;
-using ProjectVoid.TheCreationist.View;
-using ProjectVoid.TheCreationist.ViewModel;
+using TheCreationist.App.Properties;
+using TheCreationist.App.View;
+using TheCreationist.App.ViewModel;
 using System;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
 
-namespace ProjectVoid.TheCreationist.Managers
+namespace TheCreationist.App.Managers
 {
     public class WindowManager : IDisposable
     {

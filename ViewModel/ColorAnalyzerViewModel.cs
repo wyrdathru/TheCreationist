@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist.ViewModel
+namespace TheCreationist.App.ViewModel
 {
     public class ColorAnalyzerViewModel : ViewModelBase, IDisposable
     {

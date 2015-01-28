@@ -1,10 +1,10 @@
 ﻿using log4net;
-using ProjectVoid.TheCreationist.Properties;
+using TheCreationist.App.Properties;
 using System;
 using System.Reflection;
 using System.Windows;
 
-namespace ProjectVoid.TheCreationist
+namespace TheCreationist.App
 {
     public class Logger
     {

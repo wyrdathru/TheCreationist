@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using ProjectVoid.TheCreationist.ViewModel;
+using TheCreationist.App.ViewModel;
 using System;
 
-namespace ProjectVoid.TheCreationist.Managers
+namespace TheCreationist.App.Managers
 {
     public class RuleManager : IDisposable
     {

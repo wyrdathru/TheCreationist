@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
-using ProjectVoid.TheCreationist.Enum;
-using ProjectVoid.TheCreationist.Model;
+using TheCreationist.App.Enum;
+using TheCreationist.App.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Documents;
 using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist.ViewModel
+namespace TheCreationist.App.ViewModel
 {
     public class ColorRulesViewModel : ViewModelBase, IDisposable
     {

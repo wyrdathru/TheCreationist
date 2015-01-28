@@ -1,11 +1,11 @@
-﻿using ProjectVoid.TheCreationist.Composite;
-using ProjectVoid.TheCreationist.ViewModel;
+﻿using TheCreationist.App.Composite;
+using TheCreationist.App.ViewModel;
 using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist.Converters
+namespace TheCreationist.App.Converters
 {
     [ValueConversion(typeof(ProjectViewModel), typeof(Brush))]
     public class StateToBrushConverter : IValueConverter

@@ -1,14 +1,14 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using ProjectVoid.Core.Utilities;
-using ProjectVoid.TheCreationist.Model;
-using ProjectVoid.TheCreationist.Properties;
-using ProjectVoid.TheCreationist.ViewModel;
+using TheCreationist.Core.Utilities;
+using TheCreationist.App.Model;
+using TheCreationist.App.Properties;
+using TheCreationist.App.ViewModel;
 using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist.Managers
+namespace TheCreationist.App.Managers
 {
     public class LibraryManager : IDisposable
     {

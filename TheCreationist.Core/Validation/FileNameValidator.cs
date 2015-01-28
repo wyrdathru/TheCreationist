@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 
-namespace ProjectVoid.Core.Validation
+namespace TheCreationist.Core.Validation
 {
     public class FileNameValidator : ValidationRule
     {

@@ -1,12 +1,12 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using ProjectVoid.TheCreationist.Composite;
-using ProjectVoid.TheCreationist.Model;
+using TheCreationist.App.Composite;
+using TheCreationist.App.Model;
 using System;
 using System.Windows.Documents;
 using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist.ViewModel
+namespace TheCreationist.App.ViewModel
 {
     public class ProjectViewModel : ViewModelBase, IDisposable
     {

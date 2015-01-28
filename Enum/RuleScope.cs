@@ -1,5 +1,5 @@
 ﻿
-namespace ProjectVoid.TheCreationist.Enum
+namespace TheCreationist.App.Enum
 {
     public enum RuleScopes
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ProjectVoid.TheCreationist.Composite
+namespace TheCreationist.App.Composite
 {
     public class ProjectState : INotifyPropertyChanged
     {

@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ProjectVoid.TheCreationist.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TheCreationist.App.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="Title" Type="System.String" Scope="User">
@@ -51,7 +51,7 @@
       <Value Profile="(Default)">600</Value>
     </Setting>
     <Setting Name="Libraries" Type="System.String" Scope="User">
-      <Value Profile="(Default)">${USERPROFILE}\ProjectVoid\TheCreationist\Libraries</Value>
+      <Value Profile="(Default)">${USERPROFILE}\TheCreationist\Libraries</Value>
     </Setting>
     <Setting Name="DefaultLibraries" Type="System.String" Scope="User">
       <Value Profile="(Default)">Resources\Libraries</Value>

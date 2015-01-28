@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 
-namespace ProjectVoid.Core.Utilities
+namespace TheCreationist.Core.Utilities
 {
     public static class ColorUtility
     {

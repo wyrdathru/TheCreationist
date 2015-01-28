@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist.Model
+namespace TheCreationist.App.Model
 {
     public class Swatch
     {

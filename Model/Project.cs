@@ -1,9 +1,9 @@
-﻿using ProjectVoid.TheCreationist.Properties;
+﻿using TheCreationist.App.Properties;
 using System;
 using System.Windows.Documents;
 using System.Windows.Media;
 
-namespace ProjectVoid.TheCreationist.Model
+namespace TheCreationist.App.Model
 {
     public class Project
     {

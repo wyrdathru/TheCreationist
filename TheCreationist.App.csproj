@@ -7,8 +7,8 @@
     <ProjectGuid>{C294C676-B79D-46AE-BB98-3B9F0CAEB28F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProjectVoid.TheCreationist</RootNamespace>
-    <AssemblyName>ProjectVoid.TheCreationist</AssemblyName>
+    <RootNamespace>TheCreationist.App</RootNamespace>
+    <AssemblyName>TheCreationist.App</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -277,9 +277,10 @@
     </EmbeddedResource>
     <Content Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
+    <None Include="LICENSE" />
     <None Include="packages.config" />
-    <None Include="ProjectVoid.TheCreationist_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -290,14 +291,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENCES.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="ProjectVoid.Core\ProjectVoid.Core.csproj">
+    <ProjectReference Include="TheCreationist.Core\TheCreationist.Core.csproj">
       <Project>{556785b4-696e-422a-9a41-30b0995bc869}</Project>
-      <Name>ProjectVoid.Core</Name>
+      <Name>TheCreationist.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

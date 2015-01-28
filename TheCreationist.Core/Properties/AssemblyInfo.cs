@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProjectVoid.Core")]
-[assembly: AssemblyDescription("Core libraries for ProjectVoid projects.")]
+[assembly: AssemblyTitle("TheCreationist.Core")]
+[assembly: AssemblyDescription("Core libraries for TheCreationist project.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ProjectVoid")]
-[assembly: AssemblyProduct("ProjectVoid.Core")]
+[assembly: AssemblyCompany("Wyrdathru")]
+[assembly: AssemblyProduct("TheCreationist.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("Copyright © Kyle Wernham 2014")]
 [assembly: AssemblyCulture("")]
