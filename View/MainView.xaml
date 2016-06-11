@@ -7,7 +7,7 @@
         xmlns:converters="clr-namespace:TheCreationist.Core.Converters;assembly=TheCreationist.Core"
         xmlns:lconverters="clr-namespace:TheCreationist.App.Converters"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:toolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
         Title="{Binding Title, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"
@@ -22,7 +22,7 @@
         BorderBrush="{StaticResource AccentColorBrush}"
         BorderThickness="1"
         ShowIconOnTitleBar="True"
-        Icon="\..\TheCreationist.ico"
+        Icon="..\TheCreationist.ico"
         Name="MainApplicationWindow">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
@@ -99,41 +99,41 @@
 
         <ToolBar Grid.Row="1">
             <Button ToolTip="New Project" Command="{Binding CommandManager.CreateProjectCommand}">
-                <Image Source="\..\Resources\Images\new.png" Width="24" Height="24" />
+                <Image Source="..\Resources\Images\new.png" Width="24" Height="24" />
             </Button>
 
             <Button ToolTip="Open Project" Command="{Binding CommandManager.OpenProjectCommand}" CommandParameter="{Binding}">
-                <Image Source="\..\Resources\Images\open.png" Width="24" Height="24" />
+                <Image Source="..\Resources\Images\open.png" Width="24" Height="24" />
             </Button>
 
             <Button ToolTip="Save Project" Command="{Binding CommandManager.SaveProjectCommand}" CommandParameter="{Binding ActiveProject}">
-                <Image Source="\..\Resources\Images\save.png" Width="24" Height="24" />
+                <Image Source="..\Resources\Images\save.png" Width="24" Height="24" />
             </Button>
 
             <Separator />
 
             <Button ToolTip="Close Project" Command="{Binding CommandManager.CloseProjectCommand}" CommandParameter="{Binding ActiveProject}">
-                <Image Source="\..\Resources\Images\close.png" Width="24" Height="24" />
+                <Image Source="..\Resources\Images\close.png" Width="24" Height="24" />
             </Button>
 
             <Separator />
 
             <Button ToolTip="Convert Project" Command="{Binding CommandManager.ConvertProjectCommand}" CommandParameter="{Binding ActiveProject}">
-                <Image Source="\..\Resources\Images\convert.png" Width="24" Height="24" />
+                <Image Source="..\Resources\Images\convert.png" Width="24" Height="24" />
             </Button>
 
             <Button ToolTip="Compile Project" Command="{Binding CommandManager.CompileProjectCommand}" CommandParameter="{Binding ActiveProject}">
-                <Image Source="\..\Resources\Images\compile.png" Width="24" Height="24" />
+                <Image Source="..\Resources\Images\compile.png" Width="24" Height="24" />
             </Button>
 
             <Separator />
 
             <Button ToolTip="Strip Colors" Command="{Binding CommandManager.StripColorsCommand}">
-                <Image Source="\..\Resources\Images\strip.png" Width="24" Height="24" />
+                <Image Source="..\Resources\Images\strip.png" Width="24" Height="24" />
             </Button>
 
             <Button ToolTip="Color Analyzer" Command="{Binding WindowManager.OpenColorAnalyzerCommand}" CommandParameter="{Binding ActiveProject}">
-                <Image Source="\..\Resources\Images\inspect.png" Width="24" Height="24" />
+                <Image Source="..\Resources\Images\inspect.png" Width="24" Height="24" />
             </Button>
         </ToolBar>
 

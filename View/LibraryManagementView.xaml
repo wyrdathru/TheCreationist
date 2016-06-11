@@ -6,11 +6,11 @@
         xmlns:converters="clr-namespace:TheCreationist.Core.Converters;assembly=TheCreationist.Core"
         xmlns:view="clr-namespace:TheCreationist.App.View;assembly="
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:toolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="Manage Swatch Libraries"
-        Icon="\..\TheCreationist.ico"  
+        Icon="..\TheCreationist.ico"  
         Height="480"
         Width="640"
         TitleCaps="False"
@@ -28,11 +28,11 @@
         <converters:ColorStringToBoolConverter x:Key="ColorStringToBoolConverter" />
     </metro:MetroWindow.Resources>
 
-    <metro:MetroWindow.WindowCommands>
+    <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
             <Button Content="create library" Command="{Binding MainViewModel.LibraryManager.CreateLibraryCommand}" />
         </metro:WindowCommands>
-    </metro:MetroWindow.WindowCommands>
+    </metro:MetroWindow.RightWindowCommands>
 
     <Grid DockPanel.Dock="Bottom">
         <Grid.ColumnDefinitions>
