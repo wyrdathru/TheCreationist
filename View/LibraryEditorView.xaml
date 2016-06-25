@@ -10,7 +10,7 @@
         xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="Edit Library"
-        Icon="\..\TheCreationist.ico"
+        Icon="..\TheCreationist.ico"
         Height="480"
         Width="640"
         TitleCaps="False"
@@ -44,7 +44,7 @@
 
                     <TextBlock Text="The file name will been seen in the library management screen and is used to help identify your libraries." TextWrapping="Wrap" Margin="0,0,0,10" />
 
-                    <TextBox metro:TextboxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <TextBox metro:TextBoxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                         <TextBox.Text>
                             <Binding Path="LibraryViewModel.Name" Mode="TwoWay">
                                 <Binding.ValidationRules>
@@ -67,7 +67,7 @@
 
                     <TextBlock Text="The author of a library can be used to identify the source from where the library came from." TextWrapping="Wrap" Margin="0,0,0,10" />
 
-                    <TextBox metro:TextboxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Author, Mode=TwoWay}" />
+                    <TextBox metro:TextBoxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Author, Mode=TwoWay}" />
                 </Grid>
             </StackPanel>
         </GroupBox>
@@ -83,7 +83,7 @@
 
                     <TextBlock Text="Tags are used to help search on libraries using specific keywords and are separated by commas." TextWrapping="Wrap" Margin="0,0,0,10" />
 
-                    <TextBox metro:TextboxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Tags, Mode=TwoWay}" />
+                    <TextBox metro:TextBoxHelper.ClearTextButton="True" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LibraryViewModel.Tags, Mode=TwoWay}" />
                 </Grid>
             </StackPanel>
         </GroupBox>

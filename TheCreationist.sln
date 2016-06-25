@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCreationist.App", "TheCreationist.App.csproj", "{C294C676-B79D-46AE-BB98-3B9F0CAEB28F}"
 EndProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0DF8D6
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCreationist.Bootstrapper", "TheCreationist.Bootstrapper\TheCreationist.Bootstrapper.csproj", "{5C00BA17-D6DD-467C-8AAD-1CE97A22DAE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +30,10 @@ Global
 		{556785B4-696E-422A-9A41-30B0995BC869}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{556785B4-696E-422A-9A41-30B0995BC869}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{556785B4-696E-422A-9A41-30B0995BC869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C00BA17-D6DD-467C-8AAD-1CE97A22DAE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C00BA17-D6DD-467C-8AAD-1CE97A22DAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C00BA17-D6DD-467C-8AAD-1CE97A22DAE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C00BA17-D6DD-467C-8AAD-1CE97A22DAE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
