@@ -20,7 +20,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
-using TheCreationist.Core.Model;
 
 namespace TheCreationist.App.Managers
 {

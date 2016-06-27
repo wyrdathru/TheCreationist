@@ -11,7 +11,7 @@ namespace TheCreationist.Bootstrapper
     {
         static void Main(string[] args)
         {
-            char[] rgb = "555".ToCharArray();
+            char[] rgb = "001".ToCharArray();
 
             var r = (XtermHelper.R_BIT_VALUE * char.GetNumericValue(rgb[0]));
             var g = (XtermHelper.G_BIT_VALUE * char.GetNumericValue(rgb[1]));

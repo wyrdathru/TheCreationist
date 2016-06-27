@@ -15,7 +15,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Wyrdathru")]
 [assembly: AssemblyProduct("TheCreationist")]
-[assembly: AssemblyCopyright("Copyright © Kyle Wernham 2014")]
+[assembly: AssemblyCopyright("Copyright © Kyle Wernham 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
