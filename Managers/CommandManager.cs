@@ -510,6 +510,8 @@ namespace TheCreationist.App.Managers
 
         private string ProcessInlines(InlineCollection inlines, Brush defaultForeground, Brush defaultBackground, Brush lastForeground, Brush lastBackground)
         {
+            XtermHelper xtermHelper = new XtermHelper();
+
             StringBuilder processedInlines = new StringBuilder();
 
             foreach (Inline inline in inlines)
@@ -564,23 +566,29 @@ namespace TheCreationist.App.Managers
 
                 if (foreground.ToString() == lastForeground.ToString() && background.ToString() != lastBackground.ToString())
                 {
-                    processedInlines.Append(String.Format("%X<#{0}>", background.ToString().ToUpper().Substring(3)));
+                    //processedInlines.Append(String.Format("%X<#{0}>", background.ToString().ToUpper().Substring(3)));
+                    processedInlines.Append(String.Format("{[{0}", xtermHelper.ConvertHexToRgb555(background.ToString().ToUpper().Substring(3))));
                 }
 
                 if (foreground.ToString() != lastForeground.ToString() && background.ToString() == lastBackground.ToString())
                 {
-                    processedInlines.Append(String.Format("%x<#{0}>", foreground.ToString().ToUpper().Substring(3)));
+                    //processedInlines.Append(String.Format("%x<#{0}>", foreground.ToString().ToUpper().Substring(3)));
+                    processedInlines.Append(String.Format("{{0}", xtermHelper.ConvertHexToRgb555(foreground.ToString().ToUpper().Substring(3))));
+
                 }
 
                 if (foreground.ToString() != lastForeground.ToString() && background.ToString() != lastBackground.ToString())
                 {
                     if (foreground.ToString() == defaultForeground.ToString() && background.ToString() == defaultBackground.ToString())
                     {
-                        processedInlines.Append(String.Format("%xn"));
+                        //processedInlines.Append(String.Format("%xn"));
+                        processedInlines.Append(String.Format("{n"));
                     }
                     else
                     {
-                        processedInlines.Append(String.Format("%x<#{0}>%X<#{1}>", foreground.ToString().ToUpper().Substring(3), background.ToString().ToUpper().Substring(3)));
+                        //processedInlines.Append(String.Format("%x<#{0}>%X<#{1}>", foreground.ToString().ToUpper().Substring(3), background.ToString().ToUpper().Substring(3)));
+                        processedInlines.Append(String.Format("{{0}{[{1}", xtermHelper.ConvertHexToRgb555(foreground.ToString().ToUpper().Substring(3)), xtermHelper.ConvertHexToRgb555(background.ToString().ToUpper().Substring(3))));
+
                     }
                 }
 
@@ -591,54 +599,55 @@ namespace TheCreationist.App.Managers
                 {
                     switch (chars[i].ToString())
                     {
-                        case "\\":
-                            processedInlines.Append("%\\");
-                            break;
+                        //case "\\":
+                        //    processedInlines.Append("%\\");
+                        //    break;
 
-                        case "%":
-                            processedInlines.Append("%%");
-                            break;
+                        //case "%":
+                        //    processedInlines.Append("%%");
+                        //    break;
 
                         case "{":
-                            processedInlines.Append("%{");
+                            processedInlines.Append("{{");
                             break;
 
-                        case "}":
-                            processedInlines.Append("%}");
-                            break;
+                        //case "}":
+                        //    processedInlines.Append("%}");
+                        //    break;
 
-                        case "[":
-                            processedInlines.Append("%[");
-                            break;
+                        //case "[":
+                        //    processedInlines.Append("%[");
+                        //    break;
 
-                        case "]":
-                            processedInlines.Append("%]");
-                            break;
+                        //case "]":
+                        //    processedInlines.Append("%]");
+                        //    break;
 
                         case "\r":
-                            processedInlines.Append("%r"); i++;
+                            processedInlines.Append("{/"); i++;
                             break;
 
                         case "\t":
-                            processedInlines.Append("%t");
+                            processedInlines.Append("{-");
                             break;
 
                         case " ":
-                            StringBuilder spaces = new StringBuilder();
+                            processedInlines.Append("{_");
+                            //StringBuilder spaces = new StringBuilder();
 
-                            spaces.Append(" ");
+                            //spaces.Append(" ");
 
-                            while ((i + 1) < chars.Length && chars[i + 1].Equals(' '))
-                            {
-                                spaces.Append(" ");
-                                i++;
-                            }
+                            //while ((i + 1) < chars.Length && chars[i + 1].Equals(' '))
+                            //{
+                            //    spaces.Append(" ");
+                            //    i++;
+                            //}
 
-                            if (spaces.Length == 1) { processedInlines.Append(spaces.ToString()); }
-                            else
-                            {
-                                processedInlines.Append(String.Format("[space({0})]", spaces.Length.ToString()));
-                            }
+                            //if (spaces.Length == 1) { processedInlines.Append(spaces.ToString()); }
+                            //else
+                            //{
+                            //    processedInlines.Append(String.Format("[space({0})]", spaces.Length.ToString()));
+                            //}
 
                             break;
 
@@ -746,25 +755,25 @@ namespace TheCreationist.App.Managers
 
                         break;
 
-                    case "%": subString = text.Substring(i);
+                    case "{": subString = text.Substring(i);
                         switch (subString[1].ToString())
                         {
                             case "{":
-                            case "}":
-                            case "[":
-                            case "]":
-                            case "%":
-                            case "\\":
-                                stringBuilder.Append(subString[1].ToString());
+                            //case "}":
+                            //case "[":
+                            //case "]":
+                            //case "%":
+                            //case "\\":
+                            //    stringBuilder.Append(subString[1].ToString());
+                            //    break;
+
+                            case "/": stringBuilder.Append("\r\n");
                                 break;
 
-                            case "r": stringBuilder.Append("\r\n");
+                            case "-": stringBuilder.Append("\t");
                                 break;
 
-                            case "t": stringBuilder.Append("\t");
-                                break;
-
-                            case "b": stringBuilder.Append(" ");
+                            case "_": stringBuilder.Append(" ");
                                 break;
 
                             case "x":

@@ -271,11 +271,15 @@
     <Resource Include="Resources\Images\convert.png" />
     <Resource Include="Resources\Images\strip.png" />
     <Resource Include="Resources\Images\inspect.png" />
-    <Content Include="Resources\Libraries\16Colours.xml">
+    <Content Include="Resources\Libraries\Basic.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Libraries\256Colours.xml">
+    <Resource Include="Resources\Libraries\Grayscale.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\Libraries\Extended.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>

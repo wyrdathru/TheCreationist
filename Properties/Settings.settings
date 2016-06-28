@@ -56,5 +56,8 @@
     <Setting Name="DefaultLibraries" Type="System.String" Scope="User">
       <Value Profile="(Default)">Resources\Libraries</Value>
     </Setting>
+    <Setting Name="EvenniaMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
