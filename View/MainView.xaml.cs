@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace TheCreationist.App.View
 {
     public partial class MainView
