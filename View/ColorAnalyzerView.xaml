@@ -36,7 +36,7 @@
 
                 <Rectangle Style="{StaticResource ActiveSwatchTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding SelectionForeground, Mode=OneWay}" Width="50" Height="50" />
 
-                <TextBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SelectionForeground, Mode=OneWay}" IsReadOnly="True" />
+                <TextBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SelectionForegroundString, Mode=OneWay}" IsReadOnly="True" />
             </Grid>
         </GroupBox>
 
@@ -49,7 +49,7 @@
 
                 <Rectangle Style="{StaticResource ActiveSwatchTemplate}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding SelectionBackground, Mode=OneWay}" Width="50" Height="50" />
 
-                <TextBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SelectionBackground, Mode=OneWay}" IsReadOnly="True" />
+                <TextBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SelectionBackgroundString, Mode=OneWay}" IsReadOnly="True" />
             </Grid>
         </GroupBox>
     </Grid>

@@ -9,7 +9,7 @@ namespace TheCreationist.Core.Helpers
 
         public RegexHelper()
         {
-            _AnsiColor = new Regex(@"%([x|X])<(#[0-9a-fA-F]{6})>");
+            _AnsiColor = new Regex(@"{(\[)?(\d\d\d)");
             _WhiteSpace = new Regex(@"\[space\(([0-9]*)\)\]");
         }
 

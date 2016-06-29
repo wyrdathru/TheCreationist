@@ -3,6 +3,7 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using TheCreationist.Core.Helpers;
 
 namespace TheCreationist.App.ViewModel
 {
@@ -22,9 +23,27 @@ namespace TheCreationist.App.ViewModel
             get { return GetForeground(); }
         }
 
+        public string SelectionForegroundString
+        {
+            get
+            {
+                XtermHelper xtermHelper = new XtermHelper();
+                return xtermHelper.ConvertHexToRgb555(GetForeground());
+            }
+        }
+
         public string SelectionBackground
         {
             get { return GetBackground(); }
+        }
+
+        public string SelectionBackgroundString
+        {
+            get
+            {
+                XtermHelper xtermHelper = new XtermHelper();
+                return xtermHelper.ConvertHexToRgb555(GetBackground());
+            }
         }
 
         private string GetForeground()

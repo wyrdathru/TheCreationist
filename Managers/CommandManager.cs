@@ -494,7 +494,7 @@ namespace TheCreationist.App.Managers
                 {
                     Paragraph paragraph = block as Paragraph;
 
-                    processedBlocks.Append("%r");
+                    processedBlocks.Append("{/");
 
                     processedBlocks.Append(ProcessInlines(paragraph.Inlines, defaultForeground, defaultBackground, lastForeground, lastBackground));
                 }
@@ -566,28 +566,23 @@ namespace TheCreationist.App.Managers
 
                 if (foreground.ToString() == lastForeground.ToString() && background.ToString() != lastBackground.ToString())
                 {
-                    //processedInlines.Append(String.Format("%X<#{0}>", background.ToString().ToUpper().Substring(3)));
-                    processedInlines.Append(String.Format("{[{0}", xtermHelper.ConvertHexToRgb555(background.ToString().ToUpper().Substring(3))));
+                    processedInlines.Append("{[" + xtermHelper.ConvertHexToRgb555(background.ToString().ToUpper().Substring(3)));
                 }
 
                 if (foreground.ToString() != lastForeground.ToString() && background.ToString() == lastBackground.ToString())
                 {
-                    //processedInlines.Append(String.Format("%x<#{0}>", foreground.ToString().ToUpper().Substring(3)));
-                    processedInlines.Append(String.Format("{{0}", xtermHelper.ConvertHexToRgb555(foreground.ToString().ToUpper().Substring(3))));
-
+                    processedInlines.Append("{" + xtermHelper.ConvertHexToRgb555(foreground.ToString().ToUpper().Substring(3)));
                 }
 
                 if (foreground.ToString() != lastForeground.ToString() && background.ToString() != lastBackground.ToString())
                 {
                     if (foreground.ToString() == defaultForeground.ToString() && background.ToString() == defaultBackground.ToString())
                     {
-                        //processedInlines.Append(String.Format("%xn"));
-                        processedInlines.Append(String.Format("{n"));
+                        processedInlines.Append("{n");
                     }
                     else
                     {
-                        //processedInlines.Append(String.Format("%x<#{0}>%X<#{1}>", foreground.ToString().ToUpper().Substring(3), background.ToString().ToUpper().Substring(3)));
-                        processedInlines.Append(String.Format("{{0}{[{1}", xtermHelper.ConvertHexToRgb555(foreground.ToString().ToUpper().Substring(3)), xtermHelper.ConvertHexToRgb555(background.ToString().ToUpper().Substring(3))));
+                        processedInlines.Append("{" + xtermHelper.ConvertHexToRgb555(foreground.ToString().ToUpper().Substring(3)) + "{[" + xtermHelper.ConvertHexToRgb555(background.ToString().ToUpper().Substring(3)));
 
                     }
                 }
@@ -599,29 +594,9 @@ namespace TheCreationist.App.Managers
                 {
                     switch (chars[i].ToString())
                     {
-                        //case "\\":
-                        //    processedInlines.Append("%\\");
-                        //    break;
-
-                        //case "%":
-                        //    processedInlines.Append("%%");
-                        //    break;
-
                         case "{":
                             processedInlines.Append("{{");
                             break;
-
-                        //case "}":
-                        //    processedInlines.Append("%}");
-                        //    break;
-
-                        //case "[":
-                        //    processedInlines.Append("%[");
-                        //    break;
-
-                        //case "]":
-                        //    processedInlines.Append("%]");
-                        //    break;
 
                         case "\r":
                             processedInlines.Append("{/"); i++;
@@ -633,21 +608,6 @@ namespace TheCreationist.App.Managers
 
                         case " ":
                             processedInlines.Append("{_");
-                            //StringBuilder spaces = new StringBuilder();
-
-                            //spaces.Append(" ");
-
-                            //while ((i + 1) < chars.Length && chars[i + 1].Equals(' '))
-                            //{
-                            //    spaces.Append(" ");
-                            //    i++;
-                            //}
-
-                            //if (spaces.Length == 1) { processedInlines.Append(spaces.ToString()); }
-                            //else
-                            //{
-                            //    processedInlines.Append(String.Format("[space({0})]", spaces.Length.ToString()));
-                            //}
 
                             break;
 
@@ -706,6 +666,8 @@ namespace TheCreationist.App.Managers
 
         private DocumentBuilder CreateDocument(ProjectViewModel project)
         {
+            XtermHelper xtermHelper = new XtermHelper();
+
             string text = null;
 
             text = new TextRange(project.Document.ContentStart.GetNextInsertionPosition(LogicalDirection.Forward), project.Document.ContentEnd.GetNextInsertionPosition(LogicalDirection.Backward)).Text;
@@ -734,279 +696,241 @@ namespace TheCreationist.App.Managers
             {
                 switch (text[i].ToString())
                 {
-                    case "[":
+                    case "{":
                         subString = text.Substring(i);
-
-                        match = regexHelper.WhiteSpace.Match(subString, 0);
-
-                        if (match.Success == true)
-                        {
-                            StringBuilder whiteSpace = new StringBuilder();
-
-                            for (int j = 0; j < int.Parse(match.Groups[1].Value); j++)
-                            {
-                                whiteSpace.Append(" ");
-                            }
-
-                            stringBuilder.Append(whiteSpace);
-
-                            i = i + (match.Length - 1);
-                        }
-
-                        break;
-
-                    case "{": subString = text.Substring(i);
                         switch (subString[1].ToString())
                         {
                             case "{":
-                            //case "}":
-                            //case "[":
-                            //case "]":
-                            //case "%":
-                            //case "\\":
-                            //    stringBuilder.Append(subString[1].ToString());
-                            //    break;
-
-                            case "/": stringBuilder.Append("\r\n");
+                                stringBuilder.Append('{');
                                 break;
 
-                            case "-": stringBuilder.Append("\t");
+                            case "/":
+                                stringBuilder.Append("\r\n");
                                 break;
 
-                            case "_": stringBuilder.Append(" ");
+                            case "-":
+                                stringBuilder.Append("\t");
+                                break;
+
+                            case "_":
+                                stringBuilder.Append(" ");
                                 break;
 
                             case "x":
-                            case "X":
-                            case "c":
-                            case "C":
-                                switch (subString[2].ToString())
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                if (highlight)
                                 {
-                                    case "x":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#808080");
 
-                                        if (highlight)
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#808080");
-
-                                        }
-                                        else
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#000000");
-                                        }
-                                        break;
-
-                                    case "X":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        documentBuilder.ActiveBackground = ColorUtility.ConvertBrushFromString("#000000");
-                                        break;
-
-                                    case "r":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        if (highlight)
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FF0000");
-                                        }
-                                        else
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#800000");
-                                        }
-                                        break;
-
-                                    case "R":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        documentBuilder.ActiveBackground = ColorUtility.ConvertBrushFromString("#FF0000");
-                                        break;
-
-                                    case "g":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        if (highlight)
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#00FF00");
-                                        }
-                                        else
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#008000");
-                                        }
-                                        break;
-
-                                    case "G":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        documentBuilder.ActiveBackground = ColorUtility.ConvertBrushFromString("#00FF00");
-                                        break;
-
-                                    case "y":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        if (highlight)
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FFFF00");
-                                        }
-                                        else
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#808000");
-                                        }
-                                        break;
-
-                                    case "Y":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        documentBuilder.ActiveBackground = ColorUtility.ConvertBrushFromString("#FFFF00");
-                                        break;
-
-                                    case "b":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        if (highlight)
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#0000FF");
-                                        }
-                                        else
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#000080");
-                                        }
-                                        break;
-
-                                    case "B":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        documentBuilder.ActiveBackground = ColorUtility.ConvertBrushFromString("#0000FF");
-                                        break;
-
-                                    case "m":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        if (highlight)
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FF00FF");
-                                        }
-                                        else
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#800080");
-                                        }
-                                        break;
-
-                                    case "M":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        documentBuilder.ActiveBackground = ColorUtility.ConvertBrushFromString("#FF00FF");
-                                        break;
-
-                                    case "c":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        if (highlight)
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#00FFFF");
-                                        }
-                                        else
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#008080");
-                                        }
-                                        break;
-
-                                    case "C":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        documentBuilder.ActiveBackground = ColorUtility.ConvertBrushFromString("#00FFFF");
-                                        break;
-
-                                    case "w":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        if (highlight)
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FFFFFF");
-                                        }
-                                        else
-                                        {
-                                            documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#C0C0C0");
-                                        }
-                                        break;
-
-                                    case "W":
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        documentBuilder.ActiveBackground = ColorUtility.ConvertBrushFromString("#FFFFFF");
-                                        break;
-
-                                    case "n":
-                                        highlight = false;
-
-                                        documentBuilder.AddRun(stringBuilder.ToString());
-                                        stringBuilder.Clear();
-
-                                        documentBuilder.ActiveForeground = defaultForeground;
-                                        documentBuilder.ActiveBackground = defaultBackground;
-                                        break;
-
-                                    case "h":
-                                        highlight = true;
-                                        break;
-
-                                    case "f":
-                                        break;
-
-                                    case "i":
-                                        break;
-
-                                    default:
-
-                                        match = regexHelper.AnsiColor.Match(subString, 0, 11);
-
-                                        if (match.Success == true)
-                                        {
-                                            documentBuilder.AddRun(stringBuilder.ToString());
-                                            stringBuilder.Clear();
-
-                                            if (match.Groups[1].Value.Equals("X"))
-                                            {
-                                                documentBuilder.ActiveBackground =
-                                                    ColorUtility.ConvertBrushFromString(match.Groups[2].Value);
-                                            }
-                                            else
-                                            {
-                                                documentBuilder.ActiveForeground =
-                                                ColorUtility.ConvertBrushFromString(match.Groups[2].Value);
-                                            }
-
-                                            i = i + (match.Length - 3);
-                                        }
-                                        break;
                                 }
+                                else
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#000000");
+                                }
+                                break;
 
-                                i++;
+                            case "X":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#000000");
+                                break;
+
+                            case "r":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                if (highlight)
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FF0000");
+                                }
+                                else
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#800000");
+                                }
+                                break;
+
+                            case "R":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FF0000");
+                                break;
+
+                            case "g":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                if (highlight)
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#00FF00");
+                                }
+                                else
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#008000");
+                                }
+                                break;
+
+                            case "G":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#00FF00");
+                                break;
+
+                            case "y":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                if (highlight)
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FFFF00");
+                                }
+                                else
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#808000");
+                                }
+                                break;
+
+                            case "Y":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FFFF00");
+                                break;
+
+                            case "b":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                if (highlight)
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#0000FF");
+                                }
+                                else
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#000080");
+                                }
+                                break;
+
+                            case "B":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#0000FF");
+                                break;
+
+                            case "m":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                if (highlight)
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FF00FF");
+                                }
+                                else
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#800080");
+                                }
+                                break;
+
+                            case "M":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FF00FF");
+                                break;
+
+                            case "c":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                if (highlight)
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#00FFFF");
+                                }
+                                else
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#008080");
+                                }
+                                break;
+
+                            case "C":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#00FFFF");
+                                break;
+
+                            case "w":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                if (highlight)
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FFFFFF");
+                                }
+                                else
+                                {
+                                    documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#C0C0C0");
+                                }
+                                break;
+
+                            case "W":
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                documentBuilder.ActiveForeground = ColorUtility.ConvertBrushFromString("#FFFFFF");
+                                break;
+
+                            case "n":
+                                highlight = false;
+
+                                documentBuilder.AddRun(stringBuilder.ToString());
+                                stringBuilder.Clear();
+
+                                documentBuilder.ActiveForeground = defaultForeground;
+                                documentBuilder.ActiveBackground = defaultBackground;
+                                break;
+
+                            case "h":
+                                highlight = true;
+                                break;
+
+                            case "f":
+                                break;
+
+                            case "i":
+                                break;
+
+                            default:
+
+                                match = regexHelper.AnsiColor.Match(subString, 0, subString.Length);
+
+                                if (match.Success == true)
+                                {
+                                    documentBuilder.AddRun(stringBuilder.ToString());
+                                    stringBuilder.Clear();
+
+                                    if (match.Groups[1].Value.Equals("["))
+                                    {
+                                        documentBuilder.ActiveBackground =
+                                            ColorUtility.ConvertBrushFromString("#" + xtermHelper.ConvertRgb555ToHex(match.Groups[2].Value));
+                                    }
+                                    else
+                                    {
+                                        documentBuilder.ActiveForeground =
+                                        ColorUtility.ConvertBrushFromString("#" + xtermHelper.ConvertRgb555ToHex(match.Groups[2].Value));
+                                    }
+
+                                    i = i + (match.Length - 2);
+                                }
                                 break;
                         }
 
                         i++;
-                        break;
-
-                    case "{":
-                    case "}":
-                    case "]":
-                    case "\\":
                         break;
 
                     default:

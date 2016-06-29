@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
+using TheCreationist.Core.Helpers;
 
 namespace TheCreationist.Core.Converters
 {
@@ -11,9 +12,11 @@ namespace TheCreationist.Core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            XtermHelper xtermHelper = new XtermHelper();
+
             var color = (Color)value;
 
-            return color.ToString().Substring(3).Insert(0, "#");
+            return xtermHelper.ConvertHexToRgb555(color.ToString().Substring(3));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

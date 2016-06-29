@@ -28,11 +28,11 @@
         <converters:ColorStringToBoolConverter x:Key="ColorStringToBoolConverter" />
     </metro:MetroWindow.Resources>
 
-    <metro:MetroWindow.RightWindowCommands>
+    <!--<metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
             <Button Content="create library" Command="{Binding MainViewModel.LibraryManager.CreateLibraryCommand}" />
         </metro:WindowCommands>
-    </metro:MetroWindow.RightWindowCommands>
+    </metro:MetroWindow.RightWindowCommands>-->
 
     <Grid DockPanel.Dock="Bottom">
         <Grid.ColumnDefinitions>
@@ -65,7 +65,7 @@
                         <Setter.Value>
                             <ContextMenu>
                                 <MenuItem Header="Edit" Command="{Binding MainViewModel.WindowManager.OpenLibraryEditorCommand}" CommandParameter="{Binding}" />
-                                <MenuItem Header="Delete" Command="{Binding MainViewModel.LibraryManager.DeleteLibraryCommand}" CommandParameter="{Binding}" />
+                                <!--<MenuItem Header="Delete" Command="{Binding MainViewModel.LibraryManager.DeleteLibraryCommand}" CommandParameter="{Binding}" />-->
                             </ContextMenu>
                         </Setter.Value>
                     </Setter>
@@ -131,7 +131,7 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <toolkit:ColorPicker x:Name="colorPicker"
+        <!--<toolkit:ColorPicker x:Name="colorPicker"
                              Grid.Row="1"                  
                              Width="100"
                              Margin="5,0,5,5"
@@ -155,7 +155,7 @@
                 Margin="0,0,5,5" 
                 HorizontalAlignment="Left"
                 Command="{Binding MainViewModel.LibraryManager.RemoveSwatchCommand}" 
-                CommandParameter="{Binding ActiveLibrary}" />
+                CommandParameter="{Binding ActiveLibrary}" />-->
 
         <Button Grid.Row="1"
                 Grid.Column="3" 
