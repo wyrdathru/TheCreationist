@@ -7,7 +7,7 @@
         xmlns:converters="clr-namespace:TheCreationist.Core.Converters;assembly=TheCreationist.Core"
         xmlns:lconverters="clr-namespace:TheCreationist.App.Converters"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:toolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
         Title="{Binding Title, Source={x:Static properties:Settings.Default}, Mode=TwoWay}"

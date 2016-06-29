@@ -6,11 +6,11 @@
         xmlns:converters="clr-namespace:TheCreationist.Core.Converters;assembly=TheCreationist.Core"
         xmlns:view="clr-namespace:TheCreationist.App.View;assembly="
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:toolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="Manage Swatch Libraries"
-        Icon="..\TheCreationist.ico"  
+        Icon="..\TheCreationist.ico"
         Height="480"
         Width="640"
         TitleCaps="False"
@@ -50,7 +50,7 @@
         </Grid.RowDefinitions>
 
         <metro:MetroAnimatedSingleRowTabControl Grid.ColumnSpan="6"
-                                                ItemsSource="{Binding MainViewModel.Libraries}" 
+                                                ItemsSource="{Binding MainViewModel.Libraries}"
                                                 SelectedItem="{Binding ActiveLibrary, Mode=TwoWay}"
                                                 SelectedIndex="0">
             <metro:MetroAnimatedSingleRowTabControl.ItemTemplate>
@@ -132,7 +132,7 @@
         </TextBlock>
 
         <!--<toolkit:ColorPicker x:Name="colorPicker"
-                             Grid.Row="1"                  
+                             Grid.Row="1"
                              Width="100"
                              Margin="5,0,5,5"
                              HorizontalAlignment="Left"
@@ -142,43 +142,43 @@
                              ShowAdvancedButton="False" />
 
         <Button Grid.Row="1"
-                Grid.Column="1" 
-                Content="Add" 
-                Margin="0,0,5,5" 
+                Grid.Column="1"
+                Content="Add"
+                Margin="0,0,5,5"
                 HorizontalAlignment="Left"
-                Command="{Binding MainViewModel.LibraryManager.AddSwatchCommand}" 
+                Command="{Binding MainViewModel.LibraryManager.AddSwatchCommand}"
                 CommandParameter="{Binding ActiveLibrary}"  />
 
         <Button Grid.Row="1"
                 Grid.Column="2"
-                Content="Remove" 
-                Margin="0,0,5,5" 
+                Content="Remove"
+                Margin="0,0,5,5"
                 HorizontalAlignment="Left"
-                Command="{Binding MainViewModel.LibraryManager.RemoveSwatchCommand}" 
+                Command="{Binding MainViewModel.LibraryManager.RemoveSwatchCommand}"
                 CommandParameter="{Binding ActiveLibrary}" />-->
 
         <Button Grid.Row="1"
-                Grid.Column="3" 
-                Content="Set as Active" 
-                Margin="0,0,5,5" 
+                Grid.Column="3"
+                Content="Set as Active"
+                Margin="0,0,5,5"
                 HorizontalAlignment="Right"
-                Command="{Binding MainViewModel.LibraryManager.SetActiveLibraryCommand}" 
+                Command="{Binding MainViewModel.LibraryManager.SetActiveLibraryCommand}"
                 CommandParameter="{Binding ActiveLibrary}" />
 
         <!--<Button Grid.Row="1"
-                Grid.Column="4" 
-                Content="Save" 
-                Margin="0,0,5,5" 
+                Grid.Column="4"
+                Content="Save"
+                Margin="0,0,5,5"
                 HorizontalAlignment="Right"
-                Command="{Binding MainViewModel.LibraryManager.SaveChangesCommand}" 
+                Command="{Binding MainViewModel.LibraryManager.SaveChangesCommand}"
                 CommandParameter="{Binding ActiveLibrary}" />
 
         <Button Grid.Row="1"
-                Grid.Column="5" 
-                Content="Cancel" 
-                Margin="0,0,5,5" 
+                Grid.Column="5"
+                Content="Cancel"
+                Margin="0,0,5,5"
                 HorizontalAlignment="Right"
-                Command="{Binding MainViewModel.LibraryManager.DiscardChangesCommand}" 
+                Command="{Binding MainViewModel.LibraryManager.DiscardChangesCommand}"
                 CommandParameter="{Binding ActiveLibrary}" />-->
     </Grid>
 </metro:MetroWindow>

@@ -7,7 +7,7 @@
         xmlns:validation="clr-namespace:TheCreationist.Core.Validation;assembly=TheCreationist.Core"
         xmlns:view="clr-namespace:TheCreationist.App.View"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+        xmlns:commands="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="Edit Library"
         Icon="..\TheCreationist.ico"
